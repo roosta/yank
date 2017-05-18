@@ -1,0 +1,25 @@
+{
+
+    "manifest_version": 2,
+    "name": "save-to-org",
+    "version": "0.0.1",
+    "description": "Saves a link to an Emacs org document",
+    "homepage_url": "https://github.com/roosta/save-to-org",
+    "icons": {
+        "48": "icons/48.png",
+        "96": "icons/96.png"
+    },
+
+    "permissions": [
+        "tabs"
+    ],
+
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+    "browser_action": {
+        "default_icon": "icons/48.png",
+        "default_title": "Add to org!",
+        "default_popup": "popup.html"
+    }
+
+}
