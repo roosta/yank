@@ -1,3 +1,3 @@
 (use 'figwheel-sidecar.repl-api)
-(start-figwheel!) ;; <-- fetches configuration
-(cljs-repl)
+(start-figwheel! "popup" "background") ;; <-- fetches configuration
+;; (cljs-repl)

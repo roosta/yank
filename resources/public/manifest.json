@@ -14,6 +14,10 @@
         "tabs"
     ],
 
+    "background": {
+      "page": "background.html",
+      "persistent": false
+    },
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
     "browser_action": {

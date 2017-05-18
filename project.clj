@@ -11,8 +11,8 @@
                                   [lein-figwheel "0.5.10"]]
                    :source-paths ["script"]}}
 
-  :figwheel {:server-port 3449
-             :repl false}
+  :figwheel {:server-port 6888
+             :repl        false}
 
   :cljsbuild {:builds [{:id           "popup"
                         :source-paths ["src/popup"]
@@ -22,6 +22,16 @@
                                        :output-dir    "resources/public/js/popup"
                                        :source-map    true
                                        :optimizations :none}
-                        :figwheel true}]}
+                        :figwheel     true}
+                       {:id           "background"
+                        :source-paths ["src/background"]
+                        :compiler     {:main          save-to-org.background
+                                       :asset-path    "js/popup"
+                                       :output-to     "resources/public/js/background/main.js"
+                                       :output-dir    "resources/public/js/background"
+                                       :source-map    true
+                                       :optimizations :none}
+                        :figwheel     true}
+                       ]}
 
   :clean-targets ^{:protect false} ["target" "resources/public/js"])
