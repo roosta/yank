@@ -13,6 +13,15 @@
     "permissions": [
         "tabs"
     ],
+    "commands": {
+        "copy-as-org": {
+            "suggested_key": {
+                "default": "Ctrl+Y",
+                "linux": "Ctrl+Y"
+            },
+            "description": "Send a copy-to-org event"
+        }
+    },
 
     "background": {
       "page": "background.html"
