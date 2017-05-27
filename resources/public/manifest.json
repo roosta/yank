@@ -15,15 +15,21 @@
     ],
 
     "background": {
-      "page": "background.html",
-      "persistent": false
+      "page": "background.html"
     },
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
     "browser_action": {
         "default_icon": "icons/48.png",
         "default_title": "Add to org!",
+        "browser_style": true,
         "default_popup": "popup.html"
-    }
+    },
+
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["js/content/main.js"],
+        "run_at": "document_end"
+    }]
 
 }
