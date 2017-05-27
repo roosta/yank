@@ -25,21 +25,13 @@
                                        :source-map    true
                                        :optimizations :none}
                         :figwheel     true}
+
                        {:id           "background"
                         :source-paths ["src/background"]
                         :compiler     {:main          save-to-org.background
                                        :asset-path    "js/popup"
                                        :output-to     "resources/public/js/background/main.js"
                                        :output-dir    "resources/public/js/background"
-                                       :source-map    true
-                                       :optimizations :none}
-                        :figwheel     true}
-                       {:id           "content"
-                        :source-paths ["src/content"]
-                        :compiler     {:main          save-to-org.content
-                                       :asset-path    "js/content"
-                                       :output-to     "resources/public/js/content/main.js"
-                                       :output-dir    "resources/public/js/content"
                                        :source-map    true
                                        :optimizations :none}
                         :figwheel     true}]}
