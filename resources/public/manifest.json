@@ -11,7 +11,8 @@
     },
 
     "permissions": [
-        "tabs"
+        "activeTab",
+        "clipboardWrite"
     ],
     "commands": {
         "copy-as-org": {

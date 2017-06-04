@@ -34,6 +34,12 @@
                                        :output-dir    "resources/public/js/background"
                                        :source-map    true
                                        :optimizations :none}
-                        :figwheel     true}]}
+                        :figwheel     true}
+                       {:id           "content"
+                        :source-paths ["src/content"]
+                        :compiler     {:output-to      "resources/public/js/clipboard-helper.js"
+                                       :pretty-print   false
+                                       :optimizations  :advanced
+                                       :compiler-stats true}}]}
 
   :clean-targets ^{:protect false} ["target" "resources/public/js"])
