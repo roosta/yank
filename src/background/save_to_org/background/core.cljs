@@ -11,7 +11,7 @@
   [tab-id]
   (-> (.executeScript (gobj/get js/browser "tabs") #js {:code "typeof copyToClipboard === 'function';"})
       (.then (fn [result]
-               (when (or (not (empty? result)) (not (first result)))
+               (when (or  (not result) (false? (first result)))
                  (.executeScript (gobj/get js/browser "tabs") #js {:file "clipboard-helper.js"}))))))
 
 (defn on-active-tab
