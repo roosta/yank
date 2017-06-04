@@ -16,12 +16,12 @@
   :figwheel {:server-port 6888
              :repl        false}
 
-  :cljsbuild {:builds [{:id           "popup"
-                        :source-paths ["src/popup"]
-                        :compiler     {:main          save-to-org.popup
-                                       :asset-path    "js/popup"
-                                       :output-to     "resources/public/js/popup/main.js"
-                                       :output-dir    "resources/public/js/popup"
+  :cljsbuild {:builds [{:id           "options"
+                        :source-paths ["src/options"]
+                        :compiler     {:main          save-to-org.options
+                                       :asset-path    "js/options"
+                                       :output-to     "resources/public/js/options/main.js"
+                                       :output-dir    "resources/public/js/options"
                                        :source-map    true
                                        :optimizations :none}
                         :figwheel     true}
@@ -34,12 +34,6 @@
                                        :output-dir    "resources/public/js/background"
                                        :source-map    true
                                        :optimizations :none}
-                        :figwheel     true}
-                       {:id           "content"
-                        :source-paths ["src/content"]
-                        :compiler     {:output-to      "resources/public/js/clipboard-helper.js"
-                                       :pretty-print   false
-                                       :optimizations  :advanced
-                                       :compiler-stats true}}]}
+                        :figwheel     true}]}
 
   :clean-targets ^{:protect false} ["target" "resources/public/js"])

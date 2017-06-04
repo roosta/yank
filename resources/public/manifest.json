@@ -11,8 +11,15 @@
 
     "permissions": [
         "activeTab",
-        "clipboardWrite"
+        "clipboardWrite",
+        "storage"
     ],
+
+    "options_ui": {
+      "page": "options.html",
+      "browser_style": true
+    },
+
     "commands": {
         "copy-as-org": {
             "suggested_key": {
