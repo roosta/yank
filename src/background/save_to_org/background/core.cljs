@@ -17,11 +17,11 @@
 (defn on-active-tab
   [tabs]
   (when-some [current-tab (first tabs)]
-    (let [tab-id (gobj/get current-tab "id")
-          url    (escape (gobj/get current-tab "url"))
-          title  (escape (gobj/get current-tab "title"))
-          result (str "[[" url "][" title "]]")
-          code (str "copyToClipboard(" (.stringify js/JSON result) ");")]
+    (let [tab-id   (gobj/get current-tab "id")
+          url      (escape (gobj/get current-tab "url"))
+          title    (escape (gobj/get current-tab "title"))
+          org-text (str "[[" url "][" title "]]")
+          code     (str "copyToClipboard(" (.stringify js/JSON org-text) ");")]
       (-> (load-clipboard-helper tab-id)
           (.then (fn []
                    (.executeScript (gobj/get js/browser "tabs") tab-id #js {:code code})))
