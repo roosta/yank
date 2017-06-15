@@ -1,6 +1,33 @@
 (ns save-to-org.options.core
-  (:require-macros [utils.logging :as l]))
+  (:require [goog.events :as events]
+            [goog.object :as gobj]
+            [goog.dom :as dom])
+  (:require-macros [utils.logging :as d]))
+
+(defn save-options!
+  [e]
+  (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
+        el (dom/getElement "keybind-input")
+        value (gobj/get el "value")]
+    (.set sync #js {:keybind-opt value}))
+  (.preventDefault e))
+
+(defn restore-options!
+  []
+  (let [el (dom/getElement "keybind-input")
+        sync (.. js/browser -storage -sync)]
+    (-> (.get sync "keybind-opt")
+        (.then (fn [resp]
+                 (if-let [value (gobj/get resp "keybind-opt")]
+                   (gobj/set el "value" value)
+                   #_(gobj/set el "value" "lol")))
+               (fn [error]
+                 (d/log error))))))
 
 (defn init!
   []
-  (l/log "options init!"))
+  (d/log "opts init!")
+  (let [form (dom/getElement "keybind-form")]
+    ;; (events/listen js/document (.-DOMCONTENTLOADED events/EventType) #(d/log "Asdklajdlkjaslkd"))
+    (restore-options!)
+    (events/listen form (.-SUBMIT events/EventType) save-options!)))

@@ -31,9 +31,14 @@
 (defn get-active-tab
   [a b c]
   (let [getting-active-tab (.query js/browser.tabs #js {:active true :currentWindow true})]
-    (.then getting-active-tab on-active-tab))
-  )
+    (.then getting-active-tab on-active-tab)))
+
+(defn handle-click
+  []
+  (.openOptionsPage (gobj/get js/browser "runtime")))
 
 (defn init!
   []
+  (l/log "background init!")
+  (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   (.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))

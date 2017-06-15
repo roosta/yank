@@ -16,17 +16,7 @@
   :figwheel {:server-port 6888
              :repl        false}
 
-  :cljsbuild {:builds [{:id           "options"
-                        :source-paths ["src/options"]
-                        :compiler     {:main          save-to-org.options
-                                       :asset-path    "js/options"
-                                       :output-to     "resources/public/js/options/main.js"
-                                       :output-dir    "resources/public/js/options"
-                                       :source-map    true
-                                       :optimizations :none}
-                        :figwheel     true}
-
-                       {:id           "background"
+  :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
                         :compiler     {:main          save-to-org.background
                                        :asset-path    "js/popup"
@@ -34,6 +24,15 @@
                                        :output-dir    "resources/public/js/background"
                                        :source-map    true
                                        :optimizations :none}
-                        :figwheel     true}]}
+                        :figwheel true}
+                       {:id           "options"
+                        :source-paths ["src/options"]
+                        :compiler     {:main          save-to-org.options
+                                       :asset-path    "js/options"
+                                       :output-to     "resources/public/js/options/main.js"
+                                       :output-dir    "resources/public/js/options"
+                                       :source-map    true
+                                       :optimizations :none}
+                        :figwheel true}]}
 
   :clean-targets ^{:protect false} ["target" "resources/public/js"])

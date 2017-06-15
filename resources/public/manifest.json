@@ -2,11 +2,15 @@
     "manifest_version": 2,
     "name": "save-to-org",
     "version": "0.0.1",
-    "description": "Saves a link to an Emacs org document",
+    "description": "Saves page url and title as an org link",
     "homepage_url": "https://github.com/roosta/save-to-org",
     "icons": {
         "48": "icons/48.png",
         "96": "icons/96.png"
+    },
+
+    "browser_action": {
+        "default_title": "Save-to-org options"
     },
 
     "permissions": [
@@ -16,8 +20,9 @@
     ],
 
     "options_ui": {
-      "page": "options.html",
-      "browser_style": true
+        "page": "options.html",
+        "open_in_tab": true,
+        "browser_style": true
     },
 
     "commands": {
@@ -30,8 +35,15 @@
         }
     },
 
+    "applications": {
+        "gecko": {
+            "id": "save-to-org@roosta.sh"
+        }
+    },
+
     "background": {
       "page": "background.html"
     },
+
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
