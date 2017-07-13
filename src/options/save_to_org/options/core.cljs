@@ -40,13 +40,16 @@
 
 (defn handle-keydown!
   [e el]
-  (let [keycode (.-keyCode e)]
+  (let [keycode (.-keyCode e)
+        key (#"^[a-zA-Z]" (.fromCharCode js/String keycode))
+        alt? (.-altKey e)
+        shift? (.-shiftKey e)
+        ctrl? (.-ctrlKey e)
+        modifier-one (and (or alt? ctrl?) (not (and alt? ctrl?)))
+        modifier-two (and modifier-one shift?)]
     (.preventDefault e)
-    (when-let [key (#"^[a-zA-Z]" (.fromCharCode js/String keycode))]
-      (let [alt? (.-altKey e)
-            shift? (.-shiftKey e)
-            ctrl? (.-ctrlKey e)
-            raw-human (remove string/blank? [(when alt? "Alt") (when ctrl? "Ctrl") (when shift? "Shift") key])
+    (when (and key modifier-one)
+      (let [raw-human (remove string/blank? [(when alt? "Alt") (when ctrl? "Ctrl") (when modifier-two "Shift") key])
             human (string/join "+" raw-human)]
         (gobj/set el "value" human)
         (reset! keybind {:keycode keycode
