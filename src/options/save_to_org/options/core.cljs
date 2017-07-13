@@ -6,6 +6,10 @@
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
 
+(extend-type js/RegExp
+  cljs.core/IFn
+  (-invoke ([this s] (re-matches this s))))
+
 (def keybind (atom {:code 432
                     :key "R"
                     :ctrl? true
@@ -36,25 +40,22 @@
 
 (defn handle-keydown
   [e]
-  (let [value (.. e -target -value)
-        non-values #{16 17 18}
-        field(dom/getElement "keybind-input")
-        keycode (.-keyCode e)
-        key (when  (not (contains? non-values keycode))
-              (.fromCharCode js/String keycode))
-        alt? (.-altKey e)
-        shift? (.-shiftKey e)
-        ctrl? (.-ctrlKey e)
-        raw-human (remove string/blank? [(when alt? "Alt") (when ctrl? "Ctrl") (when shift? "Shift") key])
-        human (string/join "+" raw-human)]
+  (let [el (dom/getElement "keybind-input")
+        keycode (.-keyCode e)]
     (.preventDefault e)
-    (gobj/set field "value" human)
-    (reset! keybind {:keycode keycode
-                     :key key
-                     :alt? alt?
-                     :shift? shift?
-                     :ctrl? ctrl?
-                     :human human})))
+    (when-let [key (#"^[a-zA-Z]" (.fromCharCode js/String keycode))]
+      (let [alt? (.-altKey e)
+            shift? (.-shiftKey e)
+            ctrl? (.-ctrlKey e)
+            raw-human (remove string/blank? [(when alt? "Alt") (when ctrl? "Ctrl") (when shift? "Shift") key])
+            human (string/join "+" raw-human)]
+        (gobj/set el "value" human)
+        (reset! keybind {:keycode keycode
+                         :key key
+                         :alt? alt?
+                         :shift? shift?
+                         :ctrl? ctrl?
+                         :human human})))))
 
 (defn init!
   []
