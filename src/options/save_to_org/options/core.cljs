@@ -10,20 +10,21 @@
   cljs.core/IFn
   (-invoke ([this s] (re-matches this s))))
 
-(def keybind (atom {:code 432
-                    :key "R"
-                    :ctrl? true
-                    :alt? false
-                    :shift false
-                    :human "ctrl+r"}))
+(def keybind (atom nil))
+(def default {:keycode 89
+              :key "Y"
+              :alt? false
+              :shift? false
+              :ctrl? true
+              :human "Ctrl+Y"})
 
 (defn save-options!
-  [e]
-  (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
-        el (dom/getElement "keybind-input")
-        value (gobj/get el "value")]
-    (.set sync (clj->js {:keybind-opt @keybind})))
-  (.preventDefault e))
+  ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
+                     el (dom/getElement "keybind-input")]
+                 (.set sync (clj->js {:keybind-opt options}))
+                 (.preventDefault e)))
+  ([options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
+               (.set sync (clj->js {:keybind-opt options})))))
 
 (defn restore-options!
   []
@@ -31,17 +32,15 @@
         sync (.. js/browser -storage -sync)]
     (-> (.get sync "keybind-opt")
         (.then (fn [resp]
-                 (when-let [value (js->clj (gobj/get resp "keybind-opt"))]
-                   (let [str->keyword (w/keywordize-keys value)]
-                     (gobj/set el "value" (:human str->keyword))
-                     (reset! keybind str->keyword))))
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
+                   (gobj/set el "value" (:human result))
+                   (reset! keybind result)))
                (fn [error]
                  (d/log error))))))
 
-(defn handle-keydown
-  [e]
-  (let [el (dom/getElement "keybind-input")
-        keycode (.-keyCode e)]
+(defn handle-keydown!
+  [e el]
+  (let [keycode (.-keyCode e)]
     (.preventDefault e)
     (when-let [key (#"^[a-zA-Z]" (.fromCharCode js/String keycode))]
       (let [alt? (.-altKey e)
@@ -56,6 +55,12 @@
                          :shift? shift?
                          :ctrl? ctrl?
                          :human human})))))
+(defn handle-reset!
+  [e el]
+  (.preventDefault e)
+  (gobj/set el "value" (:human default))
+  (reset! keybind default)
+  (save-options! default))
 
 (defn init!
   []
@@ -63,5 +68,6 @@
   (let [form (dom/getElement "keybind-form")
         field (dom/getElement "keybind-input")]
     (restore-options!)
-    (events/listen form (.-KEYDOWN events/EventType) handle-keydown)
-    (events/listen form (.-SUBMIT events/EventType) save-options!)))
+    (events/listen form (.-KEYDOWN events/EventType) #(handle-keydown! % field))
+    (events/listen form (.-RESET events/EventType) #(handle-reset! % field))
+    (events/listen form (.-SUBMIT events/EventType) #(save-options! % @keybind))))
