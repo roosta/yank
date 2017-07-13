@@ -19,8 +19,7 @@
     (-> (.get sync "keybind-opt")
         (.then (fn [resp]
                  (if-let [value (gobj/get resp "keybind-opt")]
-                   (gobj/set el "value" value)
-                   #_(gobj/set el "value" "lol")))
+                   (gobj/set el "value" value)))
                (fn [error]
                  (d/log error))))))
 
@@ -28,6 +27,5 @@
   []
   (d/log "opts init!")
   (let [form (dom/getElement "keybind-form")]
-    ;; (events/listen js/document (.-DOMCONTENTLOADED events/EventType) #(d/log "Asdklajdlkjaslkd"))
     (restore-options!)
     (events/listen form (.-SUBMIT events/EventType) save-options!)))
