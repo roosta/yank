@@ -29,7 +29,7 @@
 (defn restore-options!
   []
   (let [el (dom/getElement "keybind-input")
-        sync (.. js/browser -storage -sync)]
+        sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> (.get sync "keybind-opt")
         (.then (fn [resp]
                  (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
@@ -41,7 +41,7 @@
 (defn handle-keydown!
   [e el]
   (let [keycode (.-keyCode e)
-        key (#"^[a-zA-Z]" (.fromCharCode js/String keycode))
+        key (#"^[a-zA-Z1-9]" (.fromCharCode js/String keycode))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
         ctrl? (.-ctrlKey e)
