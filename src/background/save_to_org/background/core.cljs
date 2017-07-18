@@ -1,6 +1,7 @@
 (ns save-to-org.background.core
-  (:require-macros [utils.logging :as l])
+  (:require-macros [utils.logging :as d])
   (:require [goog.object :as gobj]
+            [clojure.walk :as w]
             [goog.events :as events]))
 
 (defn escape
@@ -26,7 +27,7 @@
           (.then (fn []
                    (.executeScript (gobj/get js/browser "tabs") tab-id #js {:code code})))
           (.catch (fn [error]
-                    (l/error "Failed to copy text: " error)))))))
+                    (d/error "Failed to copy text: " error)))))))
 
 (defn get-active-tab
   [a b c]
@@ -37,8 +38,21 @@
   []
   (.openOptionsPage (gobj/get js/browser "runtime")))
 
+(defn tmp
+  []
+  (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
+        !keybind (atom nil)]
+    (-> (.get sync "keybind-opt")
+        (.then (fn [resp]
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
+                   (reset! !keybind result)))
+               (fn [error]
+                 (d/log error))))
+    (d/log @!keybind)))
+
 (defn init!
   []
-  (l/log "background init!")
+  (d/log "background init!")
+  ;; (events/listen js/browser (.-KEYDOWN events/EventType) #(d/log %))
   (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   (.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))
