@@ -1,0 +1,12 @@
+* Key combinations
+Key combinations must consist of two or three keys:
+
+ - modifier (mandatory, except for function keys). This can be any of: "Ctrl", "Alt", "Command", "MacCtrl".
+ - secondary modifier (optional). If supplied, this must be "Shift".
+ - key (mandatory). This can be any one of:
+   - the letters A-Z
+   - the numbers 0-9
+   - the function keys F1-F12
+   - Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right
+
+On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", specify "MacCtrl".
