@@ -2,6 +2,7 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
+            [js.mousetrap]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
@@ -16,7 +17,7 @@
               :alt? false
               :shift? false
               :ctrl? true
-              :human "Ctrl+Y"})
+              :composed "ctrl+y"})
 
 (defn save-options!
   ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
@@ -33,7 +34,7 @@
     (-> (.get sync "keybind-opt")
         (.then (fn [resp]
                  (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
-                   (gobj/set el "value" (:human result))
+                   (gobj/set el "value" (:composed result))
                    (reset! keybind result)))
                (fn [error]
                  (d/log error))))))
@@ -41,27 +42,28 @@
 (defn handle-keydown!
   [e el]
   (let [keycode (.-keyCode e)
-        key (#"^[a-zA-Z1-9]" (.fromCharCode js/String keycode))
+        key (#"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
         ctrl? (.-ctrlKey e)
         modifier-one (and (or alt? ctrl?) (not (and alt? ctrl?)))
         modifier-two (and modifier-one shift?)]
+    ;; (d/log (.fromCharCode js/String keycode))
     (.preventDefault e)
     (when (and key modifier-one)
-      (let [raw-human (remove string/blank? [(when alt? "Alt") (when ctrl? "Ctrl") (when modifier-two "Shift") key])
-            human (string/join "+" raw-human)]
-        (gobj/set el "value" human)
+      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when modifier-two "shift") key])
+            composed (string/join "+" raw)]
+        (gobj/set el "value" composed)
         (reset! keybind {:keycode keycode
                          :key key
                          :alt? alt?
                          :shift? shift?
                          :ctrl? ctrl?
-                         :human human})))))
+                         :composed composed})))))
 (defn handle-reset!
   [e el]
   (.preventDefault e)
-  (gobj/set el "value" (:human default))
+  (gobj/set el "value" (:composed default))
   (reset! keybind default)
   (save-options! default))
 
