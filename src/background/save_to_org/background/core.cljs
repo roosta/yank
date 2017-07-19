@@ -5,44 +5,58 @@
             [goog.events :as events]))
 
 (defn escape
+  "Escape HTML characters before storing anything"
   [text]
   (clojure.string/escape text {\< "&lt;", \> "&gt;", \& "&amp;"}))
 
+(defn execute-script
+  "Execute a script using js/browser.tabs
+  'obj' param is a javascript object conforming to this:
+  https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/executeScript
+  optionally takes a tab-id to select which tab to execute script inside
+  Returns a js/Promise"
+  ([obj]
+   (.executeScript (gobj/get js/browser "tabs") (clj->js obj)))
+  ([obj tab-id]
+   (.executeScript (gobj/get js/browser "tabs") tab-id (clj->js obj))))
+
 (defn load-clipboard-helper
+  "load js function defined in clipboard-helper.js"
   [tab-id]
-  (-> (.executeScript (gobj/get js/browser "tabs") #js {:code "typeof copyToClipboard === 'function';"})
+  (-> (execute-script {:code "typeof copyToClipboard === 'function';"})
       (.then (fn [result]
                (when (or  (not result) (false? (first result)))
-                 (.executeScript (gobj/get js/browser "tabs") tab-id #js {:file "clipboard-helper.js"}))))
+                 (execute-script {:file "clipboard-helper.js"} tab-id))))
       (.catch (fn [error]
                 (d/error "Failed to load clipboard helper: " error)))))
 
 (defn copy-to-clipboard
+  "Copy text to clipboard by injecting the formatted input (text)
+  as an argment to the loaded 'copyToClipboard"
   [tab-id text]
   (let [code (str "copyToClipboard(" (.stringify js/JSON text) ");")]
     (-> (load-clipboard-helper tab-id)
         (.then (fn []
-                 (.executeScript (gobj/get js/browser "tabs") tab-id #js {:code code})))
+                 (execute-script {:code code} tab-id )))
         (.catch (fn [error]
                   (d/error "Failed to copy text: " error))))))
 
 (defmulti copy-as
+  "Dispatch on :action key, from runtime message, passed from content script"
   (fn [message] (:action message))
   :default "org")
 
 (defmethod copy-as "org"
+  ^{:doc "Format URL and title of current tab to org link format"}
   [{:keys [tab-id title url]}]
   (let [text (str "[[" url "][" title "]]")]
     (copy-to-clipboard tab-id text)))
 
 (defmethod copy-as "md"
+  ^{:doc "Format URL and title of current tab to md link format"}
   [{:keys [tab-id title url]}]
   (let [text (str "[" title "](" url ")")]
     (copy-to-clipboard tab-id text)))
-
-(defn handle-click
-  []
-  (.openOptionsPage (gobj/get js/browser "runtime")))
 
 (defn handle-message
   [request sender send-response]
@@ -59,6 +73,4 @@
 (defn init!
   []
   (d/log "background init!")
-  (.addListener (gobj/getValueByKeys js/browser "runtime" "onMessage") handle-message)
-  (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
-  #_(.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))
+  (.addListener (gobj/getValueByKeys js/browser "runtime" "onMessage") handle-message))
