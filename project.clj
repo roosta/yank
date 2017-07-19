@@ -42,6 +42,10 @@
                                        :asset-path    "js/content-script"
                                        :output-to     "resources/public/js/content-script/main.js"
                                        :output-dir    "resources/public/js/content-script"
+                                       :infer-externs true
+                                       :foreign-libs [{:file "src/js/mousetrap.js"
+                                                       :file-min "src/js/mousetrap.min.js"
+                                                       :provides ["js.mousetrap"]}]
                                        :pseudo-names true
                                        :pretty-print true
                                        :optimizations :advanced}}]}
