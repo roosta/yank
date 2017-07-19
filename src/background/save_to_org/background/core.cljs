@@ -38,21 +38,26 @@
   []
   (.openOptionsPage (gobj/get js/browser "runtime")))
 
-(defn tmp
-  []
-  (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
-        !keybind (atom nil)]
-    (-> (.get sync "keybind-opt")
-        (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
-                   (reset! !keybind result)))
-               (fn [error]
-                 (d/log error))))
-    (d/log @!keybind)))
+(defmulti copy-as
+  (fn [param] param)
+  :default "org")
+
+(defmethod copy-as "org"
+  [_]
+  (d/log "arrived at copy-as-org"))
+
+(defmethod copy-as "md"
+  [_]
+  (d/log "arrived at copy-as-md"))
+
+(defn handle-message
+  [request sender send-response]
+  (when-some [action (gobj/get request "action")]
+    (copy-as action)))
 
 (defn init!
   []
   (d/log "background init!")
-  ;; (events/listen js/browser (.-KEYDOWN events/EventType) #(d/log %))
+  (.addListener (gobj/getValueByKeys js/browser "runtime" "onMessage") handle-message)
   (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   #_(.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))

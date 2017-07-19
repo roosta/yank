@@ -2,7 +2,6 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
-            [js.mousetrap]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
@@ -60,6 +59,7 @@
                          :shift? shift?
                          :ctrl? ctrl?
                          :composed composed})))))
+
 (defn handle-reset!
   [e el]
   (.preventDefault e)

@@ -8,13 +8,13 @@
 (set! *warn-on-infer* true)
 (def keybind (atom nil))
 
-(defn fetch-keybind!
+(defn fetch-keybind
   []
-  (let [^js/browser.storage.sync
+  (let [^js/browser
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
-    (-> ^js/browser.storage.sync.get
+    (-> ^js/browser
         (.get sync "keybind-opt")
-        ^js/browser.storage.sync.get.then
+        ^js/browser
         (.then (fn [resp]
                  (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
                    (reset! keybind result)))
@@ -23,17 +23,16 @@
 
 (defn send-message
   [e]
-  (d/log "we got to send message!")
-  )
+  (let [^js/browser runtime (gobj/get js/browser "runtime")]
+    (.sendMessage runtime #js {:action "org"})))
 
 (defn watcher
   [k r old new]
   (when-let [key-combo (:composed new)]
-    (.bind js/Mousetrap key-combo send-message)
-    ))
+    (.bind js/Mousetrap key-combo send-message)))
 
 (defn init!
   []
   (d/log "content init!")
   (add-watch keybind :keybind watcher)
-  (fetch-keybind!))
+  (fetch-keybind))
