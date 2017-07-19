@@ -10,3 +10,11 @@ Key combinations must consist of two or three keys:
    - Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right
 
 On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", specify "MacCtrl".
+* TODO Ctrl and mac
+* TODO Allow for more key combinations
+* TODO Change key name where options are stored
+  something like this:
+  #+BEGIN_SRC clojure
+      {:save-to-org {:format "org"
+                     :keybind {HERE}}
+  #+END_SRC
