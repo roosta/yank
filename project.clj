@@ -18,21 +18,32 @@
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
+                        :figwheel true
                         :compiler     {:main          save-to-org.background
                                        :asset-path    "js/popup"
                                        :output-to     "resources/public/js/background/main.js"
                                        :output-dir    "resources/public/js/background"
                                        :source-map    true
-                                       :optimizations :none}
-                        :figwheel true}
+                                       :optimizations :none}}
+
                        {:id           "options"
                         :source-paths ["src/options"]
+                        :figwheel true
                         :compiler     {:main          save-to-org.options
                                        :asset-path    "js/options"
                                        :output-to     "resources/public/js/options/main.js"
                                        :output-dir    "resources/public/js/options"
                                        :source-map    true
-                                       :optimizations :none}
-                        :figwheel true}]}
+                                       :optimizations :none}}
+
+                       {:id           "content"
+                        :source-paths ["src/content"]
+                        :compiler     {:main          save-to-org.content
+                                       :asset-path    "js/content"
+                                       :output-to     "resources/public/js/content/content.js"
+                                       :output-dir    "resources/public/js/content"
+                                       :pseudo-names true
+                                       :pretty-print true
+                                       :optimizations :advanced}}]}
 
   :clean-targets ^{:protect false} ["target" "resources/public/js"])

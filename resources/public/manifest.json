@@ -1,49 +1,47 @@
 {
-    "manifest_version": 2,
-    "name": "save-to-org",
-    "version": "0.0.1",
-    "description": "Saves page url and title as an org link",
-    "homepage_url": "https://github.com/roosta/save-to-org",
-    "icons": {
-        "48": "icons/48.png",
-        "96": "icons/96.png"
-    },
+  "manifest_version": 2,
+  "name": "save-to-org",
+  "version": "0.0.1",
+  "description": "Saves page url and title as an org link",
+  "homepage_url": "https://github.com/roosta/save-to-org",
+  "icons": {
+    "48": "icons/48.png",
+    "96": "icons/96.png"
+  },
 
-    "browser_action": {
-        "default_title": "Save-to-org options"
-    },
+  "browser_action": {
+    "default_title": "Save-to-org options"
+  },
 
-    "permissions": [
-        "activeTab",
-        "clipboardWrite",
-        "storage"
-    ],
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "storage"
+  ],
 
-    "options_ui": {
-        "page": "options.html",
-        "open_in_tab": true,
-        "browser_style": true
-    },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true,
+    "browser_style": true
+  },
 
-    "commands": {
-        "copy-as-org": {
-            "suggested_key": {
-                "default": "Ctrl+Y",
-                "linux": "Ctrl+Y"
-            },
-            "description": "Send a copy-to-org event"
-        }
-    },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["js/content/content.js",
+           "mousetrap.js"],
+    "run_at": "document_end"
+  }],
 
-    "applications": {
-        "gecko": {
-            "id": "save-to-org@roosta.sh"
-        }
-    },
+  "applications": {
+    "gecko": {
+      "id": "save-to-org@roosta.sh"
+    }
+  },
 
-    "background": {
-      "page": "background.html"
-    },
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
 
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

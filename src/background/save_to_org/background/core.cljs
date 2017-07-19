@@ -55,4 +55,4 @@
   (d/log "background init!")
   ;; (events/listen js/browser (.-KEYDOWN events/EventType) #(d/log %))
   (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
-  (.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))
+  #_(.addListener (gobj/getValueByKeys js/browser "commands" "onCommand") get-active-tab))
