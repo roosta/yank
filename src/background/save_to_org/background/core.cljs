@@ -13,47 +13,48 @@
   (-> (.executeScript (gobj/get js/browser "tabs") #js {:code "typeof copyToClipboard === 'function';"})
       (.then (fn [result]
                (when (or  (not result) (false? (first result)))
-                 (.executeScript (gobj/get js/browser "tabs") #js {:file "clipboard-helper.js"}))))))
+                 (.executeScript (gobj/get js/browser "tabs") tab-id #js {:file "clipboard-helper.js"}))))
+      (.catch (fn [error]
+                (d/error "Failed to load clipboard helper: " error)))))
 
-(defn on-active-tab
-  [tabs]
-  (when-some [current-tab (first tabs)]
-    (let [tab-id   (gobj/get current-tab "id")
-          url      (escape (gobj/get current-tab "url"))
-          title    (escape (gobj/get current-tab "title"))
-          org-text (str "[[" url "][" title "]]")
-          code     (str "copyToClipboard(" (.stringify js/JSON org-text) ");")]
-      (-> (load-clipboard-helper tab-id)
-          (.then (fn []
-                   (.executeScript (gobj/get js/browser "tabs") tab-id #js {:code code})))
-          (.catch (fn [error]
-                    (d/error "Failed to copy text: " error)))))))
+(defn copy-to-clipboard
+  [tab-id text]
+  (let [code (str "copyToClipboard(" (.stringify js/JSON text) ");")]
+    (-> (load-clipboard-helper tab-id)
+        (.then (fn []
+                 (.executeScript (gobj/get js/browser "tabs") tab-id #js {:code code})))
+        (.catch (fn [error]
+                  (d/error "Failed to copy text: " error))))))
 
-(defn get-active-tab
-  [a b c]
-  (let [getting-active-tab (.query js/browser.tabs #js {:active true :currentWindow true})]
-    (.then getting-active-tab on-active-tab)))
+(defmulti copy-as
+  (fn [message] (:action message))
+  :default "org")
+
+(defmethod copy-as "org"
+  [{:keys [tab-id title url]}]
+  (let [text (str "[[" url "][" title "]]")]
+    (copy-to-clipboard tab-id text)))
+
+(defmethod copy-as "md"
+  [{:keys [tab-id title url]}]
+  (let [text (str "[" title "](" url ")")]
+    (copy-to-clipboard tab-id text)))
 
 (defn handle-click
   []
   (.openOptionsPage (gobj/get js/browser "runtime")))
 
-(defmulti copy-as
-  (fn [param] param)
-  :default "org")
-
-(defmethod copy-as "org"
-  [_]
-  (d/log "arrived at copy-as-org"))
-
-(defmethod copy-as "md"
-  [_]
-  (d/log "arrived at copy-as-md"))
-
 (defn handle-message
   [request sender send-response]
   (when-some [action (gobj/get request "action")]
-    (copy-as action)))
+    (let [tab (gobj/get sender "tab")
+          url (escape (gobj/get tab "url"))
+          tab-id (gobj/get tab "id")
+          title (escape (gobj/get tab "title"))]
+      (copy-as {:action action
+                :tab-id tab-id
+                :url url
+                :title title}))))
 
 (defn init!
   []
