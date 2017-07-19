@@ -9,7 +9,7 @@
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]]
                    :plugins      [[lein-cljsbuild "1.1.6"]
                                   [lein-figwheel "0.5.10"]]
-                   :source-paths ["script"]}}
+                   :source-paths ["script" "dev"]}}
 
   :source-paths ["src/lib"]
 
