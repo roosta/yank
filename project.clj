@@ -36,12 +36,12 @@
                                        :source-map    true
                                        :optimizations :none}}
 
-                       {:id           "content"
-                        :source-paths ["src/content"]
-                        :compiler     {:main          save-to-org.content
-                                       :asset-path    "js/content"
-                                       :output-to     "resources/public/js/content/content.js"
-                                       :output-dir    "resources/public/js/content"
+                       {:id           "content-script"
+                        :source-paths ["src/content_script"]
+                        :compiler     {:main          save-to-org.content-script
+                                       :asset-path    "js/content-script"
+                                       :output-to     "resources/public/js/content-script/main.js"
+                                       :output-dir    "resources/public/js/content-script"
                                        :pseudo-names true
                                        :pretty-print true
                                        :optimizations :advanced}}]}

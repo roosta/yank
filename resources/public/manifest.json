@@ -27,7 +27,7 @@
 
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["js/content/content.js",
+    "js": ["js/content-script/main.js",
            "mousetrap.js"],
     "run_at": "document_end"
   }],
