@@ -10,6 +10,10 @@ Key combinations must consist of two or three keys:
    - Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right
 
 On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", specify "MacCtrl".
+* Other projects
+  - https://github.com/kuanyui/copy-as-org-mode
+  - https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search
+  - https://addons.mozilla.org/en-US/firefox/addon/org-mode-capture/?src=search
 * TODO Ctrl and mac
 * TODO Allow for more key combinations
 * TODO Change key name where options are stored
