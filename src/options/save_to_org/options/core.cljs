@@ -6,11 +6,14 @@
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
 
+;; extend js/RegExp to be callable
 (extend-type js/RegExp
   cljs.core/IFn
   (-invoke ([this s] (re-matches this s))))
 
 (def keybind (atom nil))
+
+;; define default if nothing is present in storage
 (def default {:keycode 89
               :key "Y"
               :alt? false
@@ -19,6 +22,7 @@
               :composed "ctrl+y"})
 
 (defn save-options!
+  "save options Takes either an event object and options map or only options"
   ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
                      el (dom/getElement "keybind-input")]
                  (.set sync (clj->js {:keybind-opt options}))
@@ -27,6 +31,7 @@
                (.set sync (clj->js {:keybind-opt options})))))
 
 (defn restore-options!
+  "Get options map and reset state atom with fetched value"
   []
   (let [el (dom/getElement "keybind-input")
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
@@ -39,6 +44,7 @@
                  (d/log error))))))
 
 (defn handle-keydown!
+  "handle valid keybinds and reset state atom"
   [e el]
   (let [keycode (.-keyCode e)
         key (#"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
@@ -47,7 +53,6 @@
         ctrl? (.-ctrlKey e)
         modifier-one (and (or alt? ctrl?) (not (and alt? ctrl?)))
         modifier-two (and modifier-one shift?)]
-    ;; (d/log (.fromCharCode js/String keycode))
     (.preventDefault e)
     (when (and key modifier-one)
       (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when modifier-two "shift") key])
@@ -61,6 +66,7 @@
                          :composed composed})))))
 
 (defn handle-reset!
+  "Reset value in state and input field"
   [e el]
   (.preventDefault e)
   (gobj/set el "value" (:composed default))

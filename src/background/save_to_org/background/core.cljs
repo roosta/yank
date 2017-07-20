@@ -59,6 +59,7 @@
     (copy-to-clipboard tab-id text)))
 
 (defn handle-message
+  "Handle incoming runtime message, extract info and call copy-as"
   [request sender send-response]
   (when-some [action (gobj/get request "action")]
     (let [tab (gobj/get sender "tab")
