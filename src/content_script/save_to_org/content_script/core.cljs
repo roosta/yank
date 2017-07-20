@@ -8,19 +8,19 @@
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
-(def keybind (atom nil))
+(def options (atom nil))
 
-(defn fetch-keybind
+(defn fetch-options
   "Handle fetching options"
   []
   (let [^js/browser
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> ^js/browser
-        (.get sync "keybind-opt")
+        (.get sync "copy-as-markup")
         ^js/browser
         (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
-                   (reset! keybind result)))
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "copy-as-markup")))]
+                   (reset! options result)))
                (fn [error]
                  (d/log error))))))
 
@@ -29,16 +29,16 @@
   Gets handled in background script"
   [e]
   (let [^js/browser runtime (gobj/get js/browser "runtime")]
-    (.sendMessage runtime #js {:action "org"})))
+    (.sendMessage runtime #js {:action (:action @options)})))
 
 (defn watcher
   "Watch state atom so that it'll send a message on change"
   [k r old new]
-  (when-let [key-combo (:composed new)]
+  (when-let [key-combo (-> new :keybind :composed)]
     (.bind js/Mousetrap key-combo send-message)))
 
 (defn init!
   []
   (d/log "content init!")
-  (add-watch keybind :keybind watcher)
-  (fetch-keybind))
+  (add-watch options :options watcher)
+  (fetch-options))

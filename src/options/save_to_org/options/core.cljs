@@ -11,39 +11,40 @@
   cljs.core/IFn
   (-invoke ([this s] (re-matches this s))))
 
-(def keybind (atom nil))
-
 ;; define default if nothing is present in storage
-(def default {:keycode 89
-              :key "Y"
-              :alt? false
-              :shift? false
-              :ctrl? true
-              :composed "ctrl+y"})
+(def default {:action "org"
+              :keybind {:keycode 89
+                        :key "y"
+                        :alt? false
+                        :shift? false
+                        :ctrl? true
+                        :composed "ctrl+y"}})
 
-(defn save-options!
+(def options (atom default))
+
+(defn save-options
   "save options Takes either an event object and options map or only options"
   ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
                      el (dom/getElement "keybind-input")]
-                 (.set sync (clj->js {:keybind-opt options}))
+                 (.set sync (clj->js {:copy-as-markup options}))
                  (.preventDefault e)))
   ([options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
-               (.set sync (clj->js {:keybind-opt options})))))
+               (.set sync (clj->js {:copy-as-markup options})))))
 
-(defn restore-options!
+(defn restore-options
   "Get options map and reset state atom with fetched value"
   []
   (let [el (dom/getElement "keybind-input")
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
-    (-> (.get sync "keybind-opt")
+    (-> (.get sync "copy-as-markup")
         (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "keybind-opt")))]
-                   (gobj/set el "value" (:composed result))
-                   (reset! keybind result)))
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "copy-as-markup")))]
+                   (gobj/set el "value" (-> result :keybind :composed))
+                   (reset! options result)))
                (fn [error]
-                 (d/log error))))))
+                 (d/error "Failed to restore options: " error))))))
 
-(defn handle-keydown!
+(defn handle-keydown
   "handle valid keybinds and reset state atom"
   [e el]
   (let [keycode (.-keyCode e)
@@ -58,27 +59,27 @@
       (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when modifier-two "shift") key])
             composed (string/join "+" raw)]
         (gobj/set el "value" composed)
-        (reset! keybind {:keycode keycode
-                         :key key
-                         :alt? alt?
-                         :shift? shift?
-                         :ctrl? ctrl?
-                         :composed composed})))))
+        (swap! options assoc :keybind {:keycode keycode
+                                       :key key
+                                       :alt? alt?
+                                       :shift? shift?
+                                       :ctrl? ctrl?
+                                       :composed composed})))))
 
-(defn handle-reset!
+(defn handle-reset
   "Reset value in state and input field"
   [e el]
   (.preventDefault e)
-  (gobj/set el "value" (:composed default))
-  (reset! keybind default)
-  (save-options! default))
+  (gobj/set el "value" (-> default :keybind :composed))
+  (reset! options default)
+  (save-options default))
 
 (defn init!
   []
   (d/log "opts init!")
   (let [form (dom/getElement "keybind-form")
         field (dom/getElement "keybind-input")]
-    (restore-options!)
-    (events/listen form (.-KEYDOWN events/EventType) #(handle-keydown! % field))
-    (events/listen form (.-RESET events/EventType) #(handle-reset! % field))
-    (events/listen form (.-SUBMIT events/EventType) #(save-options! % @keybind))))
+    (restore-options)
+    (events/listen form (.-KEYDOWN events/EventType) #(handle-keydown % field))
+    (events/listen form (.-RESET events/EventType) #(handle-reset % field))
+    (events/listen form (.-SUBMIT events/EventType) #(save-options % @options))))
