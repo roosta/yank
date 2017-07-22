@@ -26,19 +26,19 @@
   "save options Takes either an event object and options map or only options"
   ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")
                      el (dom/getElement "keybind-input")]
-                 (.set sync (clj->js {:copy-as-markup options}))
+                 (.set sync (clj->js {:yank options}))
                  (.preventDefault e)))
   ([options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
-               (.set sync (clj->js {:copy-as-markup options})))))
+               (.set sync (clj->js {:yank options})))))
 
 (defn restore-options
   "Get options map and reset state atom with fetched value"
   []
   (let [el (dom/getElement "keybind-input")
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
-    (-> (.get sync "copy-as-markup")
+    (-> (.get sync "yank")
         (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "copy-as-markup")))]
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
                    (gobj/set el "value" (-> result :keybind :composed))
                    (reset! options result)))
                (fn [error]

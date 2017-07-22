@@ -16,10 +16,10 @@
   (let [^js/browser
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> ^js/browser
-        (.get sync "copy-as-markup")
+        (.get sync "yank")
         ^js/browser
         (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "copy-as-markup")))]
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
                    (reset! options result)))
                (fn [error]
                  (d/log error))))))
