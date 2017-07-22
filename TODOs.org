@@ -23,3 +23,6 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
                      :keybind {HERE}}
   #+END_SRC
 * TODO init default option
+* TODO Remove figwheel repl
+* List of document markup languages
+  https://en.wikipedia.org/wiki/Comparison_of_document_markup_languages
