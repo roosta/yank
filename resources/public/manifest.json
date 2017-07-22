@@ -9,10 +9,6 @@
     "96": "icons/96.png"
   },
 
-  "browser_action": {
-    "default_title": "Save-to-org options"
-  },
-
   "permissions": [
     "tabs",
     "clipboardWrite",
