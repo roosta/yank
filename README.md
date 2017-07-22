@@ -1,4 +1,4 @@
-# save-to-org
+# yank
 
 FIXME: description
 
@@ -10,7 +10,7 @@ Download from http://example.com/FIXME.
 
 FIXME: explanation
 
-    $ java -jar save-to-org-0.1.0-standalone.jar [args]
+    $ java -jar yank-0.1.0-standalone.jar [args]
 
 ## Options
 

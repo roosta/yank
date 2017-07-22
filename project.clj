@@ -1,4 +1,4 @@
-(defproject save-to-org "0.1.0-SNAPSHOT"
+(defproject yank "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -19,8 +19,8 @@
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
                         :figwheel true
-                        :compiler     {:main          save-to-org.background
-                                       :asset-path    "js/popup"
+                        :compiler     {:main          yank.background
+                                       :asset-path    "js/background"
                                        :output-to     "resources/public/js/background/main.js"
                                        :output-dir    "resources/public/js/background"
                                        :source-map    true
@@ -29,7 +29,7 @@
                        {:id           "options"
                         :source-paths ["src/options"]
                         :figwheel true
-                        :compiler     {:main          save-to-org.options
+                        :compiler     {:main          yank.options
                                        :asset-path    "js/options"
                                        :output-to     "resources/public/js/options/main.js"
                                        :output-dir    "resources/public/js/options"
@@ -38,7 +38,7 @@
 
                        {:id           "content-script"
                         :source-paths ["src/content_script"]
-                        :compiler     {:main          save-to-org.content-script
+                        :compiler     {:main          yank.content-script
                                        :asset-path    "js/content-script"
                                        :output-to     "resources/public/js/content-script/main.js"
                                        :output-dir    "resources/public/js/content-script"

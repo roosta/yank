@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "save-to-org",
-  "version": "0.0.1",
-  "description": "Saves page url and title as an org link",
-  "homepage_url": "https://github.com/roosta/save-to-org",
+  "name": "yank",
+  "version": "0.1.0",
+  "description": "Yank URL and title, format to a chosen markup language, and copy to clipboard",
+  "homepage_url": "https://github.com/roosta/yank",
   "icons": {
     "48": "icons/48.png",
     "96": "icons/96.png"
@@ -34,7 +34,7 @@
 
   "applications": {
     "gecko": {
-      "id": "save-to-org@roosta.sh"
+      "id": "yank@roosta.sh"
     }
   },
 

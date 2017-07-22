@@ -1,4 +1,4 @@
-(ns save-to-org.options.core
+(ns yank.options.core
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]

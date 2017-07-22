@@ -1,4 +1,4 @@
-(ns save-to-org.content-script.core
+(ns yank.content-script.core
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
             [js.mousetrap]

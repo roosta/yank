@@ -16,10 +16,10 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
   - https://addons.mozilla.org/en-US/firefox/addon/org-mode-capture/?src=search
 * TODO Ctrl and mac
 * TODO Allow for more key combinations
-* TODO Change key name where options are stored
+* DONE Change key name where options are stored
   something like this:
   #+BEGIN_SRC clojure
-      {:save-to-org {:format "org"
+      {:yank {:format "org"
                      :keybind {HERE}}
   #+END_SRC
 * TODO init default option
