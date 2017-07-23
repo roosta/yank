@@ -16,11 +16,12 @@
   (let [^js/browser
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> ^js/browser
-        (.get sync "yank")
+        (.get sync "asd")
         ^js/browser
         (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                   (reset! options result)))
+                 (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+                   (reset! options result)
+                   (d/log "got nothing")))
                (fn [error]
                  (d/log error))))))
 

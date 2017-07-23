@@ -2,6 +2,7 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
+            [defaults]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
@@ -11,16 +12,7 @@
   cljs.core/IFn
   (-invoke ([this s] (re-matches this s))))
 
-;; define default if nothing is present in storage
-(def default {:action "org"
-              :keybind {:keycode 89
-                        :key "y"
-                        :alt? false
-                        :shift? false
-                        :ctrl? true
-                        :composed "ctrl+y"}})
-
-(def options (atom default))
+(def options (atom defaults/options))
 
 (defn save-options
   "save options Takes either an event object and options map or only options"
@@ -70,9 +62,9 @@
   "Reset value in state and input field"
   [e el]
   (.preventDefault e)
-  (gobj/set el "value" (-> default :keybind :composed))
-  (reset! options default)
-  (save-options default))
+  (gobj/set el "value" (-> defaults/options :keybind :composed))
+  (reset! options defaults/options)
+  (save-options defaults/options))
 
 (defn init!
   []
