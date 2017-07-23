@@ -71,7 +71,13 @@
                 :url url
                 :title title}))))
 
+(defn handle-click
+  []
+  (.openOptionsPage (gobj/get js/browser "runtime")))
+
+
 (defn init!
   []
   (d/log "background init!")
+  (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   (.addListener (gobj/getValueByKeys js/browser "runtime" "onMessage") handle-message))
