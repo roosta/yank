@@ -13,8 +13,8 @@
   (-invoke ([this s] (re-matches this s))))
 
 (def options (atom nil))
-(def elements {:input (dom/getElement "keybind-input")
-               :form (dom/getElement "keybind-form")})
+(def elements {:keybind-input (dom/getElement "keybind-input")
+               :form (dom/getElement "options-form")})
 
 (defn save-options
   "save options Takes either an event object and options map or only options"
@@ -61,7 +61,7 @@
 (defn input-sync
   "Keep input field up to date with options atom"
   [k r old new]
-  (gobj/set (:input elements) "value" (-> new :keybind :composed)))
+  (gobj/set (:keybind-input elements) "value" (-> new :keybind :composed)))
 
 (defn handle-reset
   "Reset value in state and input field"

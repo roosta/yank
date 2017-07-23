@@ -75,7 +75,6 @@
   []
   (.openOptionsPage (gobj/get js/browser "runtime")))
 
-
 (defn init!
   []
   (d/log "background init!")
