@@ -75,6 +75,11 @@
   []
   (.openOptionsPage (gobj/get js/browser "runtime")))
 
+(defn fig-reload
+  []
+  (let [runtime (gobj/get js/browser "runtime")]
+    (.reload runtime)))
+
 (defn init!
   []
   (d/log "background init!")

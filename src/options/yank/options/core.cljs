@@ -77,6 +77,11 @@
   (let [value (gobj/getValueByKeys e "target" "value")]
     (swap! options assoc :action value)))
 
+(defn fig-reload
+  []
+  (let [runtime (gobj/get js/browser "runtime")]
+    (.reload runtime)))
+
 (defn init!
   []
   (d/log "opts init!")

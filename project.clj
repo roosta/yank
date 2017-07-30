@@ -18,7 +18,7 @@
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
-                        :figwheel true
+                        :figwheel {:on-jsload "yank.background.core/fig-reload"}
                         :compiler     {:main          yank.background
                                        :asset-path    "js/background"
                                        :output-to     "resources/public/js/background/main.js"
@@ -28,7 +28,7 @@
 
                        {:id           "options"
                         :source-paths ["src/options"]
-                        :figwheel true
+                        :figwheel {:on-jsload "yank.options.core/fig-reload"}
                         :compiler     {:main          yank.options
                                        :asset-path    "js/options"
                                        :output-to     "resources/public/js/options/main.js"
