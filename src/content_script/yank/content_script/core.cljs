@@ -35,11 +35,21 @@
 (defn watcher
   "Watch state atom so that it'll send a message on change"
   [k r old new]
-  (when-let [key-combo (-> new :keybind :composed)]
-    (.bind js/Mousetrap key-combo send-message)))
+  (let [new-keybind (-> new :keybind :composed)
+        old-keybind (-> old :keybind :composed)]
+    (when (not= old-keybind new-keybind)
+      (.unbind js/Mousetrap old-keybind)
+      (.bind js/Mousetrap new-keybind send-message))))
+
+(defn on-storage-change
+  [resp]
+  (when-let [new (w/keywordize-keys (js->clj (gobj/getValueByKeys resp "yank" "newValue")))]
+    (reset! options new)))
 
 (defn init!
   []
   (d/log "content init!")
-  (add-watch options :options watcher)
-  (fetch-options))
+  (.bind js/Mousetrap (-> defaults :keybind :composed) send-message)
+  (fetch-options)
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "storage" "onChanged") on-storage-change)
+  (add-watch options :options watcher))
