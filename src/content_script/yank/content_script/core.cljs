@@ -9,7 +9,7 @@
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
-(def options (atom nil))
+(def options (atom defaults/options))
 
 (defn fetch-options
   "Handle fetching options"
@@ -21,10 +21,8 @@
         ^js/browser
         (.then (fn [resp]
                  (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                   (reset! options result)
-                   (reset! options defaults/options)))
+                   (reset! options result)))
                (fn [error]
-                 (reset! options defaults/options)
                  (d/log "Failed to get options: " error))))))
 
 (defn send-message
