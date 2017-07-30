@@ -2,7 +2,7 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
-            [defaults]
+            [defaults.options :refer [defaults]]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
@@ -12,7 +12,7 @@
   cljs.core/IFn
   (-invoke ([this s] (re-matches this s))))
 
-(def options (atom nil))
+(def options (atom defaults))
 
 (def elements {:keybind-input (dom/getElement "keybind-input")
                :format-select (dom/getElement "format-select")
@@ -32,11 +32,9 @@
   (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> (.get sync "yank")
         (.then (fn [resp]
-                 (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                   (reset! options result)
-                   (reset! options defaults/options)))
+                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+                   (reset! options result)))
                (fn [error]
-                 (reset! options defaults/options)
                  (d/error "Failed to restore options, using defaults. Error: " error))))))
 
 (defn handle-keydown
@@ -70,8 +68,8 @@
   "Reset value in state and input field"
   [e]
   (.preventDefault e)
-  (reset! options defaults/options)
-  (save-options defaults/options))
+  (reset! options defaults)
+  (save-options defaults))
 
 (defn handle-format-change
   "set options :action field on <select> change"

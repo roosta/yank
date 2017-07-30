@@ -1,7 +1,7 @@
 (ns yank.content-script.core
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
-            [defaults]
+            [defaults.options :refer [defaults]]
             [js.mousetrap]
             [clojure.string :as string])
   (:require-macros [utils.logging :as d]))
@@ -9,7 +9,7 @@
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
-(def options (atom defaults/options))
+(def options (atom defaults))
 
 (defn fetch-options
   "Handle fetching options"
