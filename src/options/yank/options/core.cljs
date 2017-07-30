@@ -14,6 +14,7 @@
 
 (def options (atom nil))
 (def elements {:keybind-input (dom/getElement "keybind-input")
+               :format-select (dom/getElement "format-select")
                :form (dom/getElement "options-form")})
 
 (defn save-options
@@ -61,15 +62,20 @@
 (defn input-sync
   "Keep input field up to date with options atom"
   [k r old new]
+  (gobj/set (:format-select elements) "value" (:action new))
   (gobj/set (:keybind-input elements) "value" (-> new :keybind :composed)))
 
 (defn handle-reset
   "Reset value in state and input field"
   [e]
   (.preventDefault e)
-  #_(set-input-value (-> defaults/options :keybind :composed))
   (reset! options defaults/options)
   (save-options defaults/options))
+
+(defn handle-format-change
+  [e]
+  (let [value (gobj/getValueByKeys e "target" "value")]
+    (swap! options assoc :action value)))
 
 (defn init!
   []
@@ -77,5 +83,6 @@
   (add-watch options :input-sync input-sync)
   (restore-options)
   (events/listen (:form elements) (.-KEYDOWN events/EventType) handle-keydown)
+  (events/listen (:format-select elements) (.-CHANGE events/EventType) handle-format-change)
   (events/listen (:form elements) (.-RESET events/EventType) handle-reset)
   (events/listen (:form elements) (.-SUBMIT events/EventType) #(save-options % @options)))

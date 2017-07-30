@@ -1,6 +1,7 @@
 (ns yank.content-script.core
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
+            [defaults]
             [js.mousetrap]
             [clojure.string :as string])
   (:require-macros [utils.logging :as d]))
@@ -16,14 +17,15 @@
   (let [^js/browser
         sync (gobj/getValueByKeys js/browser "storage" "sync")]
     (-> ^js/browser
-        (.get sync "asd")
+        (.get sync "yank")
         ^js/browser
         (.then (fn [resp]
                  (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
                    (reset! options result)
-                   (d/log "got nothing")))
+                   (reset! options defaults/options)))
                (fn [error]
-                 (d/log error))))))
+                 (reset! options defaults/options)
+                 (d/log "Failed to get options: " error))))))
 
 (defn send-message
   "Sends a message using browser runtime
