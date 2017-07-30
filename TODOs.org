@@ -14,15 +14,10 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
   - https://github.com/kuanyui/copy-as-org-mode
   - https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search
   - https://addons.mozilla.org/en-US/firefox/addon/org-mode-capture/?src=search
-* TODO Ctrl and mac
-* TODO Allow for more key combinations
-* DONE Change key name where options are stored
-  something like this:
-  #+BEGIN_SRC clojure
-      {:yank {:format "org"
-                     :keybind {HERE}}
-  #+END_SRC
-* TODO init default option
-* TODO Remove figwheel repl
 * List of document markup languages
   https://en.wikipedia.org/wiki/Comparison_of_document_markup_languages
+* TODO Ctrl and mac
+* TODO Allow for more key combinations
+* TODO init default option
+* TODO Remove figwheel repl
+* TODO Unbind mousetrap on change

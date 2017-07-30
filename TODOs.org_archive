@@ -1,0 +1,18 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/roosta/src/yank/TODOs.org
+
+
+* DONE Change key name where options are stored
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-07-30 Sun 19:13
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+  something like this:
+  #+BEGIN_SRC clojure
+      {:yank {:format "org"
+                     :keybind {HERE}}
+  #+END_SRC
