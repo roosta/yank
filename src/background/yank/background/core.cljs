@@ -58,6 +58,12 @@
   (let [text (str "[" title "](" url ")")]
     (copy-to-clipboard tab-id text)))
 
+(defmethod copy-as "textile"
+  ^{:doc "Format URL and title of current tab to textile link format"}
+  [{:keys [tab-id title url]}]
+  (let [text (str "\"" title "\":" url)]
+    (copy-to-clipboard tab-id text)))
+
 (defn handle-message
   "Handle incoming runtime message, extract info and call copy-as"
   [request sender send-response]
