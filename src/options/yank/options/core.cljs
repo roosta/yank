@@ -44,12 +44,10 @@
         key (#"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
-        ctrl? (.-ctrlKey e)
-        modifier-one (and (or alt? ctrl?) (not (and alt? ctrl?)))
-        modifier-two (and modifier-one shift?)]
+        ctrl? (.-ctrlKey e)]
     (.preventDefault e)
-    (when (and key modifier-one)
-      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when modifier-two "shift") key])
+    (when key
+      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") key])
             composed (string/join "+" raw)]
         (swap! options assoc :keybind {:keycode keycode
                                        :key key
