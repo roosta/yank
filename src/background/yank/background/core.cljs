@@ -2,6 +2,7 @@
   (:require-macros [utils.logging :as d])
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
+            [clojure.string :as s]
             [goog.events :as events]))
 
 (defn escape
@@ -49,19 +50,43 @@
 (defmethod copy-as "org"
   ^{:doc "Format URL and title of current tab to org link format"}
   [{:keys [tab-id title url]}]
-  (let [text (str "[[" url "][" title "]]")]
+  (let [escape #(s/escape % {\[  "{", \] "}"})
+        text (str "[[" url "][" (escape title) "]]")]
     (copy-to-clipboard tab-id text)))
 
 (defmethod copy-as "md"
   ^{:doc "Format URL and title of current tab to md link format"}
   [{:keys [tab-id title url]}]
-  (let [text (str "[" title "](" url ")")]
+  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})
+        text (str "[" (escape title) "](" url ")")]
     (copy-to-clipboard tab-id text)))
 
 (defmethod copy-as "textile"
   ^{:doc "Format URL and title of current tab to textile link format"}
   [{:keys [tab-id title url]}]
-  (let [text (str "\"" title "\":" url)]
+  (let [escape #(s/escape % {\"  "\""})
+        text (str "\"" title "\":" url)]
+    (copy-to-clipboard tab-id text)))
+
+(defmethod copy-as "asciidoc"
+  ^{:doc "Format URL and title of current tab to textile link format"}
+  [{:keys [tab-id title url]}]
+  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})
+        text (str url "[" (escape title) "]")]
+    (copy-to-clipboard tab-id text)))
+
+(defmethod copy-as "rest"
+  ^{:doc "Format URL and title of current tab to reStructuredText link format"}
+  [{:keys [tab-id title url]}]
+  (let [escape #(s/escape % {\_ "\\_"})
+        text (str "`" (escape title) " <" url ">`_")]
+    (copy-to-clipboard tab-id text)))
+
+(defmethod copy-as "html"
+  ^{:doc "Format URL and title of current tab to HTML link"}
+  [{:keys [tab-id title url]}]
+  (let [escape #(s/escape % {\< "&lt;", \> "&gt;", \& "&amp;"})
+        text (str "<a href=\"" url "\">" (escape title) "</a>")]
     (copy-to-clipboard tab-id text)))
 
 (defn handle-message
@@ -69,9 +94,9 @@
   [request sender send-response]
   (when-some [action (gobj/get request "action")]
     (let [tab (gobj/get sender "tab")
-          url (escape (gobj/get tab "url"))
+          url (gobj/get tab "url")
           tab-id (gobj/get tab "id")
-          title (escape (gobj/get tab "title"))]
+          title (gobj/get tab "title")]
       (copy-as {:action action
                 :tab-id tab-id
                 :url url
