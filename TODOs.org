@@ -24,3 +24,4 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * TODO init default option
 * TODO Remove figwheel repl
 * TODO Unbind mousetrap on change
+* TODO Style options page
