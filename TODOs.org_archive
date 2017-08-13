@@ -16,3 +16,37 @@ Archived entries from file /home/roosta/src/yank/TODOs.org
       {:yank {:format "org"
                      :keybind {HERE}}
   #+END_SRC
+
+* TODO Remove figwheel repl
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-08-13 Sun 20:21
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: TODO
+  :END:
+
+* DONE init default option
+  CLOSED: [2017-08-13 Sun 20:21]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-08-13 Sun 20:21
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* TODO Allow for more key combinations
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-08-13 Sun 20:21
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: TODO
+  :END:
+
+* DONE Unbind mousetrap on change
+  CLOSED: [2017-08-13 Sun 20:21]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2017-08-13 Sun 20:21
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:

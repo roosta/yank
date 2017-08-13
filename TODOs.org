@@ -7,7 +7,7 @@ Key combinations must consist of two or three keys:
    - the letters A-Z
    - the numbers 0-9
    - the function keys F1-F12
-   - Comma, Period, Home, End, PageUp, PageDown, Space, Insert, Delete, Up, Down, Left, Right
+   - Comma, Period, Home, End, PageUp, Page Down, Space, Insert, Delete, Up, Down, Left, Right
 
 On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", specify "MacCtrl".
 * Other projects
@@ -21,7 +21,5 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
   - [[http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html#internal-and-external-links][3.6.1. Restructured Text (reST) and Sphinx CheatSheet]]
 * TODO Ctrl and mac
 * TODO Allow for more key combinations
-* TODO init default option
-* TODO Remove figwheel repl
-* TODO Unbind mousetrap on change
 * TODO Style options page
+* TODO Fix icon

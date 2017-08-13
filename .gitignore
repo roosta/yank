@@ -12,3 +12,4 @@ pom.xml.asc
 resources/dev/js/*
 *.log
 resources/release/js/*
+releases
