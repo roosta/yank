@@ -1,0 +1,1 @@
+../shared/clipboard-helper.js
