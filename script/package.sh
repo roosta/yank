@@ -38,7 +38,7 @@ cp -Lr "$RELEASE_BUILD" "$PACKAGE_DIR" # this will copy actual files, not symlin
 # prune release directory from extra files/folders
 rm -rf "$PACKAGE_DIR/js/background"
 rm -rf "$PACKAGE_DIR/js/content_script"
-rm -rf "$PACKAGE_DIR/js/popup"
+rm -rf "$PACKAGE_DIR/js/options"
 
 echo "'$PACKAGE_DIR' prepared for packing"
 popd

@@ -32,7 +32,7 @@
       "http://*/*",
       "https://*/*"
     ],
-    "js": ["js/content-script.js"],
+    "js": ["js/content_script.js"],
     "all_frames": true,
     "run_at": "document_end"
   }],

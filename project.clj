@@ -47,9 +47,9 @@
                        {:id           "content-script"
                         :source-paths ["src/content_script"]
                         :compiler     {:main          yank.content-script
-                                       :asset-path    "js/content-script"
-                                       :output-to     "resources/dev/js/content-script/main.js"
-                                       :output-dir    "resources/dev/js/content-script"
+                                       :asset-path    "js/content_script"
+                                       :output-to     "resources/dev/js/content_script/main.js"
+                                       :output-dir    "resources/dev/js/content_script"
                                        :infer-externs true
                                        :foreign-libs  [{:file     "src/js/mousetrap.js"
                                                         :file-min "src/js/mousetrap.min.js"
@@ -82,8 +82,8 @@
                         :source-paths ["src/content_script"]
                         :compiler     {:main          yank.content-script
                                        :asset-path    "js/content-script"
-                                       :output-to     "resources/release/js/content-script.js"
-                                       :output-dir    "resources/release/js/content-script"
+                                       :output-to     "resources/release/js/content_script.js"
+                                       :output-dir    "resources/release/js/content_script"
                                        :elide-asserts true
                                        :infer-externs true
                                        :foreign-libs  [{:file     "src/js/mousetrap.js"

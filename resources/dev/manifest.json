@@ -27,7 +27,7 @@
       "http://*/*",
       "https://*/*"
     ],
-    "js": ["js/content-script/main.js"],
+    "js": ["js/content_script/main.js"],
     "all_frames": true,
     "run_at": "document_end"
   }],
