@@ -5,11 +5,6 @@
             [clojure.string :as s]
             [goog.events :as events]))
 
-(defn escape
-  "Escape HTML characters before storing anything"
-  [text]
-  (clojure.string/escape text {\< "&lt;", \> "&gt;", \& "&amp;"}))
-
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:
