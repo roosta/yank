@@ -1,7 +1,8 @@
 #+TITLE: yank
 
-  A Firefox extension to copy current tab URL to clipboard, formatted in one of
-  these supported markup languages:
+  A Firefox extension to copy current tab URL to clipboard, formatted for a
+  markup language. Supports custom shortcuts and several different markup
+  languages.
 
 ** Usage
    By default this plugin binds ~ctrl+y~ to copy URL as org-mode. To change this
