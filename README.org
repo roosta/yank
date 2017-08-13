@@ -23,11 +23,12 @@
    - [[http://docutils.sourceforge.net/rst.html][reStructuredText]]
    - [[https://www.w3.org/html/][HTML]]
 
-   I wrote this plugin solely for org-mode, and just added the remaining formats
-   since it required very little once the code surrounding it actually worked.
-   Reason I mention this is that I don't actively use the other formats, so aside
-   from markdown I can't say with certainty that the plugin handles it correctly.
-   Please open an issue if there is a problem, or any other format is desired.
+   I wrote this plugin solely for org-mode, and just added the remaining
+   formats since it required very little once the code surrounding it
+   actually worked.  Reason I mention this is that I don't actively use the
+   other formats, so aside from org-mode and possibly markdown I can't say
+   with certainty that the plugin handles it correctly.  Please open an issue
+   if there is a problem, or any other format is desired.
 
 ** Development
    1. Clone this repository
