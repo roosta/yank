@@ -12,7 +12,9 @@
 
   :aliases {"release" ["do"
                        ["clean"]
-                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]]}
+                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]]
+            "content" ["cljsbuild" "auto" "content-script"]
+            "fig" ["figwheel" "options" "background"]}
 
   :figwheel {:server-port 6888
              :repl        true}
