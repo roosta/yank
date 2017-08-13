@@ -1,54 +1,91 @@
-(defproject yank "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject yank "0.1.0"
+  :description "Yank current page URL to clipboard as various markup formats"
+  :url "https://github.com/roosta/yank"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
-                 [org.clojure/clojurescript "1.9.542"]
-                 [binaryage/oops "0.5.4"]]
+                 [org.clojure/clojurescript "1.9.542"]]
 
-  :clean-targets ^{:protect false} ["target" "resources/public/js"]
+  :clean-targets ^{:protect false} ["target" "resources/dev/js" "resources/release/js"]
   :source-paths ["src/lib"]
+  :plugins [[lein-cljsbuild "1.1.6"]]
+
+  :aliases {"release" ["do"
+                       ["clean"]
+                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]]}
+
+  :figwheel {:server-port 6888
+             :repl        true}
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]]
-                   :plugins      [[lein-cljsbuild "1.1.6"]
-                                  [lein-figwheel "0.5.10"]]
+                   :plugins      [[lein-figwheel "0.5.10"]]
 
-                   :source-paths ["script" "dev"]
+                   :source-paths ["script" "dev"]}}
 
-                   :figwheel {:server-port 6888
-                              :repl        true}
+  :cljsbuild {:builds [{:id           "background"
+                        :source-paths ["src/background"]
+                        :figwheel     {:on-jsload "yank.background.core/fig-reload"}
+                        :compiler     {:main          yank.background
+                                       :asset-path    "js/background"
+                                       :output-to     "resources/dev/js/background/main.js"
+                                       :output-dir    "resources/dev/js/background"
+                                       :source-map    true
+                                       :optimizations :none}}
 
-                   :cljsbuild {:builds [{:id           "background"
-                                         :source-paths ["src/background"]
-                                         :figwheel {:on-jsload "yank.background.core/fig-reload"}
-                                         :compiler     {:main          yank.background
-                                                        :asset-path    "js/background"
-                                                        :output-to     "resources/public/js/background/main.js"
-                                                        :output-dir    "resources/public/js/background"
-                                                        :source-map    true
-                                                        :optimizations :none}}
+                       {:id           "options"
+                        :source-paths ["src/options"]
+                        :figwheel     {:on-jsload "yank.options.core/fig-reload"}
+                        :compiler     {:main          yank.options
+                                       :asset-path    "js/options"
+                                       :output-to     "resources/dev/js/options/main.js"
+                                       :output-dir    "resources/dev/js/options"
+                                       :source-map    true
+                                       :optimizations :none}}
 
-                                        {:id           "options"
-                                         :source-paths ["src/options"]
-                                         :figwheel {:on-jsload "yank.options.core/fig-reload"}
-                                         :compiler     {:main          yank.options
-                                                        :asset-path    "js/options"
-                                                        :output-to     "resources/public/js/options/main.js"
-                                                        :output-dir    "resources/public/js/options"
-                                                        :source-map    true
-                                                        :optimizations :none}}
+                       {:id           "content-script"
+                        :source-paths ["src/content_script"]
+                        :compiler     {:main          yank.content-script
+                                       :asset-path    "js/content-script"
+                                       :output-to     "resources/dev/js/content-script/main.js"
+                                       :output-dir    "resources/dev/js/content-script"
+                                       :infer-externs true
+                                       :foreign-libs  [{:file     "src/js/mousetrap.js"
+                                                        :file-min "src/js/mousetrap.min.js"
+                                                        :provides ["js.mousetrap"]}]
+                                       :pseudo-names  true
+                                       :pretty-print  true
+                                       :optimizations :advanced}}
 
-                                        {:id           "content-script"
-                                         :source-paths ["src/content_script"]
-                                         :compiler     {:main          yank.content-script
-                                                        :asset-path    "js/content-script"
-                                                        :output-to     "resources/public/js/content-script/main.js"
-                                                        :output-dir    "resources/public/js/content-script"
-                                                        :infer-externs true
-                                                        :foreign-libs [{:file "src/js/mousetrap.js"
-                                                                        :file-min "src/js/mousetrap.min.js"
-                                                                        :provides ["js.mousetrap"]}]
-                                                        :pseudo-names true
-                                                        :pretty-print true
-                                                        :optimizations :advanced}}]}}})
+                       {:id           "background-release"
+                        :source-paths ["src/background"]
+                        :compiler     {:main          yank.background
+                                       :asset-path    "js/background"
+                                       :output-to     "resources/release/js/background.js"
+                                       :output-dir    "resources/release/js/background"
+                                       :elide-asserts true
+                                       :optimizations :advanced}}
+
+                       {:id           "options-release"
+                        :source-paths ["src/options"]
+                        :compiler     {:main          yank.options
+                                       :asset-path    "js/options"
+                                       :output-to     "resources/release/js/options.js"
+                                       :output-dir    "resources/release/js/options"
+                                       :elide-asserts true
+                                       :optimizations :advanced}}
+
+                       {:id           "content-script-release"
+                        :source-paths ["src/content_script"]
+                        :compiler     {:main          yank.content-script
+                                       :asset-path    "js/content-script"
+                                       :output-to     "resources/release/js/content-script.js"
+                                       :output-dir    "resources/release/js/content-script"
+                                       :elide-asserts true
+                                       :infer-externs true
+                                       :foreign-libs  [{:file     "src/js/mousetrap.js"
+                                                        :file-min "src/js/mousetrap.min.js"
+                                                        :provides ["js.mousetrap"]}]
+                                       :pseudo-names  true
+                                       :pretty-print  true
+                                       :optimizations :advanced}}
+                       ]})
