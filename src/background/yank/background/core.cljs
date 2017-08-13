@@ -5,6 +5,9 @@
             [clojure.string :as s]
             [goog.events :as events]))
 
+;; for extern inference. Better waringings
+(set! *warn-on-infer* true)
+
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:

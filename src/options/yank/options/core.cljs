@@ -7,6 +7,9 @@
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
 
+;; for extern inference. Better waringings
+(set! *warn-on-infer* true)
+
 ;; extend js/RegExp to be callable
 (extend-type js/RegExp
   cljs.core/IFn

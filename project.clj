@@ -29,6 +29,7 @@
                                        :asset-path    "js/background"
                                        :output-to     "resources/dev/js/background/main.js"
                                        :output-dir    "resources/dev/js/background"
+                                       :infer-externs true
                                        :source-map    true
                                        :optimizations :none}}
 
@@ -39,6 +40,7 @@
                                        :asset-path    "js/options"
                                        :output-to     "resources/dev/js/options/main.js"
                                        :output-dir    "resources/dev/js/options"
+                                       :infer-externs true
                                        :source-map    true
                                        :optimizations :none}}
 
@@ -62,6 +64,7 @@
                                        :asset-path    "js/background"
                                        :output-to     "resources/release/js/background.js"
                                        :output-dir    "resources/release/js/background"
+                                       :infer-externs true
                                        :elide-asserts true
                                        :optimizations :advanced}}
 
@@ -71,6 +74,7 @@
                                        :asset-path    "js/options"
                                        :output-to     "resources/release/js/options.js"
                                        :output-dir    "resources/release/js/options"
+                                       :infer-externs true
                                        :elide-asserts true
                                        :optimizations :advanced}}
 
@@ -87,5 +91,4 @@
                                                         :provides ["js.mousetrap"]}]
                                        :pseudo-names  true
                                        :pretty-print  true
-                                       :optimizations :advanced}}
-                       ]})
+                                       :optimizations :advanced}}]})
