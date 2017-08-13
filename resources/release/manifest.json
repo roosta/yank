@@ -1,0 +1,47 @@
+{
+  "manifest_version": 2,
+  "name": "yank",
+  "version": "0.1.0",
+  "description": "Yank URL and title, format to a chosen markup language, and copy to clipboard",
+  "homepage_url": "https://github.com/roosta/yank",
+  "icons": {
+    "48": "icons/48.png",
+    "96": "icons/96.png"
+  },
+  "applications": {
+    "gecko": {
+      "id": "yank@roosta.sh"
+    }
+  },
+
+  "permissions": [
+    "tabs",
+    "clipboardWrite",
+    "storage",
+    "<all_urls>"
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true,
+    "browser_style": true
+  },
+
+  "content_scripts": [{
+    "matches": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "js": ["js/content-script/main.js"],
+    "all_frames": true,
+    "run_at": "document_end"
+  }],
+
+  "browser_action": {
+    "default_title": "yank options"
+  },
+
+  "background": {
+    "page": "background.html"
+  }
+}
