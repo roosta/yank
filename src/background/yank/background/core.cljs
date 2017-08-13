@@ -8,6 +8,9 @@
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
+(def ^js/browser tabs (gobj/get js/browser "tabs"))
+(def ^js/browser runtime (gobj/get js/browser "runtime"))
+
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:
@@ -15,14 +18,14 @@
   optionally takes a tab-id to select which tab to execute script inside
   Returns a js/Promise"
   ([obj]
-   (.executeScript (gobj/get js/browser "tabs") (clj->js obj)))
+   (.executeScript tabs (clj->js obj)))
   ([obj tab-id]
-   (.executeScript (gobj/get js/browser "tabs") tab-id (clj->js obj))))
+   (.executeScript tabs tab-id (clj->js obj))))
 
 (defn load-clipboard-helper
   "load js function defined in clipboard-helper.js"
   [tab-id]
-  (-> (execute-script {:code "typeof copyToClipboard === 'function';"})
+  (-> ^js/Promise (execute-script {:code "typeof copyToClipboard === 'function';"})
       (.then (fn [result]
                (when (or  (not result) (false? (first result)))
                  (execute-script {:file "clipboard-helper.js"} tab-id))))
@@ -34,7 +37,7 @@
   as an argment to the loaded 'copyToClipboard"
   [tab-id text]
   (let [code (str "copyToClipboard(" (.stringify js/JSON text) ");")]
-    (-> (load-clipboard-helper tab-id)
+    (-> ^js/Promise (load-clipboard-helper tab-id)
         (.then (fn []
                  (execute-script {:code code} tab-id )))
         (.catch (fn [error]
@@ -99,18 +102,17 @@
                 :tab-id tab-id
                 :url url
                 :title title}))))
-
 (defn handle-click
   []
-  (.openOptionsPage (gobj/get js/browser "runtime")))
+  (.openOptionsPage runtime))
 
 (defn fig-reload
   []
-  (let [runtime (gobj/get js/browser "runtime")]
-    (.reload runtime)))
+  (.reload runtime)
+  (d/log "-------------------------------------------------"))
 
 (defn init!
   []
   (d/log "background init!")
-  (.addListener (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
-  (.addListener (gobj/getValueByKeys js/browser "runtime" "onMessage") handle-message))
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
+  (.addListener ^js/browser (gobj/get runtime "onMessage") handle-message))

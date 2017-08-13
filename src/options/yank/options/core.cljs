@@ -10,41 +10,38 @@
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
-;; extend js/RegExp to be callable
-(extend-type js/RegExp
-  cljs.core/IFn
-  (-invoke ([this s] (re-matches this s))))
-
 (def options (atom defaults))
 
 (def elements {:keybind-input (dom/getElement "keybind-input")
                :format-select (dom/getElement "format-select")
                :form (dom/getElement "options-form")})
 
+(def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
+
 (defn save-options
   "save options Takes either an event object and options map or only options"
-  ([e options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
-                 (.set sync (clj->js {:yank options}))
-                 (.preventDefault e)))
-  ([options] (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
-               (.set sync (clj->js {:yank options})))))
+  ([^js/Event e options]
+   (.set sync (clj->js {:yank options}))
+   (.preventDefault e))
+  ([options]
+   (.set sync (clj->js {:yank options}))))
 
 (defn restore-options
   "Get options map and reset state atom with fetched value"
   []
-  (let [sync (gobj/getValueByKeys js/browser "storage" "sync")]
-    (-> (.get sync "yank")
-        (.then (fn [resp]
-                 (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                   (reset! options result)))
-               (fn [error]
-                 (d/error "Failed to restore options, using defaults. Error: " error))))))
+  (let [^js/Promise options-promise (.get sync "yank")]
+    (.then options-promise
+           (fn [resp]
+                             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+                               (reset! options result)))
+           (fn [error]
+             (d/error "Failed to restore options, using defaults. Error: " error)))))
 
 (defn handle-keydown
   "handle valid keybinds and reset state atom"
-  [e]
+  [^js/Event e]
   (let [keycode (.-keyCode e)
-        key (#"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
+        key (re-matches #"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
         ctrl? (.-ctrlKey e)]
@@ -67,7 +64,7 @@
 
 (defn handle-reset
   "Reset value in state and input field"
-  [e]
+  [^js/Event e]
   (.preventDefault e)
   (reset! options defaults)
   (save-options defaults))
@@ -80,7 +77,7 @@
 
 (defn fig-reload
   []
-  (let [runtime (gobj/get js/browser "runtime")]
+  (let [runtime ^js/browser (gobj/get js/browser "runtime")]
     (.reload runtime)))
 
 (defn init!
@@ -88,7 +85,7 @@
   (d/log "opts init!")
   (add-watch options :input-sync input-sync)
   (restore-options)
-  (events/listen (:keybind-input elements) (.-KEYDOWN events/EventType) handle-keydown)
-  (events/listen (:format-select elements) (.-CHANGE events/EventType) handle-format-change)
-  (events/listen (:form elements) (.-RESET events/EventType) handle-reset)
-  (events/listen (:form elements) (.-SUBMIT events/EventType) #(save-options % @options)))
+  (events/listen (:keybind-input elements) "keydown" handle-keydown)
+  (events/listen (:format-select elements) "change" handle-format-change)
+  (events/listen (:form elements) "reset" handle-reset)
+  (events/listen (:form elements) "submit" #(save-options % @options)))
