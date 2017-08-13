@@ -11,11 +11,14 @@ Key combinations must consist of two or three keys:
 
 On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", specify "MacCtrl".
 * Other projects
+  - [[https://github.com/binaryage/chromex][binaryage/chromex: Write Chrome Extensions in ClojureScript]]
+  -[[https://github.com/binaryage/chromex-sample][ binaryage/chromex-sample:  An example Chrome extension using Chromex library (ClojureScript)]]
   - https://github.com/kuanyui/copy-as-org-mode
   - https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search
   - https://addons.mozilla.org/en-US/firefox/addon/org-mode-capture/?src=search
-* List of document markup languages
-  https://en.wikipedia.org/wiki/Comparison_of_document_markup_languages
+* Document markup languages
+  - [[https://en.wikipedia.org/wiki/Comparison_of_document_markup_languages][Comparison of document markup languages]]
+  - [[http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html#internal-and-external-links][3.6.1. Restructured Text (reST) and Sphinx CheatSheet]]
 * TODO Ctrl and mac
 * TODO Allow for more key combinations
 * TODO init default option
