@@ -12,6 +12,7 @@
 
 (def options (atom defaults))
 
+;; Grab url elements since they are statically defined in html
 (def elements {:keybind-input (dom/getElement "keybind-input")
                :format-select (dom/getElement "format-select")
                :form (dom/getElement "options-form")})
