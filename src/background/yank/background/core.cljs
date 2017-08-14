@@ -108,8 +108,7 @@
 
 (defn fig-reload
   []
-  (.reload runtime)
-  (d/log "-------------------------------------------------"))
+  (.reload runtime))
 
 (defn init!
   []
