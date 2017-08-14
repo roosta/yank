@@ -41,6 +41,12 @@
    #+BEGIN_EXAMPLE
    $ lein fig
    #+END_EXAMPLE
+      A. Alternatively there's a file called ~script/repl.clj~, You can use this
+      in Emacs to start figwheel when using [[https://github.com/clojure-emacs/cider][cider]]. Put this in your Emacs config
+      file:
+      #+BEGIN_SRC elisp
+        (setq cider-cljs-lein-repl "(require 'repl)")
+      #+END_SRC
 
    3. Open up a second terminal and run:
    #+BEGIN_EXAMPLE
