@@ -41,4 +41,9 @@ rm -rf "$PACKAGE_DIR/js/content_script"
 rm -rf "$PACKAGE_DIR/js/options"
 
 echo "'$PACKAGE_DIR' prepared for packing"
+echo "Zipping files..."
+zip -r -FS "$RELEASES/yank-$VERSION.xpi" "$PACKAGE_DIR"/* || exit 1 
+rm -rf "$PACKAGE_DIR"
+echo "Package saved as: yank-$VERSION.xpi"
+
 popd
