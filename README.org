@@ -51,6 +51,10 @@
    namespace. Open up Firefox and goto ~about:debugging~ -> Load Temporary Add-on
    -> browse to: ~[project-root]/resources/dev/manifest.json~
 
+   4. To build a release version and package it run:
+   #+BEGIN_EXAMPLE
+   $ lein release && lein package
+   #+END_EXAMPLE
 ** Bugs
    There are very likely bugs contained in this plugin. I'm actively using it
    myself, and fixing stuff as I find it, but any submitted issue is appreciated.
@@ -83,8 +87,8 @@
     Plugin used to hotload source code when developing
 
 *** Other plugins
-    1. [[https://addons.mozilla.org/en-US/firefox/addon/copy-as-org-mode/?src=search][Copy as Org-mode]]
-    2. [[https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search][Org Capture]]
+    - [[https://addons.mozilla.org/en-US/firefox/addon/copy-as-org-mode/?src=search][Copy as Org-mode]]
+    - [[https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search][Org Capture]]
 
     These plugins looks nice, I would have used one of them, but they were
     either to complicated or didn't support custom shortcuts.
