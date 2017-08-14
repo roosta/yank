@@ -7,14 +7,18 @@
                  [org.clojure/clojurescript "1.9.542"]]
 
   :clean-targets ^{:protect false} ["target" "resources/dev/js" "resources/release/js"]
+
   :source-paths ["src/lib"]
-  :plugins [[lein-cljsbuild "1.1.6"]]
+
+  :plugins [[lein-cljsbuild "1.1.6"]
+            [lein-shell "0.5.0"]]
 
   :aliases {"release" ["do"
                        ["clean"]
                        ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]]
+            "package" ["shell" "script/package.sh"]
             "content" ["cljsbuild" "auto" "content-script"]
-            "fig" ["figwheel" "options" "background"]}
+            "fig"     ["figwheel" "options" "background"]}
 
   :figwheel {:server-port 6888
              :repl        true}
