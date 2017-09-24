@@ -61,6 +61,25 @@
    #+BEGIN_EXAMPLE
    $ lein release && lein package
    #+END_EXAMPLE
+
+** Troubleshooting
+   If you, like me use a plugin like [[https://github.com/vimperator/vimperator-labs][Vimperator]] or similar that captures all
+   keyboard input you need to pass you chosen keybind through. For example,
+   Vimperator lets you ignore all keys, either as a toggle (insert or
+   shift-escape), or by hitting ~i~ which ignores the next keypress, so what I do
+   is bind yank to the letter ~y~ and trigger it by hitting ~i y~ in succession.
+
+   Reason for this is that the yank plugin loads a content script that listens
+   for a chosen key, but it is loaded as a context of the current page, which
+   means it acts just like any other website key-press listener and plugins like
+   Vimperator ignores this happily.
+
+   I know it's possible to override this behaviour but I think it would require
+   a bit of a re-write since I rely on the content script to fire off a 'yank
+   this page' message which is handled by a background script.
+
+   If anyone could point me in the right direction to fix this I'd really
+   appreciate it.
 ** Bugs
    There are very likely bugs contained in this plugin. I'm actively using it
    myself, and fixing stuff as I find it, but any submitted issue is appreciated.

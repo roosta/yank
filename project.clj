@@ -23,8 +23,12 @@
   :figwheel {:server-port 6888
              :repl        true}
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]
+                                  [com.cemerick/piggieback "0.2.2"]
+                                  [org.clojure/tools.nrepl "0.2.10"]]
                    :plugins      [[lein-figwheel "0.5.10"]]
+
+                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :source-paths ["script" "dev"]}}
 
