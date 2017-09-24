@@ -1,4 +1,4 @@
-(defproject yank "0.2.0"
+(defproject yank "0.2.1"
   :description "Yank current page URL to clipboard as various markup formats"
   :url "https://github.com/roosta/yank"
   :license {:name "Eclipse Public License"
