@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "yank",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Yank URL and title, format to a chosen markup language, and copy to clipboard",
   "homepage_url": "https://github.com/roosta/yank",
   "icons": {
