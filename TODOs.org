@@ -23,3 +23,6 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * TODO Allow for more key combinations
 * TODO Style options page
 * TODO Fix icon
+* Issues
+** Promises
+   https://github.com/google/closure-compiler/issues/692
