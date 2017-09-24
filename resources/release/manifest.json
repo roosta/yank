@@ -19,6 +19,7 @@
   "permissions": [
     "tabs",
     "clipboardWrite",
+    "contextMenus",
     "storage",
     "<all_urls>"
   ],

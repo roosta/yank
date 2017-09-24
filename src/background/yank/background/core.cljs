@@ -1,8 +1,8 @@
 (ns yank.background.core
-  (:require-macros [utils.logging :as d])
+  (:require-macros [shared.logging :as d])
   (:require [goog.object :as gobj]
-            [clojure.walk :as w]
             [clojure.string :as s]
+            [shared.options :refer [fetch-options defaults on-storage-change]]
             [goog.events :as events]))
 
 ;; for extern inference. Better waringings
@@ -10,7 +10,15 @@
 
 (def ^js/browser tabs (gobj/get js/browser "tabs"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
+(def ^js/browser context-menus (gobj/get js/browser "contextMenus"))
 
+(def options (atom defaults))
+
+(defn create-context-menu
+  []
+  (.create context-menus (clj->js {:id "yank-link"
+                                   :title "Yank link to clipboard"
+                                   :contexts ["link"]})))
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:
@@ -106,6 +114,17 @@
   []
   (.openOptionsPage runtime))
 
+(defn handle-context
+  [info tab]
+  (let [url (gobj/get info "linkUrl")
+        tab-id (gobj/get tab "id")
+        text (gobj/get info "linkText")
+        action (:action @options)]
+    (copy-as {:action action
+              :tab-id tab-id
+              :url url
+              :title text})))
+
 (defn fig-reload
   []
   (.reload runtime))
@@ -113,5 +132,9 @@
 (defn init!
   []
   (d/log "background init!")
+  (create-context-menu)
+  (fetch-options options)
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "storage" "onChanged") #(on-storage-change options %))
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "contextMenus" "onClicked") handle-context)
   (.addListener ^js/browser (gobj/get runtime "onMessage") handle-message))

@@ -2,15 +2,18 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
-            [defaults.options :refer [defaults]]
+            [shared.options :refer [defaults]]
             [clojure.string :as string]
             [goog.dom :as dom])
-  (:require-macros [utils.logging :as d]))
+  (:require-macros [shared.logging :as d]))
 
-;; for extern inference. Better waringings
+;; for extern inference, better warnings
 (set! *warn-on-infer* true)
 
 (def options (atom defaults))
+
+;; mac win android linux
+(def os (atom nil))
 
 ;; Grab url elements since they are statically defined in html
 (def elements {:keybind-input (dom/getElement "keybind-input")
@@ -18,14 +21,24 @@
                :form (dom/getElement "options-form")})
 
 (def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
+(def ^js/browser runtime (gobj/get js/browser "runtime"))
+
+(defn get-os
+  []
+  (let [^js/Promise platform-info (.getPlatformInfo runtime)]
+    (.then platform-info
+           (fn [resp]
+             (reset! os (gobj/get resp "os")))
+           (fn [error]
+             (d/error "Failed to get os from runtime. Error: " error)))))
 
 (defn save-options
   "save options Takes either an event object and options map or only options"
-  ([^js/Event e options]
-   (.set sync (clj->js {:yank options}))
+  ([^js/Event e opts]
+   (.set sync (clj->js {:yank opts}))
    (.preventDefault e))
-  ([options]
-   (.set sync (clj->js {:yank options}))))
+  ([opts]
+   (.set sync (clj->js {:yank opts}))))
 
 (defn restore-options
   "Get options map and reset state atom with fetched value"
@@ -33,8 +46,8 @@
   (let [^js/Promise options-promise (.get sync "yank")]
     (.then options-promise
            (fn [resp]
-                             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                               (reset! options result)))
+             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+               (reset! options result)))
            (fn [error]
              (d/error "Failed to restore options, using defaults. Error: " error)))))
 
@@ -45,13 +58,23 @@
         key (re-matches #"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
+        meta? (.-metaKey e)
         ctrl? (.-ctrlKey e)]
     (.preventDefault e)
     (when key
-      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") key])
+      (let [alt (when alt? (if (not= @os "mac")
+                             "alt"
+                             "option"))
+            ctrl (when ctrl? "ctrl")
+            shift (when shift? "shift")
+            meta (when meta? (if (not= @os "mac")
+                               "meta"
+                               "command"))
+            raw (remove string/blank? [alt ctrl shift meta key])
             composed (string/join "+" raw)]
         (swap! options assoc :keybind {:keycode keycode
                                        :key key
+                                       :meta? meta?
                                        :alt? alt?
                                        :shift? shift?
                                        :ctrl? ctrl?
@@ -86,6 +109,7 @@
   (d/log "opts init!")
   (add-watch options :input-sync input-sync)
   (restore-options)
+  (get-os)
   (events/listen (:keybind-input elements) "keydown" handle-keydown)
   (events/listen (:format-select elements) "change" handle-format-change)
   (events/listen (:form elements) "reset" handle-reset)
