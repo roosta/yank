@@ -12,6 +12,7 @@
 
 (def options (atom defaults))
 
+;; mac win android linux
 (def os (atom nil))
 
 ;; Grab url elements since they are statically defined in html
@@ -21,6 +22,7 @@
 
 (def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
+
 
 (defn get-os
   []
@@ -61,7 +63,15 @@
         ctrl? (.-ctrlKey e)]
     (.preventDefault e)
     (when key
-      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") (when meta? "meta") key])
+      (let [alt (when alt? (if (not= @os "mac")
+                             "alt"
+                             "option"))
+            ctrl (when ctrl? "ctrl")
+            shift (when shift? "shift")
+            meta (when meta? (if (not= @os "mac")
+                               "meta"
+                               "command"))
+            raw (remove string/blank? [alt ctrl shift meta key])
             composed (string/join "+" raw)]
         (swap! options assoc :keybind {:keycode keycode
                                        :key key
