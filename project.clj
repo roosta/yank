@@ -15,7 +15,8 @@
 
   :aliases {"release" ["do"
                        ["clean"]
-                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]]
+                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]
+                       ["shell" "script/package.sh"]]
             "package" ["shell" "script/package.sh"]
             "content" ["cljsbuild" "auto" "content-script"]
             "fig"     ["figwheel" "options" "background"]}
