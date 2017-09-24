@@ -117,7 +117,13 @@
 (defn handle-context
   [info tab]
   (let [url (gobj/get info "linkUrl")
-        text (gobj/get info "linkText")]))
+        tab-id (gobj/get tab "id")
+        text (gobj/get info "linkText")
+        action (:action @options)]
+    (copy-as {:action action
+              :tab-id tab-id
+              :url url
+              :title text})))
 
 (defn fig-reload
   []
