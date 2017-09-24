@@ -10,7 +10,13 @@
 
 (def ^js/browser tabs (gobj/get js/browser "tabs"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
+(def ^js/browser context-menus (gobj/get js/browser "contextMenus"))
 
+(defn create-context-menu
+  []
+  (.create context-menus (clj->js {:id "yank-link"
+                           :title "Yank link to clipboard"
+                           :contexts ["link"]})))
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:
@@ -113,5 +119,6 @@
 (defn init!
   []
   (d/log "background init!")
+  (create-context-menu)
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   (.addListener ^js/browser (gobj/get runtime "onMessage") handle-message))
