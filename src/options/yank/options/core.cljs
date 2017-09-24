@@ -12,12 +12,24 @@
 
 (def options (atom defaults))
 
+(def os (atom nil))
+
 ;; Grab url elements since they are statically defined in html
 (def elements {:keybind-input (dom/getElement "keybind-input")
                :format-select (dom/getElement "format-select")
                :form (dom/getElement "options-form")})
 
 (def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
+(def ^js/browser runtime (gobj/get js/browser "runtime"))
+
+(defn get-os
+  []
+  (let [^js/Promise platform-info (.getPlatformInfo runtime)]
+    (.then platform-info
+           (fn [resp]
+             (reset! os (gobj/get resp "os")))
+           (fn [error]
+             (d/error "Failed to get os from runtime. Error: " error)))))
 
 (defn save-options
   "save options Takes either an event object and options map or only options"
@@ -47,7 +59,6 @@
         shift? (.-shiftKey e)
         meta? (.-metaKey e)
         ctrl? (.-ctrlKey e)]
-    (d/log (.-metaKey e))
     (.preventDefault e)
     (when key
       (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") (when meta? "meta") key])
@@ -89,6 +100,7 @@
   (d/log "opts init!")
   (add-watch options :input-sync input-sync)
   (restore-options)
+  (get-os)
   (events/listen (:keybind-input elements) "keydown" handle-keydown)
   (events/listen (:format-select elements) "change" handle-format-change)
   (events/listen (:form elements) "reset" handle-reset)
