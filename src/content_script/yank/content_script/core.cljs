@@ -1,7 +1,7 @@
 (ns yank.content-script.core
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
-            [defaults.options :refer [defaults]]
+            [shared.defaults :refer [defaults]]
             [js.mousetrap]
             [clojure.string :as string])
   (:require-macros [utils.logging :as d]))

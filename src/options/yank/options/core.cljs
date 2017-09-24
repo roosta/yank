@@ -2,7 +2,7 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
-            [defaults.options :refer [defaults]]
+            [shared.defaults :refer [defaults]]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))

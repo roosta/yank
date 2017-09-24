@@ -1,4 +1,4 @@
-(ns defaults.options)
+(ns shared.defaults)
 
 ;; define default if nothing is present in storage
 (def defaults {:action "org"
