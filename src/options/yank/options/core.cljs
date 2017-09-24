@@ -7,7 +7,7 @@
             [goog.dom :as dom])
   (:require-macros [utils.logging :as d]))
 
-;; for extern inference. Better waringings
+;; for extern inference, better warnings
 (set! *warn-on-infer* true)
 
 (def options (atom defaults))
@@ -33,8 +33,8 @@
   (let [^js/Promise options-promise (.get sync "yank")]
     (.then options-promise
            (fn [resp]
-                             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                               (reset! options result)))
+             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+               (reset! options result)))
            (fn [error]
              (d/error "Failed to restore options, using defaults. Error: " error)))))
 
