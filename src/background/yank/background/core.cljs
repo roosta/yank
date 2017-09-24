@@ -15,8 +15,8 @@
 (defn create-context-menu
   []
   (.create context-menus (clj->js {:id "yank-link"
-                           :title "Yank link to clipboard"
-                           :contexts ["link"]})))
+                                   :title "Yank link to clipboard"
+                                   :contexts ["link"]})))
 (defn execute-script
   "Execute a script using js/browser.tabs
   'obj' param is a javascript object conforming to this:
@@ -112,6 +112,11 @@
   []
   (.openOptionsPage runtime))
 
+(defn handle-context
+  [info tab]
+  (let [url (gobj/get info "linkUrl")
+        text (gobj/get info "linkText")]))
+
 (defn fig-reload
   []
   (.reload runtime))
@@ -121,4 +126,5 @@
   (d/log "background init!")
   (create-context-menu)
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "contextMenus" "onClicked") handle-context)
   (.addListener ^js/browser (gobj/get runtime "onMessage") handle-message))
