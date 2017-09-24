@@ -35,11 +35,11 @@
 
 (defn save-options
   "save options Takes either an event object and options map or only options"
-  ([^js/Event e options]
-   (.set sync (clj->js {:yank options}))
+  ([^js/Event e opts]
+   (.set sync (clj->js {:yank opts}))
    (.preventDefault e))
-  ([options]
-   (.set sync (clj->js {:yank options}))))
+  ([opts]
+   (.set sync (clj->js {:yank opts}))))
 
 (defn restore-options
   "Get options map and reset state atom with fetched value"
