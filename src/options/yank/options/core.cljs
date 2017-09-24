@@ -45,13 +45,16 @@
         key (re-matches #"^[a-z1-9]" (string/lower-case (.fromCharCode js/String keycode)))
         alt? (.-altKey e)
         shift? (.-shiftKey e)
+        meta? (.-metaKey e)
         ctrl? (.-ctrlKey e)]
+    (d/log (.-metaKey e))
     (.preventDefault e)
     (when key
-      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") key])
+      (let [raw (remove string/blank? [(when alt? "alt") (when ctrl? "ctrl") (when shift? "shift") (when meta? "meta") key])
             composed (string/join "+" raw)]
         (swap! options assoc :keybind {:keycode keycode
                                        :key key
+                                       :meta? meta?
                                        :alt? alt?
                                        :shift? shift?
                                        :ctrl? ctrl?
