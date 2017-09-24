@@ -1,8 +1,8 @@
 (ns yank.background.core
   (:require-macros [shared.logging :as d])
   (:require [goog.object :as gobj]
-            [clojure.walk :as w]
             [clojure.string :as s]
+            [shared.options :refer [fetch-options defaults on-storage-change]]
             [goog.events :as events]))
 
 ;; for extern inference. Better waringings
@@ -11,6 +11,8 @@
 (def ^js/browser tabs (gobj/get js/browser "tabs"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
 (def ^js/browser context-menus (gobj/get js/browser "contextMenus"))
+
+(def options (atom defaults))
 
 (defn create-context-menu
   []
@@ -125,6 +127,8 @@
   []
   (d/log "background init!")
   (create-context-menu)
+  (fetch-options options)
+  (.addListener ^js/browser (gobj/getValueByKeys js/browser "storage" "onChanged") #(on-storage-change options %))
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "browserAction" "onClicked") handle-click)
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "contextMenus" "onClicked") handle-context)
   (.addListener ^js/browser (gobj/get runtime "onMessage") handle-message))

@@ -13,6 +13,12 @@
                          :ctrl? true
                          :composed "ctrl+y"}})
 
+
+(defn on-storage-change
+  [ref resp]
+  (when-let [new (w/keywordize-keys (js->clj (gobj/getValueByKeys resp "yank" "newValue")))]
+    (reset! ref new)))
+
 (defn fetch-options
   "Handle fetching options, takes an atom as a param"
   [ref]
