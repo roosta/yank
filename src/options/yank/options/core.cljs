@@ -2,10 +2,10 @@
   (:require [goog.events :as events]
             [goog.object :as gobj]
             [clojure.walk :as w]
-            [shared.defaults :refer [defaults]]
+            [shared.options :refer [defaults]]
             [clojure.string :as string]
             [goog.dom :as dom])
-  (:require-macros [utils.logging :as d]))
+  (:require-macros [shared.logging :as d]))
 
 ;; for extern inference, better warnings
 (set! *warn-on-infer* true)
@@ -22,7 +22,6 @@
 
 (def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
-
 
 (defn get-os
   []

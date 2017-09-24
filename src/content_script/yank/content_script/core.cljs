@@ -1,29 +1,15 @@
 (ns yank.content-script.core
   (:require [goog.object :as gobj]
             [clojure.walk :as w]
-            [shared.defaults :refer [defaults]]
+            [shared.options :refer [defaults fetch-options]]
             [js.mousetrap]
             [clojure.string :as string])
-  (:require-macros [utils.logging :as d]))
+  (:require-macros [shared.logging :as d]))
 
 ;; for extern inference. Better waringings
 (set! *warn-on-infer* true)
 
 (def options (atom defaults))
-
-(defn fetch-options
-  "Handle fetching options"
-  []
-  (let [^js/browser
-        sync (gobj/getValueByKeys js/browser "storage" "sync")]
-    (-> ^js/browser
-        (.get sync "yank")
-        ^js/browser
-        (.then (fn [resp]
-                 (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-                   (reset! options result)))
-               (fn [error]
-                 (d/log "Failed to get options: " error))))))
 
 (defn send-message
   "Sends a message using browser runtime
@@ -50,6 +36,6 @@
   []
   (d/log "content init!")
   (.bind js/Mousetrap (-> defaults :keybind :composed) send-message)
-  (fetch-options)
+  (fetch-options options)
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "storage" "onChanged") on-storage-change)
   (add-watch options :options watcher))
