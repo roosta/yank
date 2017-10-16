@@ -106,7 +106,6 @@
 
 (defn init!
   []
-  (d/log "opts init!")
   (add-watch options :input-sync input-sync)
   (restore-options)
   (get-os)

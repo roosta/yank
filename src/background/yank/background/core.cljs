@@ -131,7 +131,6 @@
 
 (defn init!
   []
-  (d/log "background init!")
   (create-context-menu)
   (fetch-options options)
   (.addListener ^js/browser (gobj/getValueByKeys js/browser "storage" "onChanged") #(on-storage-change options %))
