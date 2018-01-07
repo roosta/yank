@@ -1,3 +1,3 @@
 (use 'figwheel-sidecar.repl-api)
-(start-figwheel! "options" "background")
-(cljs-repl "options")
+(start-figwheel! "options" "background" "popup")
+(cljs-repl "background")
