@@ -15,7 +15,7 @@
 
   :aliases {"release" ["do"
                        ["clean"]
-                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release"]
+                       ["cljsbuild" "once" "background-release" "options-release" "content-script-release" "popup-release"]
                        ["shell" "script/package.sh"]]
             "package" ["shell" "script/package.sh"]
             "content" ["cljsbuild" "auto" "content-script"]
@@ -32,6 +32,9 @@
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :source-paths ["script" "dev"]}}
+
+  ;; :plugins [[lein-npm "0.6.2"]]
+  ;; :npm {:dependencies [[source-map-support "0.4.0"]]}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
@@ -111,4 +114,15 @@
                                        :foreign-libs  [{:file     "src/js/mousetrap.js"
                                                         :file-min "src/js/mousetrap.min.js"
                                                         :provides ["js.mousetrap"]}]
-                                       :optimizations :advanced}}]})
+                                       :optimizations :advanced}}
+
+                       {:id           "popup-release"
+                        :source-paths ["src/popup"]
+                        :compiler     {:main          yank.popup
+                                       :asset-path    "js/popup"
+                                       :output-to     "resources/release/js/popup.js"
+                                       :output-dir    "resources/release/js/popup"
+                                       :elide-asserts true
+                                       :infer-externs true
+                                       :optimizations :advanced}}
+                       ]})
