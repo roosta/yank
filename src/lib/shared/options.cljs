@@ -16,6 +16,14 @@
 (def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
 (def ^js/browser runtime (gobj/get js/browser "runtime"))
 
+(defn save-options
+  "save options Takes either an event object and options map or only options"
+  ([^js/Event e opts]
+   (.set sync (clj->js {:yank opts}))
+   (.preventDefault e))
+  ([opts]
+   (.set sync (clj->js {:yank opts}))))
+
 (defn on-storage-change
   [ref resp]
   (when-let [new (w/keywordize-keys (js->clj (gobj/getValueByKeys resp "yank" "newValue")))]

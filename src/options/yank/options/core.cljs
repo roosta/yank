@@ -1,7 +1,7 @@
 (ns yank.options.core
   (:require [goog.events :as events]
             [goog.object :as gobj]
-            [shared.options :refer [defaults sync runtime restore-options]]
+            [shared.options :refer [defaults sync runtime restore-options save-options]]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [shared.logging :as d]))
@@ -27,14 +27,6 @@
              (reset! os (gobj/get resp "os")))
            (fn [error]
              (d/error "Failed to get os from runtime. Error: " error)))))
-
-(defn save-options
-  "save options Takes either an event object and options map or only options"
-  ([^js/Event e opts]
-   (.set sync (clj->js {:yank opts}))
-   (.preventDefault e))
-  ([opts]
-   (.set sync (clj->js {:yank opts}))))
 
 (defn handle-keydown
   "handle valid keybinds and reset state atom"
