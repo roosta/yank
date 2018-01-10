@@ -1,8 +1,7 @@
 (ns yank.options.core
   (:require [goog.events :as events]
             [goog.object :as gobj]
-            [clojure.walk :as w]
-            [shared.options :refer [defaults]]
+            [shared.options :refer [defaults sync runtime restore-options]]
             [clojure.string :as string]
             [goog.dom :as dom])
   (:require-macros [shared.logging :as d]))
@@ -20,9 +19,6 @@
                :format-select (dom/getElement "format-select")
                :form (dom/getElement "options-form")})
 
-(def ^js/browser sync (gobj/getValueByKeys js/browser "storage" "sync"))
-(def ^js/browser runtime (gobj/get js/browser "runtime"))
-
 (defn get-os
   []
   (let [^js/Promise platform-info (.getPlatformInfo runtime)]
@@ -39,17 +35,6 @@
    (.preventDefault e))
   ([opts]
    (.set sync (clj->js {:yank opts}))))
-
-(defn restore-options
-  "Get options map and reset state atom with fetched value"
-  []
-  (let [^js/Promise options-promise (.get sync "yank")]
-    (.then options-promise
-           (fn [resp]
-             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-               (reset! options result)))
-           (fn [error]
-             (d/error "Failed to restore options, using defaults. Error: " error)))))
 
 (defn handle-keydown
   "handle valid keybinds and reset state atom"
@@ -107,7 +92,7 @@
 (defn init!
   []
   (add-watch options :input-sync input-sync)
-  (restore-options)
+  (restore-options options)
   (get-os)
   (events/listen (:keybind-input elements) "keydown" handle-keydown)
   (events/listen (:format-select elements) "change" handle-format-change)
