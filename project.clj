@@ -26,9 +26,16 @@
                      :source-paths ["src/styles/popup"]
                      :stylesheet yank.core/screen
                      :compiler {:output-to "resources/dev/css/popup.css"
+                                :pretty-print? true}}
+
+                    {:id "options"
+                     :source-paths ["src/styles/options"]
+                     :stylesheet yank.core/screen
+                     :compiler {:output-to "resources/dev/css/options.css"
                                 :pretty-print? true}}]}
 
   :figwheel {:server-port 6888
+             :css-dirs ["resources/dev/css"]
              :repl        true}
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]
@@ -131,5 +138,4 @@
                                        :output-dir    "resources/release/js/popup"
                                        :elide-asserts true
                                        :infer-externs true
-                                       :optimizations :advanced}}
-                       ]})
+                                       :optimizations :advanced}}]})
