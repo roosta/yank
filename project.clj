@@ -4,6 +4,7 @@
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
+                 [environ "1.1.0"]
                  [org.clojure/clojurescript "1.9.542"]]
 
   :clean-targets ^{:protect false} ["target" "resources/dev/js" "resources/release/js"]
@@ -11,6 +12,7 @@
   :source-paths ["src/lib"]
 
   :plugins [[lein-cljsbuild "1.1.6"]
+            [lein-environ "1.0.2"]
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
@@ -45,10 +47,12 @@
 
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
-                   :source-paths ["script" "dev"]}}
+                   :source-paths ["script" "dev"]}
 
-  ;; :plugins [[lein-npm "0.6.2"]]
-  ;; :npm {:dependencies [[source-map-support "0.4.0"]]}
+             :html {:dependencies [[hiccup "1.0.5"]]
+                    :env {:dev true}
+                    :main "yank.core"
+                    :source-paths ["src/html"]}}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
@@ -58,7 +62,7 @@
                                        :output-to     "resources/dev/js/background/main.js"
                                        :output-dir    "resources/dev/js/background"
                                        :infer-externs true
-                                       ;; :source-map    true
+                                       :source-map    true
                                        :optimizations :none}}
 
                        {:id           "options"
@@ -69,7 +73,7 @@
                                        :output-to     "resources/dev/js/options/main.js"
                                        :output-dir    "resources/dev/js/options"
                                        :infer-externs true
-                                       ;; :source-map    true
+                                       :source-map    true
                                        :optimizations :none}}
 
                        {:id           "popup"
