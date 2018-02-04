@@ -11,6 +11,7 @@
   :source-paths ["src/lib"]
 
   :plugins [[lein-cljsbuild "1.1.6"]
+            [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
   :aliases {"release" ["do"
@@ -20,6 +21,12 @@
             "package" ["shell" "script/package.sh"]
             "content" ["cljsbuild" "auto" "content-script"]
             "fig"     ["figwheel" "options" "background"]}
+
+  :garden {:builds [{:id "popup"
+                     :source-paths ["src/styles/popup"]
+                     :stylesheet yank.core/screen
+                     :compiler {:output-to "resources/dev/css/popup.css"
+                                :pretty-print? true}}]}
 
   :figwheel {:server-port 6888
              :repl        true}

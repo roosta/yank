@@ -13,3 +13,4 @@ resources/dev/js/*
 *.log
 resources/release/js/*
 releases
+resources/dev/css
