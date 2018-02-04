@@ -14,3 +14,5 @@ resources/dev/js/*
 resources/release/js/*
 releases
 resources/dev/css
+resources/release/css
+*.html

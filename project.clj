@@ -50,9 +50,13 @@
                    :source-paths ["script" "dev"]}
 
              :html {:dependencies [[hiccup "1.0.5"]]
-                    :env {:dev true}
+                    :env {:location "dev"
+                          :css-ext ".css"}
                     :main "yank.core"
-                    :source-paths ["src/html"]}}
+                    :source-paths ["src/html"]}
+
+             :html-release [:html {:env {:location "release"
+                                         :css-ext ".min.css"}}]}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
