@@ -6,12 +6,16 @@
   </head>
   <body>
     <div id="app">
-      <h3>Collected images</h3>
+      <h3>Yank format</h3>
       <p id="error-message"></p>
-      <input placeholder="collection name" class="collection-name">
-      <button class="save-collection">save</button>
-      <ul class="thumbnails">
-      <ul>
+      <select id="format-select">
+        <option value="org">Org-mode</option>
+        <option value="md">Markdown</option>
+        <option value="textile">Textile</option>
+        <option value="asciidoc">AsciiDoc</option>
+        <option value="rest">reStructuredText</option>
+        <option value="html">HTML</option>
+      </select>
     </div>
     <script type="text/javascript" src="js/popup/goog/base.js"></script>
     <script type="text/javascript" src="js/popup/cljs_deps.js"></script>
