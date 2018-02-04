@@ -7,6 +7,7 @@
    {:color "WindowText"
     :font "caption"
     :display "flex"
+    :margin 0
     :min-height "100vh"
     :justify-content "center"
     :align-items "center"
