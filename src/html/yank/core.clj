@@ -11,11 +11,14 @@
               {:value "rest" :text "reStructuredText"}
               {:value "html" :text "HTML"}])
 
-(defn head [{:keys [component title]}]
-  [:head
-   [:meta {:charset "utf-8"}]
-   (when title [:title title])
-   (include-css (str "/css/" component (env :css-ext)))])
+(defn head
+  ([{:keys [component title]}]
+   [:head
+    [:meta {:charset "utf-8"}]
+    (when title [:title title])
+    (include-css (str "/css/" component (env :css-ext)))])
+  ([] [:head
+       [:meta {:charset "utf-8"}]]))
 
 (defn popup-body
   []
@@ -39,6 +42,17 @@
       (include-js "setup.js")
       (include-js "popup.js")]
      [(include-js "popup.js")])))
+
+(defn background-body
+  []
+  (into
+   [:body]
+   (if (= (env :location) "dev")
+     [(include-js "js/background/goog/base.js")
+      (include-js "js/background/cljs_deps.js")
+      (include-js "setup.js")
+      (include-js "background.js")]
+     [(include-js "background.js")])))
 
 (defn options-body
   []
@@ -83,9 +97,12 @@
         popup-html (html5
                     (head {:component "popup"})
                     (popup-body))
+        background-html (html5
+                         (head)
+                         (background-body))
         options-path (str "resources/" (env :location) "/options.html")
-        popup-path (str "resources/" (env :location) "/popup.html")]
+        popup-path (str "resources/" (env :location) "/popup.html")
+        background-path (str "resources/" (env :location) "/background.html")]
     (spit options-path options-html)
     (spit popup-path popup-html)
-    )
-  )
+    (spit background-path background-html)))
