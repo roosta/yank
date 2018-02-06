@@ -41,7 +41,7 @@
       (include-js "js/popup/cljs_deps.js")
       (include-js "setup.js")
       (include-js "popup.js")]
-     [(include-js "popup.js")])))
+     [(include-js "js/popup.js")])))
 
 (defn background-body
   []
@@ -52,7 +52,7 @@
       (include-js "js/background/cljs_deps.js")
       (include-js "setup.js")
       (include-js "background.js")]
-     [(include-js "background.js")])))
+     [(include-js "js/background.js")])))
 
 (defn options-body
   []
@@ -86,7 +86,7 @@
       (include-js "js/options/cljs_deps.js")
       (include-js "setup.js")
       (include-js "options.js")]
-     [(include-js "options.js")])))
+     [(include-js "js/options.js")])))
 
 (defn -main
   [& args]
