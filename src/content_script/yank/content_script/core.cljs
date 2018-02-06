@@ -5,7 +5,7 @@
             [clojure.string :as string])
   (:require-macros [shared.logging :as d]))
 
-;; for extern inference. Better waringings
+;; for extern inference. Better warnings
 (set! *warn-on-infer* true)
 
 (def options (atom defaults))
