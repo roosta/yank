@@ -27,6 +27,7 @@
                        ["clean"]
                        ["cljsbuild" "once" "background-release" "options-release" "content-script-release" "popup-release"]
                        ["with-profile" "html-release" "run"]
+                       ["with-profile" "manifest-release" "run"]
                        ["garden" "once" "options"]
                        ["garden" "once" "popup"]
                        ["minify-assets"]
@@ -35,12 +36,17 @@
                         "resources/release/js/popup"
                         "resources/release/js/options"
                         "resources/release/js/content_script"]
-                       ;; ["shell" "script/package.sh"]
-                       ]
-            "package" ["shell" "script/package.sh"]
-            "content" ["cljsbuild" "auto" "content-script"]
-            "html"    ["with-profile" "html" "run"]
-            "fig"     ["figwheel" "options" "background"]}
+                       ["shell" "script/package.sh"]]
+
+            "package"  ["shell" "script/package.sh"]
+
+            "content"  ["cljsbuild" "auto" "content-script"]
+
+            "html"     ["with-profile" "html" "run"]
+
+            "manifest" ["with-profile" "manifest" "run"]
+
+            "fig"      ["figwheel" "options" "background"]}
 
   :garden {:builds [{:id "popup"
                      :source-paths ["src/styles/popup"]
@@ -78,6 +84,7 @@
              :manifest {:main "yank.core"
                         :env {:location "dev"}
                         :source-paths ["src/manifest"]}
+
              :manifest-release [:manifest {:env {:location "release"}}]}
 
   :cljsbuild {:builds [{:id           "background"
