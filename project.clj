@@ -18,9 +18,9 @@
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
-  :minify-assets [[:css {:source "resources/release/css/options.css"
+  :minify-assets [[:css {:source "resources/dev/css/options.css"
                          :target "resources/release/css/options.min.css"}]
-                  [:css {:source "resources/release/css/popup.css"
+                  [:css {:source "resources/dev/css/popup.css"
                          :target "resources/release/css/popup.min.css"}]]
 
   :aliases {"release" ["do"
