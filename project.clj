@@ -5,6 +5,7 @@
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
                  [environ "1.1.0"]
+                 [hiccup "1.0.5"]
                  [org.clojure/clojurescript "1.9.542"]]
 
   :clean-targets ^{:protect false} ["target" "resources/dev/js" "resources/release/js"]
@@ -12,9 +13,15 @@
   :source-paths ["src/lib"]
 
   :plugins [[lein-cljsbuild "1.1.6"]
+            [lein-asset-minifier "0.4.4"]
             [lein-environ "1.0.2"]
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
+
+  :minify-assets [[:css {:source "resources/release/css/options.css"
+                         :target "resources/release/css/options.min.css"}]
+                  [:css {:source "resources/release/css/popup.css"
+                         :target "resources/release/css/popup.min.css"}]]
 
   :aliases {"release" ["do"
                        ["clean"]
@@ -49,8 +56,7 @@
 
                    :source-paths ["script" "dev"]}
 
-             :html {:dependencies [[hiccup "1.0.5"]]
-                    :env {:location "dev"
+             :html {:env {:location "dev"
                           :css-ext ".css"}
                     :main "yank.core"
                     :source-paths ["src/html"]}
