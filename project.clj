@@ -73,7 +73,12 @@
                     :source-paths ["src/html"]}
 
              :html-release [:html {:env {:location "release"
-                                         :css-ext ".min.css"}}]}
+                                         :css-ext ".min.css"}}]
+
+             :manifest {:main "yank.core"
+                        :env {:location "dev"}
+                        :source-paths ["src/manifest"]}
+             :manifest-release [:manifest {:env {:location "release"}}]}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
