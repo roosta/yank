@@ -1,6 +1,7 @@
 (ns yank.core
   (:require [hiccup.page :refer [include-js include-css html5 doctype]]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [clojure.string :as str])
   (:gen-class))
 
 (def formats [{:value "org" :text "Org-mode"}
@@ -15,6 +16,29 @@
    [:meta {:charset "utf-8"}]
    (when title [:title title])
    (include-css (str "/css/" component (env :css-ext)))])
+
+(defn popup-body
+  []
+  (into
+   [:body
+
+    [:h3
+     [:span {:class "bracket" :id "left-backet"} "["]
+     "Yank format"
+     [:span {:class "bracket" :id "right-bracket"} "]"]]
+
+    [:p#error-message]
+
+    [:select {:class "input" :id "format-select"}
+     (for [f formats]
+       [:option {:value (:value f)} (:text f)])]]
+
+   (if (= (env :location) "dev")
+     [(include-js "js/popup/goog/base.js")
+      (include-js "js/popup/cljs_deps.js")
+      (include-js "setup.js")
+      (include-js "popup.js")]
+     [(include-js "popup.js")])))
 
 (defn options-body
   []
@@ -56,7 +80,12 @@
                       (head {:component "options"
                              :title "Yank extension options page"})
                       (options-body))
-        options-path (str "resources/" (env :location) "/options.html")]
+        popup-html (html5
+                    (head {:component "popup"})
+                    (popup-body))
+        options-path (str "resources/" (env :location) "/options.html")
+        popup-path (str "resources/" (env :location) "/popup.html")]
     (spit options-path options-html)
+    (spit popup-path popup-html)
     )
   )
