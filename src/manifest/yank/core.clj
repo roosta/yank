@@ -4,7 +4,10 @@
             [environ.core :refer [env]])
   (:gen-class))
 
-(def project (-> "/home/roosta/src/yank/project.clj" slurp read-string))
+(def project (-> (System/getProperty "user.dir")
+                 (str "/project.clj")
+                 slurp
+                 read-string))
 
 (def version (nth project 2))
 (def description (nth project 4))
