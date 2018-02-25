@@ -4,6 +4,17 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v0.3.0] - 2018-02-25
+### Added
+- Popup menu when clicking the toolbar icon, options to change the format on the
+  fly. Shorcut option is still in preferences page.
+- Add CSS to popup menu and options page
+
+### Changed
+- All HTML and manifest files are now generated from clojure src and is no
+  longer tracked in repo
+- License changed to MIT
+
 ## [v0.2.1] - 2017-09-24
 ### Fixed
 - Minor issue with manifest version vs published versions
@@ -24,7 +35,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/roosta/yank/compare/v0.2.1...v0.3.0
 [v0.2.1]: https://github.com/roosta/yank/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/roosta/yank/compare/v0.1.0...v0.2.0
 [v0.1.0]: https://github.com/roosta/yank/compare/v0.1.0...master
