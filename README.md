@@ -9,6 +9,12 @@ By default this plugin binds `ctrl+y` to copy URL as org-mode. To change this
 open up the options page, either from a `about:addons` or by clicking the addon
 icon in the toolbar
 
+There is also a context menu option, that allows for copying an anchors href and
+content.
+
+Quickly change the markup format by clicking the toolbar icon for the popup
+menu.
+
 ### Shortcut keys
 
 Currently allowed shortcuts are any alphanumeric key and/or any combination of
