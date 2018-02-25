@@ -19,18 +19,9 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * Document markup languages
   - [[https://en.wikipedia.org/wiki/Comparison_of_document_markup_languages][Comparison of document markup languages]]
   - [[http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html#internal-and-external-links][3.6.1. Restructured Text (reST) and Sphinx CheatSheet]]
-* TODO Ctrl and mac
-* TODO Allow for more key combinations
-* TODO Style options page
-* TODO Fix icon
 * Issues
 ** Promises
    https://github.com/google/closure-compiler/issues/692
-* TODO Popup
-[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/user_interface/Popups][Popups - Mozilla | MDN]]
-[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/browserAction][browserAction - Mozilla | MDN]]
-[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/browserAction/setPopup][browserAction.setPopup() - Mozilla | MDN]]
-
 * TODO Latex?
 ;; LaTeX
 ;; \href{<url>}{<text to display>}
