@@ -7,7 +7,19 @@
                  [hiccup "1.0.5"]
                  [org.clojure/clojurescript "1.9.542"]]
 
-  :clean-targets ^{:protect false} ["target" "resources/dev/js" "resources/release/js"]
+  :clean-targets ^{:protect false} ["target"
+                                    "resources/dev/js"
+                                    "resources/dev/css"
+                                    "resources/release/css"
+                                    "resources/release/js"
+                                    "resources/release/background.html"
+                                    "resources/release/options.html"
+                                    "resources/release/popup.html"
+                                    "resources/dev/background.html"
+                                    "resources/dev/options.html"
+                                    "resources/dev/popup.html"
+                                    "resources/release/manifest.json"
+                                    "resources/dev/manifest.json"]
 
   :source-paths ["src/lib"]
 
