@@ -1,8 +1,7 @@
 (defproject yank "0.2.1"
   :description "Yank current page URL to clipboard as various markup formats"
   :url "https://github.com/roosta/yank"
-  :license {:name "Eclipse Public License"
-            :url  "http://www.eclipse.org/legal/epl-v10.html"}
+  :license {:name "MIT"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
                  [environ "1.1.0"]
                  [hiccup "1.0.5"]
