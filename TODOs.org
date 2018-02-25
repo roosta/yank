@@ -25,3 +25,4 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * TODO Latex?
 ;; LaTeX
 ;; \href{<url>}{<text to display>}
+* [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
