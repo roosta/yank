@@ -1,18 +1,18 @@
 ## Yank
-A Firefox extension to copy current tab URL to clipboard, formatted for
-a markup language. Supports custom shortcuts and several different
-markup languages.
+
+A Firefox extension to copy current tab URL to clipboard, formatted for a markup
+language. Supports custom shortcuts and several different markup languages.
 
 ### Usage
 
-By default this plugin binds `ctrl+y` to copy URL as org-mode. To change
-this open up the options page, either from a `about:addons` or by
-clicking the addon icon in the toolbar
+By default this plugin binds `ctrl+y` to copy URL as org-mode. To change this
+open up the options page, either from a `about:addons` or by clicking the addon
+icon in the toolbar
 
 ### Shortcut keys
 
-Currently allowed keybinds are any alphanumeric key and/or any
-combination of ctrl/alt/shift
+Currently allowed shortcuts are any alphanumeric key and/or any combination of
+ctrl/alt/shift/meta
 
 ### Supported formats
 
@@ -25,44 +25,31 @@ Yank currently supports these markup languages:
   - [reStructuredText](http://docutils.sourceforge.net/rst.html)
   - [HTML](https://www.w3.org/html/)
 
-I wrote this plugin solely for org-mode, and just added the remaining
-formats since it required very little once the code surrounding it
-actually worked. Reason I mention this is that I don't actively use the
-other formats, so aside from org-mode and possibly markdown I can't say
-with certainty that the plugin handles it correctly. Please open an
-issue if there is a problem, or any other format is desired.
-
 ## Development
 
 1.  Clone this repository
-
-<!-- end list -->
 
 ``` example
 $ git clone https://github.com/roosta/yank
 $ cd yank
 ```
 
-1.  To get a development version going, open up a terminal and run:
-
-<!-- end list -->
+2.  To get a development version going, open up a terminal and run:
 
 ``` example
 $ lein fig
 ```
 
-A. Alternatively there's a file called `script/repl.clj`, You can use
-this in Emacs to start figwheel when using
-[cider](https://github.com/clojure-emacs/cider). Put this in your Emacs
-config file:
+A. Alternatively there's a file called `script/repl.clj`, You can use this in
+Emacs to start figwheel when using
+[cider](https://github.com/clojure-emacs/cider). Put this in your Emacs config
+file:
 
 ``` elisp
 (setq cider-cljs-lein-repl "(require 'repl)")
 ```
 
-1.  Open up a second terminal and run:
-
-<!-- end list -->
+3.  Open up a second terminal and run:
 
 ``` example
 $ lein content
@@ -74,10 +61,8 @@ Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
 
 1.  To build a release version and package it run:
 
-<!-- end list -->
-
 ``` example
-$ lein release && lein package
+$ lein release
 ```
 
 ## Troubleshooting
@@ -88,11 +73,13 @@ website key-press listener, therefore when the focus is on say an input field
 yank won't override any keyboard events and will simply not work. Just keep that
 in mind when trying to yank an URL and something else has the keyboard focus.
 
-## Bugs
+I wrote this plugin solely for org-mode, and just added the remaining
+formats since it required very little once the code surrounding it
+actually worked. Reason I mention this is that I don't actively use the
+other formats, so aside from org-mode and possibly markdown I can't say
+with certainty that the plugin handles it correctly.
 
-There are very likely bugs contained in this plugin. I'm actively using
-it myself, and fixing stuff as I find it, but any submitted issue is
-appreciated.
+Please open an issue if there is a problem, or any other format is desired.
 
 ## Other projects
 
@@ -121,11 +108,3 @@ Using this neat library to bind the custom shortcut keys.
 <https://github.com/bhauman/lein-figwheel>
 
 Plugin used to hotload source code when developing
-
-### Other plugins
-
-  - [Copy as Org-mode](https://addons.mozilla.org/en-US/firefox/addon/copy-as-org-mode/?src=search)
-  - [Org Capture](https://addons.mozilla.org/en-US/firefox/addon/org-capture/?src=search)
-
-These plugins looks nice, I would have used one of them, but they were
-either to complicated or didn't support custom shortcuts.
