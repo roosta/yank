@@ -61,7 +61,7 @@
 
             "manifest" ["with-profile" "manifest" "run"]
 
-            "fig"      ["figwheel" "options" "background"]}
+            "fig"      ["figwheel" "options" "background" "popup"]}
 
   :garden {:builds [{:id "popup"
                      :source-paths ["src/styles/popup"]
