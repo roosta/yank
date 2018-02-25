@@ -32,7 +32,7 @@
 
                :content_scripts [{:matches ["http://*/*"
                                             "https://*/*"]
-                                  :js ["js/content_script/main.js"]
+                                  :js ["js/content_script.js"]
                                   :all_frames true
                                   :run_at "document_end"}]
 
@@ -45,7 +45,9 @@
 
                :background {:page "background.html"}})
 
-(def manifest-dev (merge manifest {:content_security_policy "script-src 'self' 'unsafe-eval'; object-src 'self'"}))
+(def manifest-dev (-> manifest
+                      (assoc  :content_security_policy "script-src 'self' 'unsafe-eval'; object-src 'self'")
+                      (assoc-in [:content_scripts 0 :js] ["js/content_script/main.js"])))
 
 (defn -main
   [& args]
