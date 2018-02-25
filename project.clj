@@ -41,6 +41,10 @@
 
             "content"  ["cljsbuild" "auto" "content-script"]
 
+            "css"      ["do"
+                        ["garden" "once" "popup"]
+                        ["garden" "once" "options"]]
+
             "html"     ["with-profile" "html" "run"]
 
             "manifest" ["with-profile" "manifest" "run"]
