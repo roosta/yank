@@ -50,3 +50,50 @@ Archived entries from file /home/roosta/src/yank/TODOs.org
   :ARCHIVE_CATEGORY: TODOs
   :ARCHIVE_TODO: DONE
   :END:
+
+* DONE Ctrl and mac :ARCHIVE:
+  CLOSED: [2018-02-25 Sun 17:49]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-02-25 Sun 17:49
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* TODO Allow for more key combinations :ARCHIVE:
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-02-25 Sun 17:49
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: TODO
+  :END:
+
+* DONE Style options page
+  CLOSED: [2018-02-25 Sun 17:49]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-02-25 Sun 17:49
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Fix icon
+  CLOSED: [2018-02-25 Sun 17:50]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-02-25 Sun 17:50
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE Popup
+  CLOSED: [2018-02-25 Sun 17:50]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-02-25 Sun 17:50
+  :ARCHIVE_FILE: ~/src/yank/TODOs.org
+  :ARCHIVE_CATEGORY: TODOs
+  :ARCHIVE_TODO: DONE
+  :END:
+[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/user_interface/Popups][Popups - Mozilla | MDN]]
+[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/browserAction][browserAction - Mozilla | MDN]]
+[[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/browserAction/setPopup][browserAction.setPopup() - Mozilla | MDN]]
