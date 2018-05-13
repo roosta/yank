@@ -28,6 +28,7 @@
                              "storage"
                              "<all_urls>"]
                :options_ui {:page "options.html"
+                            :browser_style true
                             :open_in_tab true}
 
                :content_scripts [{:matches ["http://*/*"
@@ -37,6 +38,7 @@
                                   :run_at "document_end"}]
 
                :browser_action {:default_title "Yank format"
+                                :browser_style true
                                 :default_icon {"16" "icons/16.png"
                                                "32" "icons/32.png"}
                                 :default_popup "popup.html"}
