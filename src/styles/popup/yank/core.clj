@@ -6,11 +6,9 @@
   [:body
    {:font "caption"
     :color "WindowText"
-    :text-align "center"
+    :padding (px 10)
     :background-color "Background"}]
   [:h3 {:display "flex"
         :justify-content "space-between"
-        :align-items "center"
-        :flex "0 1 100%"}]
-  [:.bracket {:font-size (px 24)}]
-  )
+        :align-items "center"}]
+  [:.bracket {:font-size (px 24)}])

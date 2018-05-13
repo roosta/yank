@@ -30,7 +30,7 @@
      "Yank format"
      [:span {:class "bracket" :id "right-bracket"} "]"]]
 
-    [:p#error-message]
+    ;; [:p#error-message]
 
     [:select {:class "input" :id "format-select"}
      (for [f formats]
