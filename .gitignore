@@ -15,5 +15,5 @@ resources/release/js/*
 releases
 resources/dev/css
 resources/release/css
-*.html
+resources/**/*.html
 manifest.json

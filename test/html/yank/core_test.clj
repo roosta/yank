@@ -12,7 +12,7 @@
                       {:type "text/css"
                        :href (URI. "/css/test.css")
                        :rel "stylesheet"}])]
-        html "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\"><title>test-title</title><link href=\"/css/test.css\" rel=\"stylesheet\" type=\"text/css\"></head></html>"
+        html (slurp "test/html/yank/head.html")
         result (core/head {:component "test"
                            :title "test-title"})]
     (testing "Testing head hiccup form"
