@@ -91,7 +91,7 @@
              :html {:env {:location "dev"
                           :css-ext ".css"}
                     :main "yank.core"
-                    :source-paths ["src/html"]}
+                    :source-paths ["src/html" "test/html"]}
 
              :html-release [:html {:env {:location "release"
                                          :css-ext ".min.css"}}]
