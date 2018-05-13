@@ -49,6 +49,13 @@
                         "resources/release/js/content_script"]
                        ["shell" "script/package.sh"]]
 
+            "dev"      ["do"
+                        ["garden" "once" "options"]
+                        ["garden" "once" "popup"]
+                        ["with-profile" "html" "run"]
+                        ["with-profile" "manifest" "run"]
+                        ["figwheel" "options" "background" "popup"]]
+
             "package"  ["shell" "script/package.sh"]
 
             "content"  ["cljsbuild" "auto" "content-script"]
