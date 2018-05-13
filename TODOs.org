@@ -26,3 +26,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ;; LaTeX
 ;; \href{<url>}{<text to display>}
 * [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
+* Testing
+** [[https://help.crossbrowsertesting.com/selenium-testing/faq/testing-extensions-selenium/][Testing Extensions with Selenium | CrossBrowserTesting Support]]
+** [[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Testing_persistent_and_restart_features][Testing persistent and restart features - Mozilla | MDN]]
+** [[https://github.com/binaryage/chromex-sample/blob/master/project.clj][chromex-sample/project.clj at master · binaryage/chromex-sample]]
