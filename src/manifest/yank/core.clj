@@ -51,10 +51,13 @@
                       (assoc  :content_security_policy "script-src 'self' 'unsafe-eval'; object-src 'self'")
                       (assoc-in [:content_scripts 0 :js] ["js/content_script/main.js"])))
 
+(defn compile-json
+  [{:keys [escape-slash dev?]}]
+   (json/write-str (if dev? manifest-dev manifest) :escape-slash escape-slash))
+
 (defn -main
   [& args]
   (let [dev? (= (env :location) "dev")
         path (str "resources/" (env :location) "/manifest.json")
-        target (if dev? manifest-dev manifest)
-        out (json/write-str target :escape-slash false)]
+        out (compile-json {:escape-slash false :dev? (= env :location "dev")})]
     (spit path out)))
