@@ -106,7 +106,7 @@
 
              :manifest {:main "yank.core"
                         :env {:location "dev"}
-                        :source-paths ["src/manifest"]}
+                        :source-paths ["src/manifest" "test/manifest"]}
 
              :manifest-release [:manifest {:env {:location "release"}}]}
 

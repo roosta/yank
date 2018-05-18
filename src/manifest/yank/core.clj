@@ -27,6 +27,7 @@
                              "contextMenus"
                              "storage"
                              "<all_urls>"]
+
                :options_ui {:page "options.html"
                             :browser_style true
                             :open_in_tab true}
