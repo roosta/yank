@@ -4,4 +4,6 @@
    [yank.core-test]
    [cljs.test :as t :include-macros true]))
 
+(set! *warn-on-infer* false)
+
 (doo-tests 'yank.core-test)
