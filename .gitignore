@@ -17,3 +17,4 @@ resources/dev/css
 resources/release/css
 resources/**/*.html
 manifest.json
+out

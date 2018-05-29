@@ -26,6 +26,7 @@
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-asset-minifier "0.4.4"]
             [lein-environ "1.0.2"]
+            [lein-doo "0.1.6"]
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
@@ -119,6 +120,12 @@
                                        :output-dir    "resources/dev/js/background"
                                        :infer-externs true
                                        :source-map    true
+                                       :optimizations :none}}
+
+                       {:id           "background-test"
+                        :source-paths ["src/background" "test/background"]
+                        :compiler     {:output-to     "target/cljs/background/test.js"
+                                       :main yank.runner
                                        :optimizations :none}}
 
                        {:id           "options"
