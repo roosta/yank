@@ -68,7 +68,13 @@
 
             "html"     ["with-profile" "html" "run"]
 
+            "html-test" ["with-profile" "html" "test"]
+
             "manifest" ["with-profile" "manifest" "run"]
+
+            "manifest-test" ["with-profile" "manifest" "test"]
+
+            "background-test" ["doo" "phantom" "background-test"]
 
             "fig"      ["figwheel" "options" "background" "popup"]}
 
