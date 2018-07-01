@@ -2,10 +2,10 @@
   :description "Yank current page URL to clipboard as various markup formats"
   :url "https://github.com/roosta/yank"
   :license {:name "MIT"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  [environ "1.1.0"]
                  [hiccup "1.0.5"]
-                 [org.clojure/clojurescript "1.9.542"]]
+                 [org.clojure/clojurescript "1.10.339"]]
 
   :clean-targets ^{:protect false} ["target"
                                     "resources/dev/js"
@@ -23,10 +23,10 @@
 
   :source-paths ["src/lib"]
 
-  :plugins [[lein-cljsbuild "1.1.6"]
+  :plugins [[lein-cljsbuild "1.1.7"]
             [lein-asset-minifier "0.4.4"]
-            [lein-environ "1.0.2"]
-            [lein-doo "0.1.6"]
+            [lein-environ "1.1.0"]
+            [lein-doo "0.1.10"]
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
@@ -94,10 +94,10 @@
              :css-dirs ["resources/dev/css"]
              :repl        true}
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.16"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [org.clojure/tools.nrepl "0.2.10"]]
-                   :plugins      [[lein-figwheel "0.5.10"]]
+                                  [org.clojure/tools.nrepl "0.2.13"]]
+                   :plugins      [[lein-figwheel "0.5.16"]]
 
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
