@@ -18,3 +18,4 @@ resources/release/css
 resources/**/*.html
 manifest.json
 out
+.tern-port
