@@ -95,11 +95,11 @@
              :repl        true}
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.16"]
-                                  [com.cemerick/piggieback "0.2.2"]
+                                  [cider/piggieback "0.3.6"]
                                   [org.clojure/tools.nrepl "0.2.13"]]
                    :plugins      [[lein-figwheel "0.5.16"]]
 
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+                   :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
                    :source-paths ["script" "dev"]}
 
