@@ -119,12 +119,14 @@
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
-                        :figwheel     {:on-jsload "yank.background.core/fig-reload"}
+                        :figwheel     {:debug true
+                                       :on-jsload "yank.background.core/fig-reload"}
                         :compiler     {:main          yank.background
                                        :asset-path    "js/background"
                                        :output-to     "resources/dev/js/background/main.js"
                                        :output-dir    "resources/dev/js/background"
                                        :infer-externs true
+                                       :preloads [figwheel.preload]
                                        :source-map    true
                                        :optimizations :none}}
 
@@ -136,21 +138,25 @@
 
                        {:id           "options"
                         :source-paths ["src/options"]
-                        :figwheel     {:on-jsload "yank.options.core/fig-reload"}
+                        :figwheel     {:on-jsload "yank.options.core/fig-reload"
+                                       :debug true}
                         :compiler     {:main          yank.options
                                        :asset-path    "js/options"
                                        :output-to     "resources/dev/js/options/main.js"
                                        :output-dir    "resources/dev/js/options"
+                                       :preloads [figwheel.preload]
                                        :infer-externs true
                                        :source-map    true
                                        :optimizations :none}}
 
                        {:id           "popup"
                         :source-paths ["src/popup"]
-                        :figwheel     {:on-jsload "yank.popup.core/fig-reload"}
+                        :figwheel     {:on-jsload "yank.popup.core/fig-reload"
+                                       :debug true}
                         :compiler     {:main          yank.popup
                                        :asset-path    "js/popup"
                                        :output-to     "resources/dev/js/popup/main.js"
+                                       :preloads [figwheel.preload]
                                        :output-dir    "resources/dev/js/popup"
                                        :infer-externs true
                                        ;; :source-map    true
