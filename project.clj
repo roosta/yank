@@ -76,7 +76,7 @@
 
             "background-test" ["doo" "phantom" "background-test"]
 
-            "fig"      ["figwheel" "options" "background" "popup"]}
+            "fig"      ["figwheel" "background" "options" "popup"]}
 
   :garden {:builds [{:id "popup"
                      :source-paths ["src/styles/popup"]
