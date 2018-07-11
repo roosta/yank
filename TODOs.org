@@ -30,5 +30,6 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** [[https://help.crossbrowsertesting.com/selenium-testing/faq/testing-extensions-selenium/][Testing Extensions with Selenium | CrossBrowserTesting Support]]
 ** [[https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Testing_persistent_and_restart_features][Testing persistent and restart features - Mozilla | MDN]]
 ** [[https://github.com/binaryage/chromex-sample/blob/master/project.clj][chromex-sample/project.clj at master · binaryage/chromex-sample]]
+** Install geckodriver on testing machine
 * Figwheel upgrade issue
 ** [[https://github.com/bhauman/lein-figwheel/issues/703][figwheel repl does not connect to browser · Issue #703 · bhauman/lein-figwheel]]

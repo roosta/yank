@@ -115,7 +115,8 @@
 
              :manifest-release [:manifest {:env {:location "release"}}]
 
-             :integration-test {:source-paths ["test/integration"]}}
+             :integration-test {:dependencies [[etaoin "0.2.8-SNAPSHOT"]]
+                                :source-paths ["test/integration"]}}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
