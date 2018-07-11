@@ -74,6 +74,8 @@
 
             "manifest-test" ["with-profile" "manifest" "test"]
 
+            "integration-test" ["with-profile" "integration-test" "test"]
+
             "background-test" ["doo" "phantom" "background-test"]
 
             "fig"      ["figwheel" "background" "options" "popup"]}
@@ -111,7 +113,9 @@
                         :env {:location "dev"}
                         :source-paths ["src/manifest" "test/manifest"]}
 
-             :manifest-release [:manifest {:env {:location "release"}}]}
+             :manifest-release [:manifest {:env {:location "release"}}]
+
+             :integration-test {:source-paths ["test/integration"]}}
 
   :cljsbuild {:builds [{:id           "background"
                         :source-paths ["src/background"]
