@@ -1,4 +1,4 @@
-(ns yank.core_test
+(ns yank.core-test
   (:require [yank.core :as core]
             [clojure.data.json :as json]
             [clojure.pprint :refer [pprint]]
