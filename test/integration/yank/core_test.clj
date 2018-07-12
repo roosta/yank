@@ -1,6 +1,18 @@
 (ns yank.core-test
   (:require [clojure.test :as t :refer [deftest testing is use-fixtures]]
-            [etaoin.api :refer [with-firefox firefox]]))
+            [etaoin.api :as e :refer [with-firefox firefox go upload-file click]]))
+
+
+(def project-version
+  (-> (System/getProperty "user.dir")
+      (str "/project.clj")
+      slurp
+      read-string
+      (nth 2)))
+
+(def extension-file
+  (-> (System/getProperty "user.dir")
+      (str "/releases/yank-" project-version ".xpi")))
 
 (def ^:dynamic
   *driver*)
@@ -20,3 +32,11 @@
 (deftest ^:integration
   i-pass
   (is (= 1 1)))
+
+(e/with-resp driver :post
+  [:session (:session @driver) :moz :addon :install]
+  {:path extension-file :temporary true}
+  _)
+
+
+;; (go driver "about:debugging")
