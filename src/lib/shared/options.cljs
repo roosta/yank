@@ -35,9 +35,11 @@
   (let [^js/Promise options-promise (.get sync "yank")]
     (.then options-promise
            (fn [resp]
-             (when-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
-               (reset! ref result)))
+             (if-let [result (w/keywordize-keys (js->clj (gobj/get resp "yank")))]
+               (reset! ref result)
+               (reset! ref defaults)))
            (fn [error]
+             (reset! ref defaults)
              (d/error "Failed to restore options, using defaults. Error: " error)))))
 
 (defn fetch-options
