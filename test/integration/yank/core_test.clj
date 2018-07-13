@@ -1,5 +1,9 @@
 (ns yank.core-test
+  (:import [java.awt Toolkit HeadlessException]
+           [java.awt.datatransfer DataFlavor UnsupportedFlavorException]
+           [java.io IOException])
   (:require [clojure.test :as t :refer [deftest testing is use-fixtures]]
+            [etaoin.keys :as k]
             [etaoin.api :as e :refer [with-firefox firefox go upload-file click]]))
 
 
@@ -18,10 +22,14 @@
   *driver*)
 
 (defn fixture-driver
-  "Executes a test running a driver. Bounds a driver
-   with the global *driver* variable."
+  "Executes a test running a driver. Installs extension and binds a driver with the
+  global *driver* variable."
   [f]
   (with-firefox {} driver
+    (e/with-resp driver :post
+      [:session (:session @driver) :moz :addon :install]
+      {:path extension-file :temporary true}
+      _)
     (binding [*driver* driver]
       (f))))
 
@@ -30,13 +38,13 @@
   fixture-driver)
 
 (deftest ^:integration
-  i-pass
-  (is (= 1 1)))
-
-(e/with-resp driver :post
-  [:session (:session @driver) :moz :addon :install]
-  {:path extension-file :temporary true}
-  _)
-
-
-;; (go driver "about:debugging")
+  org-mode-basic
+  (doto *driver*
+    (go "https://google.com")
+    (e/fill {:tag :body} k/escape)
+    (e/fill {:tag :body} k/control-left "y" ))
+  (let [clipboard (-> (Toolkit/getDefaultToolkit)
+                           (.getSystemClipboard)
+                           (.getData (DataFlavor/stringFlavor)))
+        expected "[[https://www.google.com/][Google]]"]
+    (is (= clipboard expected))))
