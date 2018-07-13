@@ -46,14 +46,10 @@ $ cd yank
 $ lein fig
 ```
 
-A. Alternatively there's a file called `script/repl.clj`, You can use this in
-Emacs to start figwheel when using
-[cider](https://github.com/clojure-emacs/cider). Put this in your Emacs config
-file:
+This will start figwheel and watch for changes in sourcecode.
 
-``` elisp
-(setq cider-cljs-lein-repl "(require 'repl)")
-```
+Using [Cider](https://github.com/clojure-emacs/cider) call
+`cider-jack-in-clojurescript` and select figwheel as the repl type
 
 3.  Open up a second terminal and run:
 
@@ -61,7 +57,7 @@ file:
 $ lein content
 ```
 
-This will build everything, and give you a REPL connected to the options
+This will build everything, and give you a REPL connected to the background
 namespace. Open up Firefox and goto `about:debugging` -\> Load Temporary
 Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
 
