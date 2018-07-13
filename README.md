@@ -48,7 +48,7 @@ $ lein fig
 
 This will start figwheel and watch for changes in sourcecode.
 
-Using [Cider](https://github.com/clojure-emacs/cider) call
+> Using [Cider](https://github.com/clojure-emacs/cider) call
 `cider-jack-in-clojurescript` and select figwheel as the repl type
 
 3.  Open up a second terminal and run:
@@ -61,11 +61,17 @@ This will build everything, and give you a REPL connected to the background
 namespace. Open up Firefox and goto `about:debugging` -\> Load Temporary
 Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
 
+## Package/Release build
+
 1.  To build a release version and package it run:
 
 ``` example
 $ lein release
 ```
+
+This will produce an unsigned .xpi file that can be temporarily loaded in
+firefox. Bear in mind that this package is unsigned and you'd need to sign it
+yourself to use it as anything but a temporary addon.
 
 ## Troubleshooting
 
