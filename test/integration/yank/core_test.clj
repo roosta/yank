@@ -38,7 +38,7 @@
   fixture-driver)
 
 (deftest ^:integration
-  org-mode
+  basic
   (doto *driver*
     (e/go "https://google.com")
     (e/fill {:tag :body} k/escape)
@@ -50,7 +50,7 @@
     (is (= clipboard expected))))
 
 (deftest ^:integration
-  markdown
+  change-format
   (doto *driver*
     (e/go "about:addons")
     (e/click :category-extension)
