@@ -4,7 +4,7 @@
            [java.io IOException])
   (:require [clojure.test :as t :refer [deftest testing is use-fixtures]]
             [etaoin.keys :as k]
-            [etaoin.api :as e :refer [with-firefox firefox go upload-file click]]))
+            [etaoin.api :as e ]))
 
 
 (def project-version
@@ -25,7 +25,7 @@
   "Executes a test running a driver. Installs extension and binds a driver with the
   global *driver* variable."
   [f]
-  (with-firefox {} driver
+  (e/with-firefox {} driver
     (e/with-resp driver :post
       [:session (:session @driver) :moz :addon :install]
       {:path extension-file :temporary true}
@@ -40,7 +40,7 @@
 (deftest ^:integration
   org-mode
   (doto *driver*
-    (go "https://google.com")
+    (e/go "https://google.com")
     (e/fill {:tag :body} k/escape)
     (e/fill {:tag :body} k/control-left "y" ))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
