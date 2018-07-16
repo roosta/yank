@@ -50,7 +50,7 @@
     (is (= clipboard expected))))
 
 (deftest ^:integration
-  change-format
+  change-opts
   (doto *driver*
     (e/go "about:addons")
     (e/click :category-extension)
@@ -59,12 +59,14 @@
   (let [window-handles (e/get-window-handles *driver*)]
     (doto *driver*
       (e/switch-window (last window-handles))
+      (e/click :keybind-input)
+      (e/fill :keybind-input k/shift-left "l")
       (e/click :format-select)
       (e/fill :format-select k/arrow-down)
       (e/click {:type :submit})
       (e/go "https://google.com")
       (e/fill {:tag :body} k/escape)
-      (e/fill {:tag :body} k/control-left "y" )))
+      (e/fill {:tag :body} k/shift-left "l" )))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
                       (.getSystemClipboard)
                       (.getData (DataFlavor/stringFlavor)))
