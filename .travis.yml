@@ -1,0 +1,14 @@
+language: clojure
+
+before_install:
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.21.0-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+
+script:
+  - lein release
+  - lein with-profile +integration-test test
