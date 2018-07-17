@@ -5,10 +5,10 @@ before_install:
   - mkdir geckodriver
   - tar -xzf geckodriver-v0.21.0-linux64.tar.gz -C geckodriver
   - export PATH=$PATH:$PWD/geckodriver
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
+
+addons:
+  firefox: latest
 
 script:
   - lein release
-  - lein with-profile +integration-test test
+  - xvfb-run --server-args="-screen 0 1024x768x24" lein with-profile +integration-test test
