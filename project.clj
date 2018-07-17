@@ -76,7 +76,7 @@
 
             "integration-test" ["with-profile" "integration-test" "test"]
 
-            "background-test" ["doo" "phantom" "background-test"]
+            "background-test" ["doo" "phantom" "background-test" "once"]
 
             "fig"      ["figwheel" "background" "options" "popup"]}
 
