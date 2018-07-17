@@ -96,8 +96,8 @@
              :css-dirs ["resources/dev/css"]
              :repl        true}
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.16"]]
-                   :plugins      [[lein-figwheel "0.5.16"]]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]]
+                   :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
 
                    :source-paths ["script" "dev"]}
 
