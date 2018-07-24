@@ -33,7 +33,7 @@
 (defmethod as "rest"
   ^{:doc "Format URL and title of current tab to reStructuredText link format"}
   [{:keys [title url]}]
-  (let [escape #(str/escape % {\_ "\\_"})]
+  (let [escape #(str/escape % {\_ "\\_" \` "\\`"})]
     (str "`" (escape title) " <" url ">`_")))
 
 (defmethod as "html"
