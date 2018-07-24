@@ -96,8 +96,12 @@
              :css-dirs ["resources/dev/css"]
              :repl        true}
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]
+                                  [cider/piggieback "0.3.6"]
+                                  [org.clojure/test.check "0.9.0"]]
                    :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
+
+                   :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
                    :source-paths ["script" "dev"]}
 
