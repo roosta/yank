@@ -1,9 +1,8 @@
 (ns yank.background.core
   (:require-macros [shared.logging :as d])
   (:require [goog.object :as gobj]
-            [clojure.string :as s]
             [shared.options :refer [fetch-options defaults on-storage-change]]
-            [goog.events :as events]))
+            [yank.background.format :as format]))
 
 ;; for extern inference. Better warnings
 (set! *warn-on-infer* true)
@@ -51,47 +50,6 @@
         (.catch (fn [error]
                   (d/error "Failed to copy text: " error))))))
 
-(defmulti format-as
-  "Dispatch on :action key, from runtime message, passed from content script"
-  (fn [message] (:action message))
-  :default "org")
-
-(defmethod format-as "org"
-  ^{:doc "Format URL and title of current tab to org link format"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\[  "{", \] "}"})]
-    (str "[[" url "][" (escape title) "]]")))
-
-(defmethod format-as "md"
-  ^{:doc "Format URL and title of current tab to md link format"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})]
-    (str "[" (escape title) "](" url ")")))
-
-(defmethod format-as "textile"
-  ^{:doc "Format URL and title of current tab to textile link format"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\"  "\""})]
-    (str "\"" title "\":" url)))
-
-(defmethod format-as "asciidoc"
-  ^{:doc "Format URL and title of current tab to textile link format"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})]
-    (str url "[" (escape title) "]")))
-
-(defmethod format-as "rest"
-  ^{:doc "Format URL and title of current tab to reStructuredText link format"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\_ "\\_"})]
-    (str "`" (escape title) " <" url ">`_")))
-
-(defmethod format-as "html"
-  ^{:doc "Format URL and title of current tab to HTML link"}
-  [{:keys [title url]}]
-  (let [escape #(s/escape % {\< "&lt;", \> "&gt;", \& "&amp;"})]
-    (str "<a href=\"" url "\">" (escape title) "</a>")))
-
 (defn handle-message
   "Handle incoming runtime message, extract info and call copy-as"
   [request sender send-response]
@@ -100,7 +58,7 @@
           url (gobj/get tab "url")
           tab-id (gobj/get tab "id")
           title (gobj/get tab "title")
-          text (format-as {:action action
+          text (format/as {:action action
                            :url url
                            :title title})]
       (copy-to-clipboard tab-id text))))
@@ -115,7 +73,7 @@
         tab-id (gobj/get tab "id")
         text (gobj/get info "linkText")
         action (:action @options)
-        text (format-as {:action action
+        text (format/as {:action action
                          :url url
                          :title text})]
     (copy-to-clipboard tab-id text)))
