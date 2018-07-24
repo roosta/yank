@@ -51,52 +51,46 @@
         (.catch (fn [error]
                   (d/error "Failed to copy text: " error))))))
 
-(defmulti copy-as
+(defmulti format-as
   "Dispatch on :action key, from runtime message, passed from content script"
   (fn [message] (:action message))
   :default "org")
 
-(defmethod copy-as "org"
+(defmethod format-as "org"
   ^{:doc "Format URL and title of current tab to org link format"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\[  "{", \] "}"})
-        text (str "[[" url "][" (escape title) "]]")]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\[  "{", \] "}"})]
+    (str "[[" url "][" (escape title) "]]")))
 
-(defmethod copy-as "md"
+(defmethod format-as "md"
   ^{:doc "Format URL and title of current tab to md link format"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})
-        text (str "[" (escape title) "](" url ")")]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})]
+    (str "[" (escape title) "](" url ")")))
 
-(defmethod copy-as "textile"
+(defmethod format-as "textile"
   ^{:doc "Format URL and title of current tab to textile link format"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\"  "\""})
-        text (str "\"" title "\":" url)]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\"  "\""})]
+    (str "\"" title "\":" url)))
 
-(defmethod copy-as "asciidoc"
+(defmethod format-as "asciidoc"
   ^{:doc "Format URL and title of current tab to textile link format"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})
-        text (str url "[" (escape title) "]")]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\[  "\\[", \] "\\]"})]
+    (str url "[" (escape title) "]")))
 
-(defmethod copy-as "rest"
+(defmethod format-as "rest"
   ^{:doc "Format URL and title of current tab to reStructuredText link format"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\_ "\\_"})
-        text (str "`" (escape title) " <" url ">`_")]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\_ "\\_"})]
+    (str "`" (escape title) " <" url ">`_")))
 
-(defmethod copy-as "html"
+(defmethod format-as "html"
   ^{:doc "Format URL and title of current tab to HTML link"}
-  [{:keys [tab-id title url]}]
-  (let [escape #(s/escape % {\< "&lt;", \> "&gt;", \& "&amp;"})
-        text (str "<a href=\"" url "\">" (escape title) "</a>")]
-    (copy-to-clipboard tab-id text)))
+  [{:keys [title url]}]
+  (let [escape #(s/escape % {\< "&lt;", \> "&gt;", \& "&amp;"})]
+    (str "<a href=\"" url "\">" (escape title) "</a>")))
 
 (defn handle-message
   "Handle incoming runtime message, extract info and call copy-as"
@@ -105,11 +99,11 @@
     (let [tab (gobj/get sender "tab")
           url (gobj/get tab "url")
           tab-id (gobj/get tab "id")
-          title (gobj/get tab "title")]
-      (copy-as {:action action
-                :tab-id tab-id
-                :url url
-                :title title}))))
+          title (gobj/get tab "title")
+          text (format-as {:action action
+                           :url url
+                           :title title})]
+      (copy-to-clipboard tab-id text))))
 
 (defn handle-click
   []
@@ -120,11 +114,11 @@
   (let [url (gobj/get info "linkUrl")
         tab-id (gobj/get tab "id")
         text (gobj/get info "linkText")
-        action (:action @options)]
-    (copy-as {:action action
-              :tab-id tab-id
-              :url url
-              :title text})))
+        action (:action @options)
+        text (format-as {:action action
+                         :url url
+                         :title text})]
+    (copy-to-clipboard tab-id text)))
 
 (defn fig-reload
   []
