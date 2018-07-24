@@ -5,7 +5,7 @@
             [shared.options :refer [fetch-options defaults on-storage-change]]
             [goog.events :as events]))
 
-;; for extern inference. Better waringings
+;; for extern inference. Better warnings
 (set! *warn-on-infer* true)
 
 (def ^js/browser tabs (gobj/get js/browser "tabs"))
@@ -110,6 +110,7 @@
                 :tab-id tab-id
                 :url url
                 :title title}))))
+
 (defn handle-click
   []
   (.openOptionsPage runtime))
