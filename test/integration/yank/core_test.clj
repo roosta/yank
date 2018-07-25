@@ -6,7 +6,6 @@
             [etaoin.keys :as k]
             [etaoin.api :as e ]))
 
-
 (def project-version
   (-> (System/getProperty "user.dir")
       (str "/project.clj")
