@@ -37,3 +37,4 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** [[https://github.com/bhauman/lein-figwheel/issues/703][figwheel repl does not connect to browser · Issue #703 · bhauman/lein-figwheel]]
 * TODO
   onUpdateCheckComplete failed to parse update manifest: [Exception... "Update manifest is missing a required addons property."  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: resource://
+* TODO Add background body test
