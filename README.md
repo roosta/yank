@@ -12,7 +12,7 @@ icon in the toolbar
 There is also a context menu option, that allows for copying an anchors href and
 content.
 
-Quickly change the markup format by clicking the toolbar icon for the popup
+Quickly change the markup format by clicking the toolbar icon to display the popup
 menu.
 
 ### Shortcut keys
@@ -33,33 +33,58 @@ Yank currently supports these markup languages:
 
 ## Development
 
-1.  Clone this repository
-
 ``` example
-$ git clone https://github.com/roosta/yank
-$ cd yank
+$ git clone https://github.com/roosta/yank && cd yank
 ```
 
-2.  To get a development version going, open up a terminal and run:
+### Building
+
+To simply build the extension the lein alias build can be used:
+
+```shell
+$ lein build
+```
+
+Open up Firefox and goto `about:debugging` -\> Load Temporary
+Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
+
+### Live reloading
+2. Build HTML and manifest.json
+
+HTML and JSON needs to be present in `resources` for the plugin to work and is
+built by calling these aliases:
+
+```shell
+$ lein html && lein manifest
+```
+
+3. Build background, popup, options
+
+Open a terminal and run:
 
 ``` example
 $ lein fig
 ```
 
-This will start figwheel and watch for changes in sourcecode.
+This will start [figwheel](https://github.com/bhauman/lein-figwheel) and watch
+for changes in sourcecode.
 
 > Using [Cider](https://github.com/clojure-emacs/cider) call
 `cider-jack-in-clojurescript` and select figwheel as the repl type
 
-3.  Open up a second terminal and run:
+This will build all but the content script, and give you a REPL connected to the
+background build.
 
+4. Build and watch the content script
+
+Open up a second terminal and call:
 ``` example
 $ lein content
 ```
+This will watch for changes in the content script but the changes won't be hotloaded into the browser, a reload is required.
 
-This will build everything, and give you a REPL connected to the background
-namespace. Open up Firefox and goto `about:debugging` -\> Load Temporary
-Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
+> figwheel cannot be used in this context (eval is not allowed)
+
 
 ## Package/Release build
 
@@ -96,7 +121,7 @@ Please open an issue if there is a problem, or any other format is desired.
 <https://github.com/binaryage/chromex-sample>
 
 Borrowed a fair bit from this project's tooling. Never coded a
-web-extension plugin before and this repo really helped me out
+web-extension plugin before and this repo really helped me out.
 
 ### chrome-shortkeys
 
