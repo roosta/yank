@@ -7,7 +7,7 @@
 (deftest compile-json
   (let [dev          (json/read-str (core/compile-json {:escape-slash true :dev? true}) :key-fn keyword)
         release      (json/read-str (core/compile-json {:escape-slash true :dev? false}) :key-fn keyword)
-        checking     {:version         "0.3.1-SNAPSHOT"
+        checking     {:version         "1.0.0"
                       :description     "Yank current page URL to clipboard as various markup formats"
                       :homepage_url    "https://github.com/roosta/yank"
                       :permissions     ["tabs"
