@@ -1,4 +1,5 @@
 ## Yank
+[![Build Status](https://travis-ci.org/roosta/yank.svg?branch=master)](https://travis-ci.org/roosta/yank)
 
 A Firefox extension to copy current tab URL to clipboard, formatted for a markup
 language. Supports custom shortcuts and several different markup languages.
