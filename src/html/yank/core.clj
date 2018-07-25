@@ -38,8 +38,8 @@
 
    (if (= (env :location) "dev")
      [(include-js "js/popup/goog/base.js")
-      (include-js "js/popup/cljs_deps.js")
       (include-js "setup.js")
+      (include-js "js/popup/cljs_deps.js")
       (include-js "popup.js")]
      [(include-js "js/popup.js")])))
 
@@ -83,8 +83,8 @@
 
    (if (= (env :location) "dev")
      [(include-js "js/options/goog/base.js")
-      (include-js "js/options/cljs_deps.js")
       (include-js "setup.js")
+      (include-js "js/options/cljs_deps.js")
       (include-js "options.js")]
      [(include-js "js/options.js")])))
 
