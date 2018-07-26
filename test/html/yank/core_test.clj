@@ -4,6 +4,30 @@
             [hickory.select :as s]
             [yank.core :as core]))
 
+(deftest popup-html
+  (testing "head-html using component and title"
+    (let [tree (-> (core/popup-html true ".css")
+                   parse
+                   as-hickory)
+          css-path (-> (s/select (s/child (s/tag :head)) tree)
+                       first
+                       :content
+                       last
+                       :attrs
+                       :href)
+          scripts (s/select (s/child (s/tag :script)) tree)
+          select (-> (s/select (s/child (s/tag :select)) tree)
+                     first
+                     :content)]
+      (are [result expected] (= result expected)
+        css-path "/css/popup.css"
+        (count select) 6
+        (map (comp :src :attrs) scripts) '("js/popup/goog/base.js" "setup.js" "js/popup/cljs_deps.js" "popup.js")
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html")
+        ))
+    )
+  )
+
 (deftest background-html
 
   (testing "background-html using dev profile"
