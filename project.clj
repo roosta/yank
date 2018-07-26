@@ -38,8 +38,8 @@
   :aliases {"release" ["do"
                        ["clean"]
                        ["cljsbuild" "once" "background-release" "options-release" "content-script-release" "popup-release"]
-                       ["with-profile" "html-release" "run"]
-                       ["with-profile" "manifest-release" "run"]
+                       ["with-profile" "+html-release" "run"]
+                       ["with-profile" "+manifest-release" "run"]
                        ["garden" "once" "options"]
                        ["garden" "once" "popup"]
                        ["minify-assets"]
@@ -54,8 +54,8 @@
             "build"    ["do"
                         ["garden" "once" "options"]
                         ["garden" "once" "popup"]
-                        ["with-profile" "html" "run"]
-                        ["with-profile" "manifest" "run"]
+                        ["with-profile" "+html" "run"]
+                        ["with-profile" "+manifest" "run"]
                         ["cljsbuild" "once" "background" "options" "content-script" "popup"]]
 
             "package"  ["shell" "script/package.sh"]
@@ -66,15 +66,15 @@
                         ["garden" "once" "popup"]
                         ["garden" "once" "options"]]
 
-            "html"     ["with-profile" "html" "run"]
+            "html"     ["with-profile" "+html" "run"]
 
-            "html-test" ["with-profile" "html" "test"]
+            "html-test" ["with-profile" "+html" "test"]
 
-            "manifest" ["with-profile" "manifest" "run"]
+            "manifest" ["with-profile" "+manifest" "run"]
 
-            "manifest-test" ["with-profile" "manifest" "test"]
+            "manifest-test" ["with-profile" "+manifest" "test"]
 
-            "integration-test" ["with-profile" "integration-test" "test"]
+            "integration-test" ["with-profile" "+integration-test" "test"]
 
             "background-test" ["doo" "phantom" "background-test" "once"]
 
@@ -97,8 +97,8 @@
              :repl        true}
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]
-                                  [cider/piggieback "0.3.6"]
-                                  [hickory "0.7.1"]]
+                                  [hickory "0.7.1"]
+                                  [cider/piggieback "0.3.6"]]
                    :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
 
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
