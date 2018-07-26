@@ -116,30 +116,25 @@ with certainty that the plugin handles it correctly.
 
 Please open an issue if there is a problem, or any other format is desired.
 
+## Libs
+
+- [Hiccup](https://github.com/weavejester/hiccup) - Used to render HTML from clojure data structures
+- [Mousetrap](https://craig.is/killing/mice)  - Library to bind the custom shortcut keys.
+- [Environ](https://github.com/weavejester/environ) - Manage environment variables
+- [Garden](https://github.com/noprompt/garden) - Generate CSS
+- [lein-asset-minifier](https://github.com/yogthos/lein-asset-minifier) - Minify generated CSS
+- [Figwheel](https://github.com/bhauman/lein-figwheel) - Plugin used to hotload source code when developing
+- [Piggieback](https://github.com/nrepl/piggieback/blob/master/README.md) - Used together with [cider](https://github.com/clojure-emacs/cider) to get a CLJS REPL
+- [Doo](https://github.com/bensu/doo) - JS test runner
+- [lein-shell](https://github.com/hyPiRion/lein-shell) - Call shell from within Leiningen, used in packaging process
+- [Hickory](https://github.com/davidsantiago/hickory) - Parse HTML as data for use in tests
+- [Etaoin](https://github.com/igrishaev/etaoin) - Webdriver protocol implementation used for integration testing
+
+
 ## Other projects
 
-### chromex-sample
+- [chromex-sample](https://github.com/binaryage/chromex-sample) - Borrowed a fair bit from this project's tooling. Never coded a
+web-extension plugin before and this repo really helped
 
-<https://github.com/binaryage/chromex-sample>
-
-Borrowed a fair bit from this project's tooling. Never coded a
-web-extension plugin before and this repo really helped me out.
-
-### chrome-shortkeys
-
-<https://github.com/mikecrittenden/chrome-shortkeys>
-
-Inspired how to handle binding custom keys, before I stumbled on this
+- [chrome-shortkeys](https://github.com/mikecrittenden/chrome-shortkeys) - Inspired how to handle binding custom keys, before I stumbled on this
 plugin I really had no idea how to go about doing this.
-
-### Mousetrap
-
-<https://craig.is/killing/mice>
-
-Using this neat library to bind the custom shortcut keys.
-
-### Figwheel
-
-<https://github.com/bhauman/lein-figwheel>
-
-Plugin used to hotload source code when developing
