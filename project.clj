@@ -98,7 +98,7 @@
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]
                                   [cider/piggieback "0.3.6"]
-                                  [org.clojure/test.check "0.9.0"]]
+                                  [hickory "0.7.1"]]
                    :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
 
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
