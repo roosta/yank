@@ -5,7 +5,7 @@
             [yank.core :as core]))
 
 (deftest popup-html
-  (testing "head-html using component and title"
+  (testing "head-html using dev profile"
     (let [tree (-> (core/popup-html true ".css")
                    parse
                    as-hickory)
@@ -22,7 +22,22 @@
       (are [result expected] (= result expected)
         css-path "/css/popup.css"
         (map (comp :src :attrs) scripts) '("js/popup/goog/base.js" "setup.js" "js/popup/cljs_deps.js" "popup.js")
-        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html")))))
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html"))))
+
+  (testing "head-html using release profile"
+    (let [tree (-> (core/popup-html false ".min.css")
+                   parse
+                   as-hickory)
+          css-path (-> (s/select (s/child (s/tag :head)) tree)
+                       first
+                       :content
+                       last
+                       :attrs
+                       :href)
+          scripts (s/select (s/child (s/tag :script)) tree)]
+      (are [result expected] (= result expected)
+        css-path "/css/popup.min.css"
+        (map (comp :src :attrs) scripts) '("js/popup.js")))))
 
 (deftest background-html
 
@@ -49,3 +64,23 @@
       (are [result expected] (= result expected)
         (count scripts) 1
         (-> (first scripts) :attrs :src) "js/background.js"))))
+
+(deftest options-html
+  (testing "head-html using component and title"
+    (let [tree (-> (core/options-html true ".css")
+                   parse
+                   as-hickory)
+          css-path (-> (s/select (s/child (s/tag :head)) tree)
+                       first
+                       :content
+                       last
+                       :attrs
+                       :href)
+          scripts (s/select (s/child (s/tag :script)) tree)
+          select (-> (s/select (s/child (s/tag :select)) tree)
+                     first
+                     :content)]
+      (are [result expected] (= result expected)
+        css-path "/css/popup.css"
+        (map (comp :src :attrs) scripts) '("js/popup/goog/base.js" "setup.js" "js/popup/cljs_deps.js" "popup.js")
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html")))))
