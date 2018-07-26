@@ -23,13 +23,8 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * Issues
 ** Promises
    https://github.com/google/closure-compiler/issues/692
-* TODO Latex
-;; LaTeX
-;; \href{<url>}{<text to display>}
-** [[https://tex.stackexchange.com/questions/34580/escape-character-in-latex#34586][symbols - Escape character in LaTeX - TeX - LaTeX Stack Exchange]]
-** [[https://en.wikibooks.org/wiki/LaTeX/Hyperlinks][LaTeX/Hyperlinks - Wikibooks, open books for an open world]]
-** [[https://stackoverflow.com/questions/2894710/how-to-write-urls-in-latex][How to write URLs in Latex? - Stack Overflow]]
-* [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
+** Figwheel upgrade issue
+*** [[https://github.com/bhauman/lein-figwheel/issues/703][figwheel repl does not connect to browser · Issue #703 · bhauman/lein-figwheel]]
 * Testing
 ** [[https://github.com/binaryage/chromex-sample/blob/master/project.clj][chromex-sample/project.clj at master · binaryage/chromex-sample]]
 ** DONE Install geckodriver on testing machine
@@ -37,9 +32,18 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** DONE [[https://github.com/mozilla/geckodriver/issues/473][Unable to install unsigned addons through Selenium geckodriver · Issue #473 · mozilla/geckodriver]]
 ** DONE [[https://w3c.github.io/webdriver/#list-of-endpoints][WebDriver]]
 ** CANCELLED Test context menu
-* Figwheel upgrade issue
-** [[https://github.com/bhauman/lein-figwheel/issues/703][figwheel repl does not connect to browser · Issue #703 · bhauman/lein-figwheel]]
-* TODO
-  onUpdateCheckComplete failed to parse update manifest: [Exception... "Update manifest is missing a required addons property."  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: resource://
+* TODO [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
+* TODO Latex
+  ;; LaTeX
+  ;; \href{<url>}{<text to display>}
+** [[https://tex.stackexchange.com/questions/34580/escape-character-in-latex#34586][symbols - Escape character in LaTeX - TeX - LaTeX Stack Exchange]]
+** [[https://en.wikibooks.org/wiki/LaTeX/Hyperlinks][LaTeX/Hyperlinks - Wikibooks, open books for an open world]]
+** [[https://stackoverflow.com/questions/2894710/how-to-write-urls-in-latex][How to write URLs in Latex? - Stack Overflow]]
+* TODO update error
+  onUpdateCheckComplete failed to parse update manifest: [Exception... "Update
+  manifest is missing a required addons property." nsresult: "0x80004005
+  (NS_ERROR_FAILURE)" location: "JS frame :: resource://
 * TODO Add background body test
 * TODO Use hiccup to escape html
+* TODO Add all libs used to readme
+* TODO Badges
