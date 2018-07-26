@@ -12,16 +12,16 @@
               {:value "html" :text "HTML"}])
 
 (defn head
-  ([{:keys [component title]}]
+  ([{:keys [component title css-ext]}]
    [:head
     [:meta {:charset "utf-8"}]
     (when title [:title title])
-    (include-css (str "/css/" component (env :css-ext)))])
+    (include-css (str "/css/" component css-ext))])
   ([] [:head
        [:meta {:charset "utf-8"}]]))
 
 (defn popup-body
-  []
+  [dev?]
   (into
    [:body
 
@@ -36,7 +36,7 @@
      (for [f formats]
        [:option {:value (:value f)} (:text f)])]]
 
-   (if (= (env :location) "dev")
+   (if dev?
      [(include-js "js/popup/goog/base.js")
       (include-js "setup.js")
       (include-js "js/popup/cljs_deps.js")
@@ -44,10 +44,10 @@
      [(include-js "js/popup.js")])))
 
 (defn background-body
-  []
+  [dev?]
   (into
    [:body]
-   (if (= (env :location) "dev")
+   (if dev?
      [(include-js "js/background/goog/base.js")
       (include-js "setup.js")
       (include-js "js/background/cljs_deps.js")
@@ -55,7 +55,7 @@
      [(include-js "js/background.js")])))
 
 (defn options-body
-  []
+  [dev?]
   (into
    [:body
     [:form {:id "options-form"}
@@ -81,28 +81,41 @@
       [:button {:type "submit"}
        "Save"]]]]
 
-   (if (= (env :location) "dev")
+   (if dev?
      [(include-js "js/options/goog/base.js")
       (include-js "setup.js")
       (include-js "js/options/cljs_deps.js")
       (include-js "options.js")]
      [(include-js "js/options.js")])))
 
+(defn options-html
+  [dev? css-ext]
+  (html5
+   (head {:component "options"
+          :css-ext css-ext
+          :title "Yank extension options page"})
+   (options-body dev?)))
+
+(defn popup-html
+  [dev? css-ext]
+  (html5
+   (head {:component "popup"
+          :css-ext css-ext})
+   (popup-body dev?)))
+
+(defn background-html
+  [dev?]
+  (html5
+   (head)
+   (background-body dev?)))
+
 (defn -main
   [& args]
-  (let [options-html (html5
-                      (head {:component "options"
-                             :title "Yank extension options page"})
-                      (options-body))
-        popup-html (html5
-                    (head {:component "popup"})
-                    (popup-body))
-        background-html (html5
-                         (head)
-                         (background-body))
+  (let [dev? (= (env :location) "dev")
+        css-ext (env :css-ext)
         options-path (str "resources/" (env :location) "/options.html")
         popup-path (str "resources/" (env :location) "/popup.html")
         background-path (str "resources/" (env :location) "/background.html")]
-    (spit options-path options-html)
-    (spit popup-path popup-html)
-    (spit background-path background-html)))
+    (spit options-path (options-html dev? css-ext))
+    (spit popup-path (popup-html dev? css-ext))
+    (spit background-path (background-html dev?))))
