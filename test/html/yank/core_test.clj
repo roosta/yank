@@ -21,12 +21,8 @@
                      :content)]
       (are [result expected] (= result expected)
         css-path "/css/popup.css"
-        (count select) 6
         (map (comp :src :attrs) scripts) '("js/popup/goog/base.js" "setup.js" "js/popup/cljs_deps.js" "popup.js")
-        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html")
-        ))
-    )
-  )
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html")))))
 
 (deftest background-html
 
