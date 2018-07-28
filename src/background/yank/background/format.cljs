@@ -41,3 +41,11 @@
   [{:keys [title url]}]
   (let [escape #(str/escape % {\< "&lt;", \> "&gt;", \& "&amp;"})]
     (str "<a href=\"" url "\">" (escape title) "</a>")))
+
+(defmethod as "latex"
+  ^{:doc "Format URL and title of current tab to LaTeX link"}
+  [{:keys [title url]}]
+  (let [escape #(str/escape % {\& "\\&", \% "\\%", \$ "\\&" \# "\\#" \_ "\\_"
+                               \{ "\\{" \} "\\}" \~ "\\textasciitilde" \^ "\\textasciicircum"
+                               \\ "\\textbackslash"})]
+    (str "\\href{" url "}" "{" (escape title) "}")))
