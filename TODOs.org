@@ -43,8 +43,10 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
   onUpdateCheckComplete failed to parse update manifest: [Exception... "Update
   manifest is missing a required addons property." nsresult: "0x80004005
   (NS_ERROR_FAILURE)" location: "JS frame :: resource://
-* TODO Add background body test
-* TODO Use hiccup to escape html
+* DONE Add background body test
+  CLOSED: [2018-07-28 Sat 18:25]
+* CANCELLED Use hiccup to escape html
+  CLOSED: [2018-07-28 Sat 18:25]
 * DONE Add all libs used to readme
   CLOSED: [2018-07-28 Sat 17:33]
 * TODO Badges
