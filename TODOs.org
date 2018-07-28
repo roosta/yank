@@ -47,3 +47,4 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * TODO Use hiccup to escape html
 * TODO Add all libs used to readme
 * TODO Badges
+* DONE Update changelog

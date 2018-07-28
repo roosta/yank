@@ -4,6 +4,19 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v1.0.0] - 2018-07-25
+### Added
+- Add integration, background, HTML, and manifest tests
+- Use travis CI
+
+### Changed
+- Upgrade dependencies
+- Formatting fns are now pure and move to separte NS
+- Improve reStructuredText escapes
+
+### Fixed
+- Options defaults are used and displayed when nothing is present in storage.
+
 ## [v0.3.0] - 2018-02-25
 ### Added
 - Popup menu when clicking the toolbar icon, options to change the format on the
@@ -35,7 +48,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v1.0.0...HEAD
+[v1.0.0]: https://github.com/roosta/yank/compare/v0.3.0...v1.0.0
 [v0.3.0]: https://github.com/roosta/yank/compare/v0.2.1...v0.3.0
 [v0.2.1]: https://github.com/roosta/yank/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/roosta/yank/compare/v0.1.0...v0.2.0
