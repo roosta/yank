@@ -45,6 +45,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
   (NS_ERROR_FAILURE)" location: "JS frame :: resource://
 * TODO Add background body test
 * TODO Use hiccup to escape html
-* TODO Add all libs used to readme
+* DONE Add all libs used to readme
+  CLOSED: [2018-07-28 Sat 17:33]
 * TODO Badges
 * DONE Update changelog

@@ -53,11 +53,11 @@ Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
 ### Live reloading
 2. Build HTML and manifest.json
 
-HTML and JSON needs to be present in `resources` for the plugin to work and is
-built by calling these aliases:
+HTML, JSON, and CSS needs to be present in `resources` for the plugin to
+work/look right and can be buildt calling the `build` alias.
 
 ```shell
-$ lein html && lein manifest
+$ lein build
 ```
 
 3. Build background, popup, options
