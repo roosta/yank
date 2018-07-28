@@ -117,5 +117,8 @@
         popup-path (str "resources/" (env :location) "/popup.html")
         background-path (str "resources/" (env :location) "/background.html")]
     (spit options-path (options-html dev? css-ext))
+    (println (str "Wrote: " options-path))
     (spit popup-path (popup-html dev? css-ext))
-    (spit background-path (background-html dev?))))
+    (println (str "Wrote: " popup-path))
+    (spit background-path (background-html dev?))
+    (println (str "Wrote: " background-path))))

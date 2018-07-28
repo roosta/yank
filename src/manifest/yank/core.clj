@@ -61,4 +61,5 @@
   (let [dev? (= (env :location) "dev")
         path (str "resources/" (env :location) "/manifest.json")
         out (compile-json {:escape-slash false :dev? dev?})]
-    (spit path out)))
+    (spit path out)
+    (println (str "Wrote: " path))))
