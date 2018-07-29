@@ -22,7 +22,7 @@
       (are [result expected] (= result expected)
         css-path "/css/popup.css"
         (map (comp :src :attrs) scripts) '("js/popup/goog/base.js" "setup.js" "js/popup/cljs_deps.js" "popup.js")
-        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html"))))
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html" "latex"))))
 
   (testing "popup-html using release profile"
     (let [tree (-> (core/popup-html false ".min.css")
@@ -83,7 +83,7 @@
       (are [result expected] (= result expected)
         css-path "/css/options.css"
         (map (comp :src :attrs) scripts) '("js/options/goog/base.js" "setup.js" "js/options/cljs_deps.js" "options.js")
-        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html"))))
+        (map (comp :value :attrs) select) '("org" "md" "textile" "asciidoc" "rest" "html" "latex"))))
 
   (testing "options-html using release profile"
     (let [tree (-> (core/options-html false ".min.css")
