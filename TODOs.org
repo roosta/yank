@@ -33,7 +33,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** DONE [[https://w3c.github.io/webdriver/#list-of-endpoints][WebDriver]]
 ** CANCELLED Test context menu
 * TODO [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
-* TODO Latex
+* DONE Latex
   ;; LaTeX
   ;; \href{<url>}{<text to display>}
 ** [[https://tex.stackexchange.com/questions/34580/escape-character-in-latex#34586][symbols - Escape character in LaTeX - TeX - LaTeX Stack Exchange]]
