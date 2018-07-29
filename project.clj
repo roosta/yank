@@ -84,6 +84,13 @@
 
             "background-test" ["doo" "phantom" "background-test" "once"]
 
+            "test-all" ["do"
+                        ["release"]
+                        ["with-profile" "+html" "test"]
+                        ["with-profile" "+manifest" "test"]
+                        ["doo" "phantom" "background-test" "once"]
+                        ["with-profile" "+integration-test" "test"]]
+
             "fig"      ["figwheel" "background" "options" "popup"]}
 
   :garden {:builds [{:id "popup"
