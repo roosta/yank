@@ -31,6 +31,7 @@ Yank currently supports these markup languages:
   - [AsciiDoc](http://asciidoc.org/)
   - [reStructuredText](http://docutils.sourceforge.net/rst.html)
   - [HTML](https://www.w3.org/html/)
+  - [LaTeX](https://www.latex-project.org/)
 
 ## Development
 
