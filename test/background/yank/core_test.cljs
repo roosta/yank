@@ -26,7 +26,7 @@
       (format/as {:action "asciidoc"
                   :url "https://www.google.com/"
                   :title "[Google]"})
-      "https://www.google.com/[\\[Google\\]]"
+      "https://www.google.com/[[Google\\]]"
 
       (format/as {:action "rest"
                   :url "https://www.google.com/"

@@ -27,7 +27,7 @@
 (defmethod as "asciidoc"
   ^{:doc "Format URL and title of current tab to textile link format"}
   [{:keys [title url]}]
-  (let [escape #(str/escape % {\[  "\\[", \] "\\]"})]
+  (let [escape #(str/escape % {\] "\\]"})]
     (str url "[" (escape title) "]")))
 
 (defmethod as "rest"
