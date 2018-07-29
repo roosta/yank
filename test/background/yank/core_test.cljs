@@ -37,4 +37,8 @@
                   :url "https://www.google.com/"
                   :title "<Google>&"})
       "<a href=\"https://www.google.com/\">&lt;Google&gt;&amp;</a>"
+      (format/as {:action "latex"
+                  :url "https://www.google.com/"
+                  :title "Google&%$#_{~}^\\"})
+      "\\href{https://www.google.com/}{Google\\&\\%\\&\\#\\_\\{\\textasciitilde\\}\\textasciicircum\\textbackslash}"
       )))
