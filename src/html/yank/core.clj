@@ -9,7 +9,8 @@
               {:value "textile" :text "Textile"}
               {:value "asciidoc" :text "AsciiDoc"}
               {:value "rest" :text "reStructuredText"}
-              {:value "html" :text "HTML"}])
+              {:value "html" :text "HTML"}
+              {:value "latex" :text "LaTeX"}])
 
 (defn head
   ([{:keys [component title css-ext]}]

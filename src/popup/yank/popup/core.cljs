@@ -29,5 +29,4 @@
   []
   (add-watch options :input-sync input-sync)
   (restore-options options)
-  (events/listen (:format-select elements) "change" handle-format-change)
-  )
+  (events/listen (:format-select elements) "change" handle-format-change))
