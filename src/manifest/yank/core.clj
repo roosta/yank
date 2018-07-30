@@ -19,8 +19,8 @@
                :description description
                :homepage_url url
 
-               :icons {"48" "icons/48.png"
-                       "96" "icons/96.png"}
+               :icons {"48" "icons/logo.svg"
+                       "96" "icons/logo.svg"}
 
                :permissions ["tabs"
                              "clipboardWrite"
@@ -40,8 +40,8 @@
 
                :browser_action {:default_title "Yank format"
                                 :browser_style true
-                                :default_icon {"16" "icons/16.png"
-                                               "32" "icons/32.png"}
+                                :default_icon {"16" "icons/logo.svg"
+                                               "32" "icons/logo.svg"}
                                 :default_popup "popup.html"}
 
                :applications {:gecko {:id "yank@roosta.sh"}}
