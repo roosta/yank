@@ -25,6 +25,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
    https://github.com/google/closure-compiler/issues/692
 ** Figwheel upgrade issue
 *** [[https://github.com/bhauman/lein-figwheel/issues/703][figwheel repl does not connect to browser · Issue #703 · bhauman/lein-figwheel]]
+*** [[https://gist.github.com/bhauman/8af183a13e4446d45bdfe2b285a976df][Loading a ClojureScript/Figwheel project with fetch instead of writing script tags.]]
 * Testing
 ** [[https://github.com/binaryage/chromex-sample/blob/master/project.clj][chromex-sample/project.clj at master · binaryage/chromex-sample]]
 ** DONE Install geckodriver on testing machine
@@ -34,6 +35,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** CANCELLED Test context menu
 * TODO [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
 * DONE Latex
+  CLOSED: [2018-07-30 Mon 16:17]
   ;; LaTeX
   ;; \href{<url>}{<text to display>}
 ** [[https://tex.stackexchange.com/questions/34580/escape-character-in-latex#34586][symbols - Escape character in LaTeX - TeX - LaTeX Stack Exchange]]
