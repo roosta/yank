@@ -42,11 +42,11 @@
                                 :browser_style true
                                 :default_icon {"16" "icons/icon-light.svg"
                                                "32" "icons/icon-light.svg"}
-                                :theme_icons [{:light "icon-light.svg"
-                                               :dark "icon-dark.svg"
+                                :theme_icons [{:light "icons/icon-light.svg"
+                                               :dark "icons/icon-dark.svg"
                                                :size 16}
-                                              {:light "icon-light.svg"
-                                               :dark "icon-dark.svg"
+                                              {:light "icons/icon-light.svg"
+                                               :dark "icons/icon-dark.svg"
                                                :size 32}]
                                 :default_popup "popup.html"}
 
