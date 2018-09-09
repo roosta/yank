@@ -194,9 +194,8 @@
                                        :foreign-libs  [{:file     "src/js/mousetrap.js"
                                                         :file-min "src/js/mousetrap.min.js"
                                                         :provides ["js.mousetrap"]}]
-                                       :pseudo-names  true
                                        :pretty-print  true
-                                       :optimizations :advanced}}
+                                       :optimizations :whitespace}}
 
                        {:id           "background-release"
                         :source-paths ["src/background"]
