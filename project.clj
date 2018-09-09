@@ -21,7 +21,11 @@
                                     "resources/release/manifest.json"
                                     "resources/dev/manifest.json"]
 
-  :source-paths ["src/lib"]
+  :source-paths ["src/lib"
+                 "src/background"
+                 "src/popup"
+                 "src/options"
+                 "src/content_script"]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-asset-minifier "0.4.4"]
