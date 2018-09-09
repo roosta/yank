@@ -55,8 +55,11 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * DONE Update changelog
 * DONE Make a custom html page that displays title with escaped symbols
   CLOSED: [2018-07-29 Sun 20:26]
-* TODO Theme aware icons/styles
+* DONE tHEme aware icons/styles
+  CLOSED: [2018-09-09 Sun 17:51]
 ** [[https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/icons][icons - Mozilla | MDN]]
 ** [[https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles][Browser styles - Mozilla | MDN]]
 ** [[https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/theme][theme - Mozilla | MDN]]
 ** [[https://stackoverflow.com/questions/48540523/firefox-pick-page-action-icon-for-dark-light-themes][firefox pick page action icon for dark / light themes - Stack Overflow]]
+* TODO npm deps
+* TODO Fix integration-test
