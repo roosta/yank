@@ -70,8 +70,6 @@
 
             "package"  ["shell" "script/package.sh"]
 
-            "content"  ["cljsbuild" "auto" "content-script"]
-
             "css"      ["do"
                         ["garden" "once" "popup"]
                         ["garden" "once" "options"]]
@@ -95,7 +93,7 @@
                         ["doo" "phantom" "background-test" "once"]
                         ["with-profile" "+integration-test" "test"]]
 
-            "fig"      ["figwheel" "background" "options" "popup"]}
+            "fig"      ["figwheel" "background" "options" "popup" "content-script"]}
 
   :garden {:builds [{:id "popup"
                      :source-paths ["src/styles/popup"]
