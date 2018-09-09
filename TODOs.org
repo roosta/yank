@@ -64,4 +64,5 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 * CANCELLED npm deps
   CLOSED: [2018-09-09 Sun 18:22]
 * TODO Fix integration-test
-* TODO Update readme
+* DONE Update readme
+  CLOSED: [2018-09-09 Sun 18:36]

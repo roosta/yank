@@ -39,54 +39,46 @@ Yank currently supports these markup languages:
 $ git clone https://github.com/roosta/yank && cd yank
 ```
 
-### Building
+### Building assets
 
-To simply build the extension the lein alias build can be used:
+To build HTML, manifest and CSS assets call:
 
 ```shell
 $ lein build
 ```
+
+### Starting autobuild and repl
+
+Start a repl either from an editor like emacs cider: `M-x cider-jack-in`, or from the terminal:
+
+```shell
+$ lein repl
+```
+
+You are then put into the user namespace where some figwheel helper functions are
+defined. To get started call the function `start`:
+
+```clojure
+user=> (start)
+```
+
+This will start autobuilding. From here you can connect to a repl environment by calling:
+```clojure
+user=> (cljs-repl "BUILD NAME HERE")
+```
+
+to exit out of a repl env, call
+```clojure
+cljs.user=> :cljs/quit
+```
+
+That puts you back into the user namespace where you can `(stop)` figwheel or
+start another `cljs-repl`
+
+### Load extension in firefox
 
 Open up Firefox and goto `about:debugging` -\> Load Temporary
 Add-on -\> browse to: `[project-root]/resources/dev/manifest.json`
-
-### Live reloading
-2. Build HTML and manifest.json
-
-HTML, JSON, and CSS needs to be present in `resources` for the plugin to
-work/look right and can be buildt calling the `build` alias.
-
-```shell
-$ lein build
-```
-
-3. Build background, popup, options
-
-Open a terminal and run:
-
-``` example
-$ lein fig
-```
-
-This will start [figwheel](https://github.com/bhauman/lein-figwheel) and watch
-for changes in sourcecode.
-
-> Using [Cider](https://github.com/clojure-emacs/cider) call
-`cider-jack-in-clojurescript` and select figwheel as the repl type
-
-This will build all but the content script, and give you a REPL connected to the
-background build.
-
-4. Build and watch the content script
-
-Open up a second terminal and call:
-``` example
-$ lein content
-```
-This will watch for changes in the content script but the changes won't be hotloaded into the browser, a reload is required.
-
-> figwheel cannot be used in this context (eval is not allowed)
-
 
 ## Package/Release build
 
