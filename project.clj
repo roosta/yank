@@ -111,7 +111,7 @@
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]
                                   [hickory "0.7.1"]
-                                  [cider/piggieback "0.3.6"]]
+                                  [cider/piggieback "0.3.9"]]
                    :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
 
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
@@ -132,7 +132,7 @@
 
              :manifest-release [:manifest {:env {:location "release"}}]
 
-             :integration-test {:dependencies [[etaoin "0.2.8-SNAPSHOT"]]
+             :integration-test {:dependencies [[etaoin "0.2.8"]]
                                 :source-paths ["test/integration"]}}
 
   :cljsbuild {:builds [{:id           "background"
