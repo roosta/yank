@@ -43,8 +43,8 @@
     (e/fill {:tag :body} k/escape)
     (e/fill {:tag :body} k/control-left "y" ))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
-                           (.getSystemClipboard)
-                           (.getData (DataFlavor/stringFlavor)))
+                      (.getSystemClipboard)
+                      (.getData (DataFlavor/stringFlavor)))
         expected "[[https://www.google.com/][Google]]"]
     (is (= clipboard expected))))
 
