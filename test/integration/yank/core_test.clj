@@ -54,7 +54,7 @@
     (e/go "about:addons")
     (e/click :category-extension)
     (e/click {:class "addon addon-view"})
-    (e/click{:class "addon-control preferences"}))
+    (e/click {:class "addon-control preferences"}))
   (let [window-handles (e/get-window-handles *driver*)]
     (doto *driver*
       (e/switch-window (last window-handles))
