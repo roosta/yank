@@ -39,14 +39,14 @@
 (deftest ^:integration
   basic
   (doto *driver*
-    (e/go "https://google.com")
-    (e/wait-visible :lst-ib {:timeout 60})
+    (e/go "http://roosta.sh")
+    (e/wait-visible :app)
     (e/fill {:tag :body} k/escape)
     (e/fill {:tag :body} k/control-left "y" ))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
                       (.getSystemClipboard)
                       (.getData (DataFlavor/stringFlavor)))
-        expected "[[https://www.google.com/][Google]]"]
+        expected "[[http://roosta.sh/][roosta.sh/]]"]
     (is (= clipboard expected))))
 
 (deftest ^:integration
@@ -66,12 +66,12 @@
       (e/click :format-select)
       (e/fill :format-select k/arrow-down)
       (e/click {:type :submit})
-      (e/go "https://google.com")
-      (e/wait-visible :lst-ib {:timeout 60})
+      (e/go "http://roosta.sh")
+      (e/wait-visible :app)
       (e/fill {:tag :body} k/escape)
       (e/fill {:tag :body} k/shift-left "l" )))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
                       (.getSystemClipboard)
                       (.getData (DataFlavor/stringFlavor)))
-        expected "[Google](https://www.google.com/)"]
+        expected "[roosta.sh/](http://roosta.sh/)"]
     (is (= clipboard expected))))
