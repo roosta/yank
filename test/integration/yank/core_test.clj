@@ -40,7 +40,7 @@
   basic
   (doto *driver*
     (e/go "https://google.com")
-    (e/wait-visible {:id "lst-ib"})
+    (e/wait-visible {:id "lst-ib"} {:timeout 60})
     (e/fill {:tag :body} k/escape)
     (e/fill {:tag :body} k/control-left "y" ))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
@@ -67,7 +67,7 @@
       (e/fill :format-select k/arrow-down)
       (e/click {:type :submit})
       (e/go "https://google.com")
-      (e/wait-visible {:id "lst-ib"})
+      (e/wait-visible {:id "lst-ib"} {:timeout 60})
       (e/fill {:tag :body} k/escape)
       (e/fill {:tag :body} k/shift-left "l" )))
   (let [clipboard (-> (Toolkit/getDefaultToolkit)
