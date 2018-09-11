@@ -3,9 +3,11 @@ All notable changes to this project will be documented in this file. This change
 log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [v1.0.4] - 2018-09-11
 ### Fix
-- Figwheel build and repl environments
 - Sync browser-action changes in options page
+- Figwheel multiple build and repl environments
 
 
 ## [v1.0.3] - 2018-08-15
@@ -64,7 +66,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v1.0.4...HEAD
+[v1.0.4]: https://github.com/roosta/yank/compare/v1.0.3...v1.0.4
 [v1.0.3]: https://github.com/roosta/yank/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/roosta/yank/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/roosta/yank/compare/v1.0.0...v1.0.1

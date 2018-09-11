@@ -63,6 +63,7 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** [[https://stackoverflow.com/questions/48540523/firefox-pick-page-action-icon-for-dark-light-themes][firefox pick page action icon for dark / light themes - Stack Overflow]]
 * CANCELLED npm deps
   CLOSED: [2018-09-09 Sun 18:22]
-* TODO Fix integration-test
+* DONE Fix integration-test
+  CLOSED: [2018-09-11 Tue 18:12]
 * DONE Update readme
   CLOSED: [2018-09-09 Sun 18:36]
