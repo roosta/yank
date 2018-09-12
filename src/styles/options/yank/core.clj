@@ -11,7 +11,7 @@
     :min-height "100vh"
     :justify-content "center"
     :align-items "center"
-    :background-color "Background"
+    :background-color "Window"
     :line-height 1.5}]
   [:.bracket {:font-size (px 24)}]
   [:h3 {:display "flex"

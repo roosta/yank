@@ -7,7 +7,7 @@
    {:font "caption"
     :color "WindowText"
     :padding (px 10)
-    :background-color "Background"}]
+    :background-color "Window"}]
   [:h3 {:display "flex"
         :justify-content "space-between"
         :align-items "center"}]
