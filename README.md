@@ -35,6 +35,12 @@ Yank currently supports these markup languages:
 
 ## Development
 
+The development of this extension was done using using
+[leiningen](https://github.com/technomancy/leiningen) version 2.7.0 running on
+OpenJDK Java version 1.8.0_181 on Arch linux. It also runs on
+[travis-ci](https://travis-ci.org/roosta/yank), refer to
+[.travis.yaml](https://github.com/roosta/yank/blob/master/.travis.yml).
+
 ``` example
 $ git clone https://github.com/roosta/yank && cd yank
 ```
