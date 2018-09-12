@@ -33,7 +33,8 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** DONE [[https://github.com/mozilla/geckodriver/issues/473][Unable to install unsigned addons through Selenium geckodriver · Issue #473 · mozilla/geckodriver]]
 ** DONE [[https://w3c.github.io/webdriver/#list-of-endpoints][WebDriver]]
 ** CANCELLED Test context menu
-* TODO [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
+* DONE [[https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission][Source code submission - Mozilla | MDN]]
+  CLOSED: [2018-09-12 Wed 17:34]
 * DONE Latex
   CLOSED: [2018-07-30 Mon 16:17]
   ;; LaTeX
@@ -41,7 +42,8 @@ On Macs, "Ctrl" is interpreted as "Command", so if you actually need "Ctrl", spe
 ** [[https://tex.stackexchange.com/questions/34580/escape-character-in-latex#34586][symbols - Escape character in LaTeX - TeX - LaTeX Stack Exchange]]
 ** [[https://en.wikibooks.org/wiki/LaTeX/Hyperlinks][LaTeX/Hyperlinks - Wikibooks, open books for an open world]]
 ** [[https://stackoverflow.com/questions/2894710/how-to-write-urls-in-latex][How to write URLs in Latex? - Stack Overflow]]
-* TODO update error
+* CANCELLED update error
+  CLOSED: [2018-09-12 Wed 17:33]
   onUpdateCheckComplete failed to parse update manifest: [Exception... "Update
   manifest is missing a required addons property." nsresult: "0x80004005
   (NS_ERROR_FAILURE)" location: "JS frame :: resource://
