@@ -40,8 +40,8 @@
 
                :browser_action {:default_title "Yank format"
                                 :browser_style true
-                                :default_icon {"16" "icons/icon-light.svg"
-                                               "32" "icons/icon-light.svg"}
+                                :default_icon {"16" "icons/icon-dark.svg"
+                                               "32" "icons/icon-dark.svg"}
                                 :theme_icons [{:light "icons/icon-light.svg"
                                                :dark "icons/icon-dark.svg"
                                                :size 16}
