@@ -4,11 +4,17 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v1.0.5] - 2018-09-12
+### Changed
+- Use dark icon as default for browser-action
+
+### Fix
+- Background color for popup and options page should now be set correctly matching OS theme
+
 ## [v1.0.4] - 2018-09-11
 ### Fix
 - Sync browser-action changes in options page
 - Figwheel multiple build and repl environments
-
 
 ## [v1.0.3] - 2018-08-15
 ### Fix
@@ -67,6 +73,7 @@ the following markup languages:
 - HTML
 
 [Unreleased]: https://github.com/roosta/yank/compare/v1.0.4...HEAD
+[v1.0.5]: https://github.com/roosta/yank/compare/v1.0.4...v1.0.5
 [v1.0.4]: https://github.com/roosta/yank/compare/v1.0.3...v1.0.4
 [v1.0.3]: https://github.com/roosta/yank/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/roosta/yank/compare/v1.0.1...v1.0.2
