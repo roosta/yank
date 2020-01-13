@@ -4,6 +4,10 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v1.0.6] - 2020-01-13
+### Changed
+- Update dependencies
+
 ## [v1.0.5] - 2018-09-12
 ### Changed
 - Use dark icon as default for browser-action
@@ -72,7 +76,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v1.0.6...HEAD
+[v1.0.6]: https://github.com/roosta/yank/compare/v1.0.5...v1.0.6
 [v1.0.5]: https://github.com/roosta/yank/compare/v1.0.4...v1.0.5
 [v1.0.4]: https://github.com/roosta/yank/compare/v1.0.3...v1.0.4
 [v1.0.3]: https://github.com/roosta/yank/compare/v1.0.2...v1.0.3
