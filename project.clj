@@ -2,10 +2,10 @@
   :description "Yank current page URL to clipboard as various markup formats"
   :url "https://github.com/roosta/yank"
   :license {:name "MIT"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
                  [environ "1.1.0"]
                  [hiccup "1.0.5"]
-                 [org.clojure/clojurescript "1.10.339"]]
+                 [org.clojure/clojurescript "1.10.597"]]
 
   :clean-targets ^{:protect false} ["target"
                                     "resources/dev/js"
@@ -28,9 +28,9 @@
                  "src/content_script"]
 
   :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-asset-minifier "0.4.4"]
+            [lein-asset-minifier "0.4.6"]
             [lein-environ "1.1.0"]
-            [lein-doo "0.1.10"]
+            [lein-doo "0.1.11"]
             [lein-garden "0.3.0"]
             [lein-shell "0.5.0"]]
 
@@ -109,10 +109,10 @@
              :css-dirs ["resources/dev/css"]
              :repl        true}
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.17-SNAPSHOT"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.19"]
                                   [hickory "0.7.1"]
-                                  [cider/piggieback "0.3.9"]]
-                   :plugins      [[lein-figwheel "0.5.17-SNAPSHOT"]]
+                                  [cider/piggieback "0.4.2"]]
+                   :plugins      [[lein-figwheel "0.5.19"]]
 
                    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
@@ -132,7 +132,7 @@
 
              :manifest-release [:manifest {:env {:location "release"}}]
 
-             :integration-test {:dependencies [[etaoin "0.2.8"]]
+             :integration-test {:dependencies [[etaoin "0.3.6"]]
                                 :source-paths ["test/integration"]}}
 
   :cljsbuild {:builds [{:id           "background"
