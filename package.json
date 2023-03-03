@@ -19,6 +19,7 @@
   "homepage": "https://github.com/roosta/yank#readme",
   "devDependencies": {
     "eslint": "^8.35.0",
+    "eslint-plugin-mozilla": "^3.0.1",
     "web-ext": "^7.5.0"
   },
   "dependencies": {

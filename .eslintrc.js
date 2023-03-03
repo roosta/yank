@@ -3,6 +3,7 @@ module.exports = {
       "browser": true,
       "es2021": true,
       "node": true,
+      "browser-window": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
