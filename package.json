@@ -1,8 +1,8 @@
 {
   "name": "yank",
   "version": "2.0.0",
+  "private": true,
   "description": "Yank current page URL to clipboard as various markup formats",
-  "main": "content_script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
