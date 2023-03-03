@@ -4,7 +4,8 @@
   "private": true,
   "description": "Yank current page URL to clipboard as various markup formats",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx web-ext run"
   },
   "repository": {
     "type": "git",
