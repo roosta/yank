@@ -19,10 +19,9 @@
   "homepage": "https://github.com/roosta/yank#readme",
   "devDependencies": {
     "eslint": "^8.35.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.6.1",
-    "eslint-plugin-promise": "^6.1.1",
     "web-ext": "^7.5.0"
+  },
+  "dependencies": {
+    "mousetrap": "^1.6.5"
   }
 }
