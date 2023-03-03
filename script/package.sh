@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # source: https://github.com/binaryage/chromex-sample/blob/master/scripts/package.sh
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null
+pushd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null || exit
 source "./config.sh"
 
-pushd "$ROOT"
+pushd "$ROOT" || exit
 
 RELEASES="$ROOT/releases"
 RELEASE_BUILD="$ROOT/resources/release"
@@ -42,8 +42,8 @@ rm -rf "$PACKAGE_DIR/js/options"
 
 echo "'$PACKAGE_DIR' prepared for packing"
 echo "Zipping files..."
-cd "$PACKAGE_DIR" && zip -r -FS "$RELEASES/yank-$VERSION.xpi" -- * && cd - || exit 1 
+cd "$PACKAGE_DIR" && zip -r -FS "$RELEASES/yank-$VERSION.xpi" -- * && cd - || exit 1
 rm -rf "$PACKAGE_DIR"
 echo "Package saved as: yank-$VERSION.xpi"
 
-popd
+popd || exit
