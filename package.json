@@ -1,0 +1,22 @@
+{
+  "name": "yank",
+  "version": "2.0.0",
+  "description": "Yank current page URL to clipboard as various markup formats",
+  "main": "content_script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roosta/yank.git"
+  },
+  "author": "Daniel Berg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roosta/yank/issues"
+  },
+  "homepage": "https://github.com/roosta/yank#readme",
+  "devDependencies": {
+    "web-ext": "^7.5.0"
+  }
+}
