@@ -3,10 +3,10 @@
   "manifest_version": 2,
   "name": "yank",
   "version": "2.0.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/borderify",
+  "homepage_url": "https://github.com/roosta/yank#readme",
   "icons": {
-    "48": "icons/icon-dark.png",
-    "96": "icons/icon-dark.png"
+    "48": "icons/icon-dark.svg",
+    "96": "icons/icon-dark.svg"
   },
   "permissions": [
     "tabs",

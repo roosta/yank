@@ -1,0 +1,35 @@
+{
+  "description": "Yank current page URL to clipboard as various markup formats",
+  "manifest_version": 2,
+  "name": "yank",
+  "version": "2.0.0",
+  "homepage_url": "https://github.com/roosta/yank#readme",
+  "icons": {
+    "48": "icons/icon-light.svg",
+    "96": "icons/icon-light.svg"
+  },
+  "permissions": [
+    "tabs",
+    "clipboardWrite",
+    "contextMenus",
+    "storage",
+    "<all_urls>"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": ["content_script/index.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "yank@roosta.sh"
+    }
+  }
+}
