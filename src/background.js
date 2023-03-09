@@ -1,6 +1,6 @@
 import { fetchSettings } from "settings.js"
 
-var settings = fetchSettings();
+let settings = fetchSettings();
 
 function createContextMenu() {
   browser.contextMenus.create({

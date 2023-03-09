@@ -1,5 +1,5 @@
 {
-  "description": "Yank current page URL to clipboard as various markup formats",
+  "description": "Yank current page URL and title to clipboard as various markup formats",
   "manifest_version": 2,
   "name": "yank",
   "version": "2.0.0",
@@ -9,13 +9,22 @@
     "96": "icons/icon-light.svg"
   },
   "permissions": [
-    "tabs",
+    "activeTab",
     "clipboardWrite",
     "contextMenus",
     "storage",
     "<all_urls>"
   ],
 
+  "commands": {
+    "yank": {
+      "suggested_key": {
+        "default": "Ctrl+Y"
+      },
+      "description": "Yank page URL and title to clipboard"
+    }
+
+  },
   "content_scripts": [
     {
       "matches": [
