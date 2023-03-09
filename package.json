@@ -5,7 +5,7 @@
   "description": "Yank current page URL to clipboard as various markup formats",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web-ext": "npx web-ext run --devtools -s addon",
+    "web-ext": "npx web-ext run --devtools -s addon -f ./scripts/ffdev.sh",
     "webpack": "npx webpack",
     "dev": "npx concurrently --kill-others \"npm:web-ext\" \"npm:webpack\""
   },
