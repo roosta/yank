@@ -15,12 +15,10 @@ export function onStorageChange(ref, resp) {
   if (newv) ref = newv;
 }
 
-export async function fetchSettings() {
-  return await browser.storage.sync.get("yank").then(resp => {
-    const payload = resp.get("yank");
-    return payload
-  }).catch(() => {
-    console.warn("Failed to fetch settings, using defaults.")
-    return defaults;
-  })
+export function fetchSettings() {
+  let payload = defaults;
+  browser.storage.sync.get("yank").then(res => {
+    payload = res;
+  });
+  return payload
 }
