@@ -15,7 +15,9 @@
     "storage",
     "<all_urls>"
   ],
-
+  "background": {
+    "scripts": ["background/index.js"]
+  },
   "commands": {
     "yank": {
       "suggested_key": {

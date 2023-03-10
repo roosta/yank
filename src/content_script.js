@@ -1,8 +1,3 @@
-// import Mousetrap from "mousetrap";
-import { fetchSettings } from "./settings.js"
-
-let settings = fetchSettings();
-
 function copyToClipboard(text) {
   const oncopy = (e) => {
     document.removeEventListener("copy", oncopy, true);
@@ -19,11 +14,9 @@ function copyToClipboard(text) {
   document.execCommand("copy");
 }
 
-// Mousetrap.bind(settings.keybind.composed, copyToClipboard);
-browser.storage.onChanged.addListener(() => {
-  settings = fetchSettings();
-})
-console.log(browser)
-// browser.commands.onCommand.addListener((command) => {
-//   copyToClipboard("command: ", command);
-// });
+browser.runtime.onMessage.addListener((request) => {
+  if (request.yank) {
+    copyToClipboard(request.yank);
+    return Promise.resolve({ response: true })
+  }
+});
