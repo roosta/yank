@@ -1,4 +1,5 @@
 import { fetchSettings } from "./settings.js"
+import { md } from "./format.js"
 
 let settings = fetchSettings();
 
@@ -14,26 +15,19 @@ function onError(error) {
   console.error(`Error: ${error}`);
 }
 
-// Escape string s, with array of tuples [regex, replacement text] i.e
-// stresc(mystr, [["_", "\\_"], ["[", "\\["]])
-function stresc(s, m) {
-  return m.reduce((acc, [re, repl]) => {
-    return acc.replace(re, repl)
-  }, s)
-
-}
-
 browser.commands.onCommand.addListener(async (command) => {
   if (command === "yank") {
     browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
-      // const re = /_/g;
-      const text = "my fancy title _ with chars [hello]";
-      // const asd = text.replace(re, "\\_") ;
-      console.log(stresc(text, [["_", "\\_"], ["[", "\\["]]));
-      browser.tabs.sendMessage(tab.id, { yank: "asd" });
+      const text = md("my fancy title _ with chars [hello]", tab.url);
+      browser.tabs.sendMessage(tab.id, { yank: text });
     }).then((response) => {
       if (!response.response)
         console.warn("Yank: bad response, something went wrong");
     }).catch(onError);
   }
 });
+
+// Listen for settings change
+browser.storage.onChanged.addListener(() => {
+  settings = fetchSettings();
+})
