@@ -7,11 +7,17 @@ function stresc(s, m) {
   }, s)
 }
 
-export function md(title, url) {
-  let esc = stresc(title, [
-    ["_", "\\_"],
-    ["[", "\\["],
-    ["]", "\\]"]]
-  );
-  return `[${esc}](${url})`;
+const formats = {
+  md: (title, url) => {
+    let esc = stresc(title, [
+      ["_", "\\_"],
+      ["[", "\\["],
+      ["]", "\\]"]]
+    );
+    return `[${esc}](${url})`;
+  }
+}
+
+export function dispatch({ title, url, format }) {
+  return formats[format](title, url);
 }
