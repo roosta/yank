@@ -19,7 +19,7 @@ browser.commands.onCommand.addListener(async (command) => {
   if (command === "yank") {
     browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
       const text = dispatch({
-        title: "my fancy title _ with chars [hello]",
+        title: 'my <fancy> "``title" _ with chars [hello]',
         format: settings.format,
         url: tab.url
       });
