@@ -42,6 +42,14 @@ const formats = {
     );
     return `\`${esc} <${url}>\``
   },
+  html: (title, url) => {
+    let esc = stresc(title, [
+      ["&", "&amp;"],
+      ["<", "&lt;"],
+      [">", "&gt;"]]
+    );
+    return `<a href="${url}">${esc}</a>`
+  }
 }
 export function dispatch({ title, url, format }) {
   return formats[format](title, url);
