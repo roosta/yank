@@ -12,22 +12,25 @@ function createContextMenu() {
 
 }
 function onError(error) {
-  console.error(`Error: ${error}`);
+  console.error(`Yank error: ${error}`);
 }
 
-browser.commands.onCommand.addListener(async (command) => {
+function updateClipboard(newClip) {
+  navigator.clipboard.writeText(newClip).then(() => {
+    console.log("Yank: successfully wrote to clipboard")
+  }, onError);
+}
+
+browser.commands.onCommand.addListener((command) => {
   if (command === "yank") {
     browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
       const text = dispatch({
-        title: 'my <fancy> "``title" _ with chars [hello]',
+        title: 'my <fancy> "``title" _ with $ chars [hello]',
         format: settings.format,
         url: tab.url
       });
-      browser.tabs.sendMessage(tab.id, { yank: text });
-    }).then((response) => {
-      if (!response.response)
-        console.warn("Yank: bad response, something went wrong");
-    }).catch(onError);
+      updateClipboard(text);
+    });
   }
 });
 
