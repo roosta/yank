@@ -6,7 +6,7 @@ module.exports = {
     "webextensions": true,
   },
   "extends": "eslint:recommended",
-  "plugins": ["eslint-plugin-mozilla"],
+  "plugins": ["eslint-plugin-mozilla", "html"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
