@@ -32,6 +32,20 @@ browser.commands.onCommand.addListener((command) => {
   }
 });
 
+function handleContext(info) {
+  const text = dispatch({
+    title: info.linkText,
+    url: info.linkUrl,
+    format: settings.format
+  })
+  updateClipboard(text);
+
+}
+
+createContextMenu();
+
+
+browser.contextMenus.onClicked.addListener(handleContext)
 // Listen for settings change
 browser.storage.onChanged.addListener(() => {
   settings = fetchSettings();
