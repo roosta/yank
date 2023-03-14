@@ -16,9 +16,7 @@ function onError(error) {
 }
 
 function updateClipboard(newClip) {
-  navigator.clipboard.writeText(newClip).then(() => {
-    console.log("Yank: successfully wrote to clipboard")
-  }, onError);
+  navigator.clipboard.writeText(newClip).catch(onError);
 }
 
 browser.commands.onCommand.addListener((command) => {
