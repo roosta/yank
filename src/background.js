@@ -15,10 +15,12 @@ function onError(error) {
   console.error(`Yank error: ${error}`);
 }
 
+// Updates clipboard with newClip, ignore succees, catch error
 function updateClipboard(newClip) {
   navigator.clipboard.writeText(newClip).catch(onError);
 }
 
+// Addon command
 browser.commands.onCommand.addListener((command) => {
   if (command === "yank") {
     browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
@@ -32,6 +34,8 @@ browser.commands.onCommand.addListener((command) => {
   }
 });
 
+// Context menu {{{
+//
 function handleContext(info) {
   const text = dispatch({
     title: info.linkText,
@@ -39,14 +43,15 @@ function handleContext(info) {
     format: settings.format
   })
   updateClipboard(text);
-
 }
-
 createContextMenu();
-
-
 browser.contextMenus.onClicked.addListener(handleContext)
-// Listen for settings change
+
+// }}}
+// Settings {{{
 browser.storage.onChanged.addListener(() => {
   settings = fetchSettings();
 })
+// }}}
+
+// vim: set ts=2 sw=2 tw=0 fdm=marker et :
