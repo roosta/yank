@@ -11,16 +11,23 @@ const formats = {
     let esc = stresc(title, [
       ["_", "\\_"],
       ["\\[", "\\["],
-      ["]", "\\]"]]
+      ["]", "\\]"],
+      [">", "\\>"],
+      ["<", "\\<"],
+      ["\\*", "\\*"],
+      ["`", "\\`"]]
     );
     return `[${esc}](${url})`;
   },
+  // Org mode doesn't seem to have any escape sequence for description, so
+  // using curly brackets
+  // https://stackoverflow.com/questions/27284913/how-to-escape-square-bracket-in-org-mode-links
   org: (title, url) => {
     let esc = stresc(title, [
-      ["[", "{"],
-      ["]", "}"]]
+      ["\\[", "{"],
+      ["\\]", "}"]]
     );
-    return `[[${esc}][${url}]]`;
+    return `[[${url}][${esc}]]`;
   },
   textile: (title, url) => {
     let esc = stresc(title, [
@@ -30,7 +37,7 @@ const formats = {
   },
   asciidoc: (title, url) => {
     let esc = stresc(title, [
-      ["]", "\\]"]]
+      ["\\]", "\\]"]]
     );
     return `${url}[${esc}]`
   },
@@ -39,8 +46,11 @@ const formats = {
       ["_", "\\_"],
       ["`", "\\`"]]
     );
-    return `\`${esc} <${url}>\``
+    return `\`${esc} <${url}>\`_`
   },
+
+  // Start by replacing all apersand symbols, otherwise it'll replace the
+  // ampersand in the remaining escapes
   html: (title, url) => {
     let esc = stresc(title, [
       ["&", "&amp;"],
