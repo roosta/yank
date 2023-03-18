@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Yank format</title>
+<style>
+
+body {
+  font: caption;
+  color: WindowText;
+  padding: 10px;
+  background-color: Window
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bracket {
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+  <h3>
+    <span class="bracket" id="left-bracket">[</span>
+    Yank format
+    <span class="bracket" id="right-bracket">]</span>
+  </h3>
+  <select id="format-select" class="input">
+    <option value="org">Org-mode</option>
+    <option value="md">Markdown</option>
+    <option value="textile">Textile</option>
+    <option value="asciidoc">AsciiDoc</option>
+    <option value="rest">reStructuredText</option>
+    <option value="html">HTML</option>
+    <option value="latex">LaTeX</option>
+  </select>
+</body>
+</html>
