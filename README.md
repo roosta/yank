@@ -4,6 +4,12 @@
 A Firefox extension to copy current tab URL to clipboard, formatted for a markup
 language. Supports custom shortcuts and several different markup languages.
 
+### Test title
+
+```js
+const tmp = 'm>y <fancy "`t\\itle*" `_ w&ith $ chars [hello]';
+```
+
 ### Usage
 
 By default this plugin binds `ctrl+y` to copy URL as org-mode. To change this
