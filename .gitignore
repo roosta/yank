@@ -2,3 +2,4 @@ clj
 releases
 addon/content_script
 addon/background
+addon/popup
