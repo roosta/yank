@@ -40,3 +40,7 @@ button {
 .input:hover {
   background: var(--color-button-hover);
 }
+
+.input:active {
+  background: var(--color-button-active);
+}

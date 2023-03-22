@@ -12,6 +12,7 @@ browser.theme.getCurrent().then((theme) => {
       `--color-button: ${theme.colors.button}`,
       `--color-button-background: ${theme.colors.button_primary_color}`,
       `--color-button-hover: ${theme.colors.button_hover}`,
+      `--color-button-active: ${theme.colors.button_active}`,
       `--color-input-background: ${theme.colors.input_background}`,
       `--color-input-border: ${theme.colors.input_border}`,
       `--color-input: ${theme.colors.input}`,
