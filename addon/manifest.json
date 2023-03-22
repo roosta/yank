@@ -5,8 +5,8 @@
   "version": "2.0.0",
   "homepage_url": "https://github.com/roosta/yank#readme",
   "icons": {
-    "48": "icons/icon-light.svg",
-    "96": "icons/icon-light.svg"
+    "48": "icons/icon_light.svg",
+    "96": "icons/icon_light.svg"
   },
   "permissions": [
     "activeTab",
@@ -27,21 +27,21 @@
 
   },
   "browser_action": {
-    "default_title": "Yank format",
+    "default_title": "Yank: select format",
     "browser_style": true,
     "default_icon": {
-      "16": "icons/icon-dark.svg",
-      "32": "icons/icon-dark.svg"
+      "16": "icons/icon_dark.svg",
+      "32": "icons/icon_dark.svg"
     },
     "theme_icons": [
       {
-        "light": "icons/icon-light.svg",
-        "dark": "icons/icon-dark.svg",
+        "light": "icons/icon_light.svg",
+        "dark": "icons/icon_dark.svg",
         "size": 16
       },
       {
-        "light": "icons/icon-light.svg",
-        "dark": "icons/icon-dark.svg",
+        "light": "icons/icon_light.svg",
+        "dark": "icons/icon_dark.svg",
         "size": 32
       }
     ],
