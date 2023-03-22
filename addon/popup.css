@@ -12,7 +12,7 @@ h3 {
   margin-top: 0;
 }
 
-select {
+.input {
   border-width: 1px;
   border-style: solid;
   border-color: var(--color-input-border);
@@ -20,6 +20,9 @@ select {
   padding: 0.25em 0.5em;
   cursor: pointer;
   line-height: 1.1;
+}
+
+select {
   background-color: var(--color-input-background);
   color: var(--color-input);
   margin-bottom: 0.6em;
@@ -30,7 +33,10 @@ select {
 }
 
 button {
-  /* color: var(--color-primary); */
-  /* background: var(--color-button); */
+  color: var(--color-input);
+  background: var(--color-button-background);
 }
 
+.input:hover {
+  background: var(--color-button-hover);
+}

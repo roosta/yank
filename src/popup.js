@@ -10,6 +10,8 @@ browser.theme.getCurrent().then((theme) => {
       `--color-background: ${theme.colors.popup}`,
       `--color-text: ${theme.colors.popup_text}`,
       `--color-button: ${theme.colors.button}`,
+      `--color-button-background: ${theme.colors.button_primary_color}`,
+      `--color-button-hover: ${theme.colors.button_hover}`,
       `--color-input-background: ${theme.colors.input_background}`,
       `--color-input-border: ${theme.colors.input_border}`,
       `--color-input: ${theme.colors.input}`,
