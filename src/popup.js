@@ -8,8 +8,11 @@ browser.theme.getCurrent().then((theme) => {
     console.log(theme.colors)
     const colors = [
       `--color-background: ${theme.colors.popup}`,
-      `--color-primary: ${theme.colors.popup_text}`,
+      `--color-text: ${theme.colors.popup_text}`,
       `--color-button: ${theme.colors.button}`,
+      `--color-input-background: ${theme.colors.input_background}`,
+      `--color-input-border: ${theme.colors.input_border}`,
+      `--color-input: ${theme.colors.input}`,
     ];
     document.body.setAttribute('style', colors.join(';'));
   }

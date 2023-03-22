@@ -1,55 +1,28 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Yank format</title>
-<style>
-
-body {
-  font: caption;
-  padding: 0.8em;
-  color: var(--color-primary);
-  background: var(--color-background);
-}
-
-h3 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0;
-}
-select {
-  margin-bottom: 0.6em;
-  color: var(--color-primary);
-  background: var(--color-button);
-}
-
-.bracket {
-  font-size: 2em;
-}
-
-button {
-  color: var(--color-primary);
-  background: var(--color-button);
-}
-</style>
-</head>
-<body>
-  <h3>
-    <span class="bracket" id="left-bracket">[</span>
-    Yank format
-    <span class="bracket" id="right-bracket">]</span>
-  </h3>
-  <select id="format-select" class="browser-style">
-    <option value="org">Org-mode</option>
-    <option value="md">Markdown</option>
-    <option value="textile">Textile</option>
-    <option value="asciidoc">AsciiDoc</option>
-    <option value="rest">reStructuredText</option>
-    <option value="html">HTML</option>
-    <option value="latex">LaTeX</option>
-  </select>
-  <button class="browser-style" id="yank-button">Yank</button>
-  <script src="popup/index.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Yank format</title>
+    <link rel="stylesheet" href="popup.css"/>
+    <style>
+    </style>
+  </head>
+  <body>
+    <h3>
+      <span class="bracket" id="left-bracket">[</span>
+      Yank format
+      <span class="bracket" id="right-bracket">]</span>
+    </h3>
+    <select id="format-select" class="" name="select">
+      <option value="org">Org-mode</option>
+      <option value="md">Markdown</option>
+      <option value="textile">Textile</option>
+      <option value="asciidoc">AsciiDoc</option>
+      <option value="rest">reStructuredText</option>
+      <option value="html">HTML</option>
+      <option value="latex">LaTeX</option>
+    </select>
+    <button class="browser-style" id="yank-button">Yank</button>
+    <script src="popup/index.js"></script>
+  </body>
 </html>

@@ -1,0 +1,36 @@
+body {
+  font: caption;
+  padding: 0.8em;
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+}
+
+select {
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-input-border);
+  border-radius: 0.16em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: var(--color-input-background);
+  color: var(--color-input);
+  margin-bottom: 0.6em;
+}
+
+.bracket {
+  font-size: 2em;
+}
+
+button {
+  /* color: var(--color-primary); */
+  /* background: var(--color-button); */
+}
+
