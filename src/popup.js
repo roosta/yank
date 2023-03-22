@@ -1,23 +1,37 @@
 import { fetchSettings } from "./settings.js"
+import { light, dark } from "./theme.json";
 
 let settings = fetchSettings();
-const selectEl = document.getElementById("format-select");
+const selectEl = document.getElementById("format-select")
 
-browser.theme.getCurrent().then((theme) => {
+// Returns a default theme based on prefersDark result
+function getDefaultTheme() {
+  if (window.matchMedia("(prefers-color-scheme:dark)").matches)
+    return { colors: dark }
+  return { colors: light }
+}
+
+// Sets CSS vars in DOM based on input theme obj
+function setVars({ colors }) {
+  const vars = [
+    `--color-background: ${colors.popup}`,
+    `--color-text: ${colors.popup_text}`,
+    `--color-button-background: ${colors.button_primary_color}`,
+    `--color-button-hover: ${colors.button_hover}`,
+    `--color-button-active: ${colors.button_active}`,
+    `--color-input-background: ${colors.input_background}`,
+    `--color-input-border: ${colors.input_border}`,
+    `--color-input: ${colors.input}`,
+  ];
+  document.body.setAttribute('style', vars.join(';'));
+}
+
+function setTheme(theme) {
   if (theme && theme.colors) {
-    console.log(theme.colors)
-    const colors = [
-      `--color-background: ${theme.colors.popup}`,
-      `--color-text: ${theme.colors.popup_text}`,
-      `--color-button: ${theme.colors.button}`,
-      `--color-button-background: ${theme.colors.button_primary_color}`,
-      `--color-button-hover: ${theme.colors.button_hover}`,
-      `--color-button-active: ${theme.colors.button_active}`,
-      `--color-input-background: ${theme.colors.input_background}`,
-      `--color-input-border: ${theme.colors.input_border}`,
-      `--color-input: ${theme.colors.input}`,
-    ];
-    document.body.setAttribute('style', colors.join(';'));
+    setVars(theme);
+  } else {
+    setVars(getDefaultTheme());
   }
-});
-// console.log(browser.theme.getCurrent())
+}
+
+browser.theme.getCurrent().then(setTheme);
