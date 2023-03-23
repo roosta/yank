@@ -13,18 +13,18 @@ h3 {
 }
 
 .input {
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--color-input-border);
+  color: inherit;
   border-radius: 0.16em;
   padding: 0.25em 0.5em;
   cursor: pointer;
   line-height: 1.1;
+  border-width: 1px;
+  border-style: solid;
 }
 
 select {
+  border-color: var(--color-input-border);
   background-color: var(--color-input-background);
-  color: var(--color-input);
   margin-bottom: 0.6em;
 }
 
@@ -33,12 +33,16 @@ select {
 }
 
 button {
-  color: var(--color-input);
-  background: var(--color-button-background);
+  background: var(--color-button);
+  border-color: var(--color-button);
+}
+
+button:hover {
+  border-color: var(--color-input-hover);
 }
 
 .input:hover {
-  background: var(--color-button-hover);
+  background: var(--color-input-hover);
 }
 
 .input:active {

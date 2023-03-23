@@ -1,22 +1,20 @@
 {
   "dark": {
-    "popup": "#42414D",
-    "popup_text": "#FBFBFE",
+    "background": "#42414D",
+    "text": "#FBFBFE",
     "button": "#2B2A33",
     "button_hover": "#52525E",
     "button_active": "#5B5B66",
     "input_background": "#42414D",
-    "input_border": "#8F8F9D",
-    "input": "#FBFBFE"
+    "input_border": "#858586"
   },
   "light": {
-    "popup": "#FBFBFE",
-    "popup_text": "#2E3436",
-    "button": "#FBFBFE",
+    "background": "#FBFBFE",
+    "text": "#2E3436",
+    "button": "#F0F0F4",
     "button_hover": "#DFDFE5",
     "button_active": "#CFCFD8",
     "input_background": "#FBFBFE",
-    "input_border": "#15141A",
-    "input": "#15141A"
+    "input_border": "#D0D0D0"
   }
 }
