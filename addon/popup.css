@@ -42,5 +42,5 @@ button {
 }
 
 .input:active {
-  background: var(--color-button-active);
+  border-color: var(--color-button-active);
 }
