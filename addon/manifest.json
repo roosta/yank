@@ -47,7 +47,7 @@
     ],
     "default_popup": "popup.html"
   },
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "yank@roosta.sh"
     }
