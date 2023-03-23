@@ -1,7 +1,7 @@
-import { fetchSettings } from "./settings.js"
+import { fetchSettings, saveSettings } from "./settings.js"
 import themeData from "./theme.json";
 
-let settings = fetchSettings();
+var settings;
 const selectEl = document.getElementById("format-select")
 
 // Returns a default theme based on prefersDark result
@@ -25,4 +25,25 @@ function setTheme(theme) {
   document.body.setAttribute('style', vars.join(';'));
 }
 
-setTheme(getTheme())
+function inputSync(v) {
+  selectEl.value = v;
+}
+
+function onFormatChange(e) {
+  const val = e.target.value;
+  saveSettings({ "format": val });
+}
+
+async function main() {
+  settings = await fetchSettings();
+  setTheme(getTheme())
+  selectEl.addEventListener("change", onFormatChange);
+  inputSync(settings.format);
+
+  browser.storage.onChanged.addListener(({ yank: { newValue } }) => {
+    settings = newValue;
+    inputSync(newValue.format)
+  })
+}
+
+main();

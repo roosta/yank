@@ -1,7 +1,7 @@
 import { fetchSettings } from "./settings.js"
 import { dispatch } from "./format.js"
 
-let settings = fetchSettings();
+var settings;
 
 function createContextMenu() {
   browser.contextMenus.create({
@@ -34,8 +34,6 @@ browser.commands.onCommand.addListener((command) => {
   }
 });
 
-// Context menu {{{
-//
 function handleContext(info) {
   const text = dispatch({
     title: info.linkText,
@@ -44,14 +42,16 @@ function handleContext(info) {
   })
   updateClipboard(text);
 }
-createContextMenu();
-browser.contextMenus.onClicked.addListener(handleContext)
 
-// }}}
-// Settings {{{
-browser.storage.onChanged.addListener(() => {
-  settings = fetchSettings();
-})
-// }}}
+async function main() {
+  settings = await fetchSettings();
+  createContextMenu();
+  browser.contextMenus.onClicked.addListener(handleContext)
+
+  browser.storage.onChanged.addListener(({ yank: { newValue } }) => {
+    settings = newValue;
+  })
+}
+main();
 
 // vim: set ts=2 sw=2 tw=0 fdm=marker et :
