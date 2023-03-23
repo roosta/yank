@@ -1,19 +1,18 @@
 {
   "dark": {
-    "popup": "#000000",
-    "popup_text": "#ffffff",
-    "button": "red",
-    "button_background": "blue",
-    "button_hover": "green",
-    "button_active": "purple",
-    "input_background": "#ffffff",
-    "input_border": "#000000",
-    "input": "#ffffff"
+    "popup": "#42414D",
+    "popup_text": "#FBFBFE",
+    "button": "#2B2A33",
+    "button_hover": "#52525E",
+    "button_active": "#5B5B66",
+    "input_background": "#42414D",
+    "input_border": "#8F8F9D",
+    "input": "#FBFBFE"
   },
   "light": {
     "popup": "#FBFBFE",
     "popup_text": "#2E3436",
-    "button_background": "#FBFBFE",
+    "button": "#FBFBFE",
     "button_hover": "#DFDFE5",
     "button_active": "#CFCFD8",
     "input_background": "#FBFBFE",
