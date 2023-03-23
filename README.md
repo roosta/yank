@@ -7,7 +7,7 @@ language. Supports custom shortcuts and several different markup languages.
 ### Test title
 
 ```js
-const tmp = 'm>y <fancy "`t\\itle*" `_ w&ith $ chars [hello]';
+const tmp = '<my> {fancy} "title" \\with chars backtick(`), tilde(~), underscore(_), amp(&), dollar($), uptick(^)';
 ```
 
 ### Usage

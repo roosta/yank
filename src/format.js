@@ -58,6 +58,28 @@ const formats = {
       [">", "&gt;"]]
     );
     return `<a href="${url}">${esc}</a>`
+  },
+  // Latex was a tricky one, I might possibly have missed something, some other
+  // char that gets interpeted as something other than text, but I feel I've
+  // covered most bases here. Got a bit fancy with the regex but there wasn't a
+  // logical order that would work.
+  latex: (title, url) =>  {
+    let esc = stresc(title, [
+      ["\\\\", "\\textbackslash{}"],
+      ["(?<!textbackslash|textasciitilde|textgreater|textless|textasciicircum){", "\\{"],
+      ["(?<!textbackslash{|textasciitilde{|textless{|textgreater{|textasciicircum{)}", "\\}"],
+      ["&", "\\&"],
+      ["%", "\\%"],
+      ["\\$", "\\$"],
+      ["#", "\\#"],
+      ["_", "\\_"],
+      ["\\~", "\\textasciitilde{}"],
+      ["<", "\\textless{}"],
+      [">", "\\textgreater{}"],
+      ["\\^", "\\textasciicircum{}"]
+    ]
+    );
+    return `\\href{${url}}{${esc}}`
   }
 }
 
