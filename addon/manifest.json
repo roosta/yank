@@ -5,8 +5,8 @@
   "version": "2.0.0",
   "homepage_url": "https://github.com/roosta/yank#readme",
   "icons": {
-    "48": "icons/icon_light.svg",
-    "96": "icons/icon_light.svg"
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
   },
   "permissions": [
     "activeTab",
