@@ -5,9 +5,13 @@
   "description": "Yank current page URL to clipboard as various markup formats",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web-ext": "npx web-ext run --devtools -s addon -f ./scripts/ffdev.sh",
-    "webpack": "npx webpack",
-    "dev": "npx concurrently --kill-others \"npm:web-ext\" \"npm:webpack\""
+    "web-ext": "web-ext run --devtools -s addon -f ./scripts/ffdev.sh",
+    "webpack": "webpack --config webpack.dev.js",
+    "clean": "rm -rf addon/background addon/popup",
+    "build": "webpack --config webpack.prod.js",
+    "package": "web-ext build -s addon -a releases",
+    "prod": "npm run clean && npm run build && npm run package",
+    "dev": "concurrently --kill-others \"npm:web-ext\" \"npm:webpack\""
   },
   "repository": {
     "type": "git",
