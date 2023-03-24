@@ -17,7 +17,7 @@ Extension Shortcuts`, and configure your preferred shortcut. Default is
 There is also a context menu option, that allows for copying an anchors `href`
 and content.
 
-### Supported formats
+## Supported formats
 
 Yank currently supports these markup languages:
 
@@ -60,8 +60,7 @@ match your preferred setup.
 
 ## Release
 
-Run `npm run prod` to build webpack, package, and sign using
-[web-ext](https://github.com/mozilla/web-ext)
+Run `npm run prod` to build webpack, package using [web-ext](https://github.com/mozilla/web-ext)
 
 See [package.json](package.json) `scripts` for details on each individual step
 
