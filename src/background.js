@@ -40,7 +40,6 @@ function handleCommand(command) {
 function handleMessage(request) {
   if (request === "yank") {
     yank();
-    return Promise.resolve(true);
   }
 }
 
