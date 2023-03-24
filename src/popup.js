@@ -1,8 +1,10 @@
-import { fetchSettings, saveSettings } from "./settings.js"
+import { fetchSettings, saveSettings } from "./settings.js";
 import themeData from "./theme.json";
+import { errorHandler } from "./logging.js";
 
 var settings;
-const selectEl = document.getElementById("format-select")
+const selectEl = document.getElementById("format-select");
+const buttonEl = document.getElementById("yank-button");
 
 // Returns a default theme based on prefersDark result
 function getTheme() {
@@ -34,10 +36,16 @@ function onFormatChange(e) {
   saveSettings({ "format": val });
 }
 
+function onButtonClick() {
+  const sending = browser.runtime.sendMessage("yank");
+  sending.catch(errorHandler("Failed to send a message"));
+}
+
 async function main() {
   settings = await fetchSettings();
   setTheme(getTheme())
   selectEl.addEventListener("change", onFormatChange);
+  buttonEl.addEventListener("click", onButtonClick);
   inputSync(settings.format);
 
   browser.storage.onChanged.addListener(({ yank: { newValue } }) => {
