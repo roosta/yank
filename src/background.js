@@ -2,6 +2,7 @@ import { fetchSettings } from "./settings.js"
 import { dispatch } from "./format.js"
 import { errorHandler } from "./logging.js"
 
+// Global settings obj
 var settings;
 
 function createContextMenu() {

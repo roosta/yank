@@ -15,8 +15,8 @@ const formats = {
       [">", "\\>"],
       ["<", "\\<"],
       ["\\*", "\\*"],
-      ["`", "\\`"]]
-    );
+      ["`", "\\`"]
+    ]);
     return `[${esc}](${url})`;
   },
   // Org mode doesn't seem to have any escape sequence for description, so
@@ -25,27 +25,27 @@ const formats = {
   org: (title, url) => {
     let esc = stresc(title, [
       ["\\[", "{"],
-      ["\\]", "}"]]
-    );
+      ["\\]", "}"]
+    ]);
     return `[[${url}][${esc}]]`;
   },
   textile: (title, url) => {
     let esc = stresc(title, [
-      ['"', '\\"']]
-    );
+      ['"', '\\"']
+    ]);
     return `"${esc}":${url}`
   },
   asciidoc: (title, url) => {
     let esc = stresc(title, [
-      ["\\]", "\\]"]]
-    );
+      ["\\]", "\\]"]
+    ]);
     return `${url}[${esc}]`
   },
   rest: (title, url) => {
     let esc = stresc(title, [
       ["_", "\\_"],
-      ["`", "\\`"]]
-    );
+      ["`", "\\`"]
+    ]);
     return `\`${esc} <${url}>\`_`
   },
 
@@ -55,8 +55,8 @@ const formats = {
     let esc = stresc(title, [
       ["&", "&amp;"],
       ["<", "&lt;"],
-      [">", "&gt;"]]
-    );
+      [">", "&gt;"]
+    ]);
     return `<a href="${url}">${esc}</a>`
   },
   // Latex was a tricky one, I might possibly have missed something, some other
@@ -77,9 +77,19 @@ const formats = {
       ["<", "\\textless{}"],
       [">", "\\textgreater{}"],
       ["\\^", "\\textasciicircum{}"]
-    ]
-    );
+    ]);
     return `\\href{${url}}{${esc}}`
+  },
+  typst: (title, url) => {
+     let esc = stresc(title, [
+       ["\\\\", "\\\\"],
+       ["`", "\\`"],
+       ["\\^", "\\^"],
+       ["\\$", "\\$"],
+       ["_", "\\_"]
+       ,
+     ]);
+    return `#link("${url}")[${esc}]`
   }
 }
 
