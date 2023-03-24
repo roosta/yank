@@ -9,7 +9,7 @@
     "webpack": "webpack --config webpack.dev.js",
     "clean": "rm -rf addon/background addon/popup",
     "build": "webpack --config webpack.prod.js",
-    "package": "web-ext build -s addon -a releases",
+    "package": "web-ext build -s addon -a releases --overwrite-dest",
     "prod": "npm run clean && npm run build && npm run package",
     "dev": "concurrently --kill-others \"npm:web-ext\" \"npm:webpack\""
   },
