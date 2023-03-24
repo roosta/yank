@@ -19,13 +19,11 @@ const formats = {
     ]);
     return `[${esc}](${url})`;
   },
-  // Org mode doesn't seem to have any escape sequence for description, so
-  // using curly brackets
-  // https://stackoverflow.com/questions/27284913/how-to-escape-square-bracket-in-org-mode-links
   org: (title, url) => {
     let esc = stresc(title, [
-      ["\\[", "{"],
-      ["\\]", "}"]
+      ["\\\\", "\\textbackslash{}"],
+      ["\\[", "\\lbrack{}"],
+      ["\\]", "\\rbrack{}"]
     ]);
     return `[[${url}][${esc}]]`;
   },
