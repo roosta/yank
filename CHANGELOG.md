@@ -4,6 +4,24 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v2.0.0] - 2023-03-25
+### Changed
+- BREAKING: Remove shortcut option, use extension shortcut instead (commands)
+  - You will need to rebind your shortcut via `Manage Extension Shortcuts` in `Manage Extensions`
+- Rework theme, and how dark/light variants are handled (see `src/theme.json`)
+  - Create two new themes based of Firefox light and dark, will also use media query to check for system preference
+- Remove content script entirely and in process greatly simplifies permissions,
+  now more in line with what the plugin does, see
+  [permissions](README.md#permissions) for a breakdown
+- Add a new format; [typst](https://typst.app/)
+- BREAKING: Yank no longer syncs the one setting it has (format) with account, its only saved on local machine.
+  - I don't really see the need to sync this, its trivial to change, and its also something I personally keep changing on need anyways
+- Default format is now markdown
+
+### Fixed
+- Extended or added to escapes for multiple formats
+- Fix latex escapes (the previous attempts with certain symbols failed in parser)
+
 ## [v1.0.6] - 2020-01-13
 ### Changed
 - Update dependencies
@@ -76,7 +94,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v1.0.6...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/roosta/yank/compare/v1.0.6...v2.0.0
 [v1.0.6]: https://github.com/roosta/yank/compare/v1.0.5...v1.0.6
 [v1.0.5]: https://github.com/roosta/yank/compare/v1.0.4...v1.0.5
 [v1.0.4]: https://github.com/roosta/yank/compare/v1.0.3...v1.0.4
@@ -87,4 +106,4 @@ the following markup languages:
 [v0.3.0]: https://github.com/roosta/yank/compare/v0.2.1...v0.3.0
 [v0.2.1]: https://github.com/roosta/yank/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/roosta/yank/compare/v0.1.0...v0.2.0
-[v0.1.0]: https://github.com/roosta/yank/compare/v0.1.0...master
+[v0.1.0]: https://github.com/roosta/yank/compare/v0.1.0...main
