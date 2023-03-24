@@ -1,5 +1,6 @@
 import { fetchSettings } from "./settings.js"
 import { dispatch } from "./format.js"
+import { errorHandler } from "./logging.js"
 
 var settings;
 
@@ -11,28 +12,37 @@ function createContextMenu() {
   })
 
 }
-function onError(error) {
-  console.error(`Yank error: ${error}`);
-}
-
 // Updates clipboard with newClip, ignore succees, catch error
 function updateClipboard(newClip) {
-  navigator.clipboard.writeText(newClip).catch(onError);
+  navigator.clipboard
+    .writeText(newClip)
+    .catch(errorHandler("Clipboard write failed"));
 }
 
-// Addon command
-browser.commands.onCommand.addListener((command) => {
-  if (command === "yank") {
-    browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
-      const text = dispatch({
-        title: tab.title,
-        format: settings.format,
-        url: tab.url
-      });
-      updateClipboard(text);
+// Get active tab info, format, then update clipboard
+function yank() {
+  browser.tabs.query({currentWindow: true, active: true}, ([tab]) => {
+    const text = dispatch({
+      title: tab.title,
+      format: settings.format,
+      url: tab.url
     });
+    updateClipboard(text);
+  });
+}
+
+function handleCommand(command) {
+  if (command === "yank") {
+    yank();
   }
-});
+}
+
+function handleMessage(request) {
+  if (request === "yank") {
+    yank();
+    return Promise.resolve(true);
+  }
+}
 
 function handleContext(info) {
   const text = dispatch({
@@ -46,12 +56,16 @@ function handleContext(info) {
 async function main() {
   settings = await fetchSettings();
   createContextMenu();
-  browser.contextMenus.onClicked.addListener(handleContext)
-
-  browser.storage.onChanged.addListener(({ yank: { newValue } }) => {
-    settings = newValue;
+  browser.contextMenus.onClicked.addListener(handleContext);
+  browser.runtime.onMessage.addListener(handleMessage);
+  browser.commands.onCommand.addListener(handleCommand);
+  browser.storage.onChanged.addListener(({ yank: { newValue, oldValue } }) => {
+    if (newValue !== oldValue) {
+      settings = newValue;
+    }
   })
 }
+
 main();
 
 // vim: set ts=2 sw=2 tw=0 fdm=marker et :
