@@ -35,7 +35,7 @@ const formats = {
   },
   asciidoc: (title, url) => {
     let esc = stresc(title, [
-      ["\\]", "\\]"]
+      ["\\]", "\\{endsb}"],
     ]);
     return `${url}[${esc}]`
   },
