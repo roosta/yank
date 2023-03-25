@@ -1,7 +1,7 @@
 # [ Yank ]
 
-A Firefox extension to copy current tab URL to clipboard, formatted for a markup
-language. Supports several different markup languages.
+A Firefox extension to copy current tab URL and title to clipboard, formatted
+for a markup language. Supports several different markup languages.
 
 ## Usage
 
