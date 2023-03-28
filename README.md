@@ -75,8 +75,8 @@ That string runs through all the usual suspects, then I will check the result
 with a parser depending on the format.
 
 Automating this might be possible but IMO not worth the effort, and would be
-needlessly complicated. Might setup some unit tests later for various functions
-but they are not very complicated, and hardly need any testing.
+needlessly complicated. Might setup some unit tests later for various
+functions, but for now I'm satisfied with manual testing.
 
 ## License
 
