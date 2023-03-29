@@ -1,4 +1,4 @@
-# [ Yank ]
+# [ yank ]
 
 A Firefox extension to copy current tab URL and title to clipboard, formatted
 for a markup language. Supports several different markup languages.
@@ -51,7 +51,7 @@ are only development dependencies.
 ## Development
 
 ``` example
-$ git clone https://github.com/roosta/yank && cd yank
+git clone https://github.com/roosta/yank && cd yank && npm install
 ```
 
 Run `npm run dev` to start a concurrent [webpack](https://webpack.js.org/) and [web-ext](https://github.com/mozilla/web-ext) watch processes.
