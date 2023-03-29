@@ -54,9 +54,12 @@ are only development dependencies.
 git clone https://github.com/roosta/yank && cd yank && npm install
 ```
 
-Run `npm run dev` to start a concurrent [webpack](https://webpack.js.org/) and [web-ext](https://github.com/mozilla/web-ext) watch processes.
-It'll open Firefox and a debugger. See `ffdev.sh` launcher script, change it to
-match your preferred setup.
+Run `npm run dev` to start a
+[concurrent](https://github.com/open-cli-tools/concurrently)
+[webpack](https://webpack.js.org/) and
+[web-ext](https://github.com/mozilla/web-ext) watch processes. It'll open
+Firefox and a debugger. See `ffdev.sh` launcher script, change it to match your
+preferred setup.
 
 ## Release
 
