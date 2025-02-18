@@ -29,6 +29,7 @@ Yank currently supports these markup languages:
   - [HTML](https://www.w3.org/html/)
   - [LaTeX](https://www.latex-project.org/)
   - [typst](https://typst.app/)
+  - [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext)
 
 ## Permissions
 
@@ -71,7 +72,7 @@ See [package.json](package.json) `scripts` for details on each individual step
 I've manually doubled checked each format using this string:
 
 ```
-<my> {fancy} "title" \\with\\ [ chars ] backtick(`), tilde(~), underscore(_), amp(&), dollar($), uptick(^)';
+<my> {fancy} "title" \\with\\ [ chars ] backtick(`), tilde(~), underscore(_), amp(&), dollar($), uptick(^), pipe(|)
 ```
 That string runs through all the usual suspects, then I will check the result
 with a parser depending on the format.

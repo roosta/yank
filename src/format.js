@@ -88,6 +88,17 @@ const formats = {
        ,
      ]);
     return `#link("${url}")[${esc}]`
+  },
+
+  // https://en.wikipedia.org/wiki/Help:URL#Fixing_links_with_unsupported_characters
+  wikitext: (title, url) => {
+    let esc = stresc(title, [
+      ["]", "&#93;"],
+      ["\\n", " "],
+      ["\\[", "&#91;"],
+      ["\\|", "&#124;"],
+    ]);
+    return `[${url} ${esc}]`
   }
 }
 
