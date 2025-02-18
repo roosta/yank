@@ -58,8 +58,7 @@ Run `npm run dev` to start a
 [concurrent](https://github.com/open-cli-tools/concurrently)
 [webpack](https://webpack.js.org/) and
 [web-ext](https://github.com/mozilla/web-ext) watch processes. It'll open
-Firefox and a debugger. See `ffdev.sh` launcher script, change it to match your
-preferred setup.
+Firefox developer edition and a debugger.
 
 ## Release
 

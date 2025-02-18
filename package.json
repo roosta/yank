@@ -5,7 +5,7 @@
   "description": "Yank current page URL to clipboard as various markup formats",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web-ext": "web-ext run --devtools -s addon -f ./scripts/ffdev.sh",
+    "web-ext": "web-ext run --devtools -s addon -f firefox-developer-edition",
     "webpack": "webpack --config webpack.dev.js",
     "clean": "rm -rf addon/background addon/popup",
     "build": "webpack --config webpack.prod.js",
