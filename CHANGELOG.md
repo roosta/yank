@@ -4,6 +4,10 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v2.1.0] - 2023-03-25
+### Added
+- Add support for [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext)
+
 ## [v2.0.0] - 2023-03-25
 ### Changed
 - BREAKING: Remove shortcut option, use extension shortcut instead (commands)
@@ -94,7 +98,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v2.1.0...HEAD
+[v2.1.0]: https://github.com/roosta/yank/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/roosta/yank/compare/v1.0.6...v2.0.0
 [v1.0.6]: https://github.com/roosta/yank/compare/v1.0.5...v1.0.6
 [v1.0.5]: https://github.com/roosta/yank/compare/v1.0.4...v1.0.5
