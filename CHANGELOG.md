@@ -4,6 +4,11 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fix
+- Reduce overzealous markdown escaping that isn't needed.
+- Replace bracket escape (\\]) with braces ({}) because some parsers stuggle
+  with the bracket escape in links
+
 ## [v2.1.0] - 2023-03-25
 ### Added
 - Add support for [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext)
