@@ -4,12 +4,20 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [v2.1.1] - 2025-07-20
 ### Fix
-- Reduce overzealous markdown escaping that isn't needed.
-- Replace bracket escape (\\]) with braces ({}) because some parsers stuggle
+
+- (md) Reduce overzealous markdown escaping that isn't needed.
+- (md) Replace bracket escape (\\]) with braces ({}) because some parsers stuggle
   with the bracket escape in links
 
-## [v2.1.0] - 2023-03-25
+### Dev
+
+- Migrate eslint config
+- Upgrade development dependencies
+- Fix lint error for console.log/error print
+
+## [v2.1.0] - 2025-02-18
 ### Added
 - Add support for [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext)
 
@@ -103,7 +111,8 @@ the following markup languages:
 - reStructuredText
 - HTML
 
-[Unreleased]: https://github.com/roosta/yank/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/roosta/yank/compare/v2.1.1...HEAD
+[v2.1.1]: https://github.com/roosta/yank/compare/v2.1.0...v2.1.1
 [v2.1.0]: https://github.com/roosta/yank/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/roosta/yank/compare/v1.0.6...v2.0.0
 [v1.0.6]: https://github.com/roosta/yank/compare/v1.0.5...v1.0.6
