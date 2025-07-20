@@ -1,6 +1,7 @@
 {
   "name": "yank",
   "version": "2.1.1",
+  "type": "module",
   "private": true,
   "description": "Yank current page URL to clipboard as various markup formats",
   "scripts": {
@@ -8,6 +9,7 @@
     "web-ext": "web-ext run --devtools -s addon -f firefox-developer-edition",
     "webpack": "webpack --config webpack.dev.js",
     "clean": "rm -rf addon/background addon/popup",
+    "lint": "eslint",
     "build": "webpack --config webpack.prod.js",
     "package": "web-ext build -s addon -a releases --overwrite-dest",
     "prod": "npm run clean && npm run build && npm run package",
