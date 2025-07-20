@@ -1,4 +1,5 @@
 # Change Log
+
 All notable changes to this project will be documented in this file. This change
 log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
@@ -14,11 +15,13 @@ log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 ### Dev
 
 - Migrate eslint config
+  - Convert webpack config to ES module syntax, fixing build scripts
 - Upgrade development dependencies
 - Fix lint error for console.log/error print
 
 ## [v2.1.0] - 2025-02-18
 ### Added
+
 - Add support for [Wikitext](https://en.wikipedia.org/wiki/Help:Wikitext)
 
 ## [v2.0.0] - 2023-03-25
