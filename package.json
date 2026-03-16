@@ -29,7 +29,7 @@
     "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
     "eslint-plugin-mozilla": "^4.4.0",
-    "web-ext": "^9.4.0",
+    "web-ext": "^10.0.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.0"
   }
