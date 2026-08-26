@@ -12,14 +12,14 @@ importers:
         specifier: ^10.0.4
         version: 10.0.4
       eslint:
-        specifier: ^10.7.0
-        version: 10.7.0
+        specifier: ^10.8.1
+        version: 10.8.1(supports-color@10.2.2)
       eslint-plugin-mozilla:
         specifier: ^4.4.0
-        version: 4.4.0(eslint-plugin-jsdoc@63.0.10(eslint@10.7.0))(eslint-plugin-no-unsanitized@4.1.5(eslint@10.7.0))(eslint-plugin-promise@7.3.0(eslint@10.7.0))(eslint@10.7.0)
+        version: 4.4.0(eslint-plugin-jsdoc@63.0.10(eslint@10.8.1(supports-color@10.2.2))(supports-color@10.2.2))(eslint-plugin-no-unsanitized@4.1.5(eslint@10.8.1(supports-color@10.2.2)))(eslint-plugin-promise@7.3.0(eslint@10.8.1(supports-color@10.2.2)))(eslint@10.8.1(supports-color@10.2.2))
       web-ext:
         specifier: ^10.5.0
-        version: 10.6.0
+        version: 10.6.0(supports-color@10.2.2)
       webpack:
         specifier: ^5.109.2
         version: 5.109.2(webpack-cli@7.2.2)
@@ -87,8 +87,8 @@ packages:
     resolution: {integrity: sha512-gBrxN88gOIf3R7ja5K9slwNayVcZgK6SOUORm2uBzTeIEfeVaIhOpCtTox3P6R7o2jLFwLFTLnC7kU/RGcYEgw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/config-helpers@0.6.0':
-    resolution: {integrity: sha512-ii6Bw9jJ2zi2cWA2Z+9/QZ/+3DX6kwaV5Q986D/CdP3Lap3w/pgQZ373FV7byY/i7L4IRH/G43I5dz1ClsCbpA==}
+  '@eslint/config-helpers@0.7.0':
+    resolution: {integrity: sha512-DObd/KKUsU+FaFv4PLxSRenpXfQWmPXXP3pPZ6/K1PCrMu2vQpMDMuQe/BqYeoLcz8ro0bVDF1RxOJgfVEdhUw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   '@eslint/core@0.17.0':
@@ -713,8 +713,8 @@ packages:
     resolution: {integrity: sha512-tD40eHxA35h0PEIZNeIjkHoDR4YjjJp34biM0mDvplBe//mB+IHCqHDGV7pxF+7MklTvighcCPPZC7ynWyjdTA==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  eslint@10.7.0:
-    resolution: {integrity: sha512-GVTD7s1vdIl6UYvAfriOPeY1Df8LIZjfofLvHwde+erDHGGuHyuM6xoxRxmHiebhYuD2p1vN4wWh0XzPARSGDQ==}
+  eslint@10.8.1:
+    resolution: {integrity: sha512-wqA7W2jbsC/BnV9Iv1UZpKVFkO1AdNoSmYW8NWG4HNOBbkAMvIqDZ27pI2f07dqn583NcIC44ckjAcOXDL1QbQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     hasBin: true
     peerDependencies:
@@ -726,6 +726,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1775,13 +1776,13 @@ snapshots:
 
   '@devicefarmer/adbkit-monkey@1.2.1': {}
 
-  '@devicefarmer/adbkit@3.3.9':
+  '@devicefarmer/adbkit@3.3.9(supports-color@10.2.2)':
     dependencies:
       '@devicefarmer/adbkit-logcat': 2.1.3
       '@devicefarmer/adbkit-monkey': 1.2.1
       bluebird: 3.7.2
       commander: 9.5.0
-      debug: 4.3.7
+      debug: 4.3.7(supports-color@10.2.2)
       node-forge: 1.4.0
       split: 1.0.1
     transitivePeerDependencies:
@@ -1799,30 +1800,30 @@ snapshots:
 
   '@es-joy/resolve.exports@1.2.0': {}
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.7.0)':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.8.1(supports-color@10.2.2))':
     dependencies:
-      eslint: 10.7.0
+      eslint: 10.8.1(supports-color@10.2.2)
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@9.39.4)':
+  '@eslint-community/eslint-utils@4.10.1(eslint@9.39.4(supports-color@10.2.2))':
     dependencies:
-      eslint: 9.39.4
+      eslint: 9.39.4(supports-color@10.2.2)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.21.2':
+  '@eslint/config-array@0.21.2(supports-color@10.2.2)':
     dependencies:
       '@eslint/object-schema': 2.1.7
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       minimatch: 3.1.5
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/config-array@0.23.5':
+  '@eslint/config-array@0.23.5(supports-color@10.2.2)':
     dependencies:
       '@eslint/object-schema': 3.0.5
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       minimatch: 10.2.6
     transitivePeerDependencies:
       - supports-color
@@ -1831,7 +1832,7 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
 
-  '@eslint/config-helpers@0.6.0':
+  '@eslint/config-helpers@0.7.0':
     dependencies:
       '@eslint/core': 1.2.1
 
@@ -1843,10 +1844,10 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
 
-  '@eslint/eslintrc@3.3.5':
+  '@eslint/eslintrc@3.3.5(supports-color@10.2.2)':
     dependencies:
       ajv: 6.15.0
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       espree: 10.4.0
       globals: 14.0.0
       ignore: 5.3.2
@@ -2036,7 +2037,7 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  addons-linter@10.10.0:
+  addons-linter@10.10.0(supports-color@10.2.2):
     dependencies:
       '@fluent/syntax': 0.19.0
       '@fregante/relaxed-json': 2.0.0
@@ -2049,8 +2050,8 @@ snapshots:
       common-tags: 1.8.2
       css-tree: 3.2.1
       deepmerge: 4.3.1
-      eslint: 9.39.4
-      eslint-plugin-no-unsanitized: 4.1.5(eslint@9.39.4)
+      eslint: 9.39.4(supports-color@10.2.2)
+      eslint-plugin-no-unsanitized: 4.1.5(eslint@9.39.4(supports-color@10.2.2))
       eslint-visitor-keys: 5.0.1
       espree: 11.2.0
       esprima: 4.0.1
@@ -2220,12 +2221,12 @@ snapshots:
       undici: 7.28.0
       whatwg-mimetype: 4.0.0
 
-  chrome-launcher@1.2.0:
+  chrome-launcher@1.2.0(supports-color@10.2.2):
     dependencies:
       '@types/node': 26.0.1
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
-      lighthouse-logger: 2.0.2
+      lighthouse-logger: 2.0.2(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -2324,13 +2325,17 @@ snapshots:
 
   debounce@1.2.1: {}
 
-  debug@4.3.7:
+  debug@4.3.7(supports-color@10.2.2):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 10.2.2
 
-  debug@4.4.3:
+  debug@4.4.3(supports-color@10.2.2):
     dependencies:
       ms: 2.1.3
+    optionalDependencies:
+      supports-color: 10.2.2
 
   decamelize@6.0.1: {}
 
@@ -2415,15 +2420,15 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-plugin-jsdoc@63.0.10(eslint@10.7.0):
+  eslint-plugin-jsdoc@63.0.10(eslint@10.8.1(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       '@es-joy/jsdoccomment': 0.87.0
       '@es-joy/resolve.exports': 1.2.0
       are-docs-informative: 0.0.2
       comment-parser: 1.4.7
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       escape-string-regexp: 4.0.0
-      eslint: 10.7.0
+      eslint: 10.8.1(supports-color@10.2.2)
       espree: 11.2.0
       esquery: 1.7.0
       html-entities: 2.6.0
@@ -2435,12 +2440,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-mozilla@4.4.0(eslint-plugin-jsdoc@63.0.10(eslint@10.7.0))(eslint-plugin-no-unsanitized@4.1.5(eslint@10.7.0))(eslint-plugin-promise@7.3.0(eslint@10.7.0))(eslint@10.7.0):
+  eslint-plugin-mozilla@4.4.0(eslint-plugin-jsdoc@63.0.10(eslint@10.8.1(supports-color@10.2.2))(supports-color@10.2.2))(eslint-plugin-no-unsanitized@4.1.5(eslint@10.8.1(supports-color@10.2.2)))(eslint-plugin-promise@7.3.0(eslint@10.8.1(supports-color@10.2.2)))(eslint@10.8.1(supports-color@10.2.2)):
     dependencies:
-      eslint: 10.7.0
-      eslint-plugin-jsdoc: 63.0.10(eslint@10.7.0)
-      eslint-plugin-no-unsanitized: 4.1.5(eslint@10.7.0)
-      eslint-plugin-promise: 7.3.0(eslint@10.7.0)
+      eslint: 10.8.1(supports-color@10.2.2)
+      eslint-plugin-jsdoc: 63.0.10(eslint@10.8.1(supports-color@10.2.2))(supports-color@10.2.2)
+      eslint-plugin-no-unsanitized: 4.1.5(eslint@10.8.1(supports-color@10.2.2))
+      eslint-plugin-promise: 7.3.0(eslint@10.8.1(supports-color@10.2.2))
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -2448,18 +2453,18 @@ snapshots:
       htmlparser2: 10.1.0
       toml-eslint-parser: 1.0.0
 
-  eslint-plugin-no-unsanitized@4.1.5(eslint@10.7.0):
+  eslint-plugin-no-unsanitized@4.1.5(eslint@10.8.1(supports-color@10.2.2)):
     dependencies:
-      eslint: 10.7.0
+      eslint: 10.8.1(supports-color@10.2.2)
 
-  eslint-plugin-no-unsanitized@4.1.5(eslint@9.39.4):
+  eslint-plugin-no-unsanitized@4.1.5(eslint@9.39.4(supports-color@10.2.2)):
     dependencies:
-      eslint: 9.39.4
+      eslint: 9.39.4(supports-color@10.2.2)
 
-  eslint-plugin-promise@7.3.0(eslint@10.7.0):
+  eslint-plugin-promise@7.3.0(eslint@10.8.1(supports-color@10.2.2)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.7.0)
-      eslint: 10.7.0
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.8.1(supports-color@10.2.2))
+      eslint: 10.8.1(supports-color@10.2.2)
 
   eslint-scope@5.1.1:
     dependencies:
@@ -2484,12 +2489,12 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.7.0:
+  eslint@10.8.1(supports-color@10.2.2):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.7.0)
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.8.1(supports-color@10.2.2))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.5
-      '@eslint/config-helpers': 0.6.0
+      '@eslint/config-array': 0.23.5(supports-color@10.2.2)
+      '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
       '@humanfs/node': 0.16.8
@@ -2498,7 +2503,7 @@ snapshots:
       '@types/estree': 1.0.9
       ajv: 6.15.0
       cross-spawn: 7.0.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       escape-string-regexp: 4.0.0
       eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
@@ -2519,14 +2524,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint@9.39.4:
+  eslint@9.39.4(supports-color@10.2.2):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@9.39.4)
+      '@eslint-community/eslint-utils': 4.10.1(eslint@9.39.4(supports-color@10.2.2))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.21.2
+      '@eslint/config-array': 0.21.2(supports-color@10.2.2)
       '@eslint/config-helpers': 0.4.2
       '@eslint/core': 0.17.0
-      '@eslint/eslintrc': 3.3.5
+      '@eslint/eslintrc': 3.3.5(supports-color@10.2.2)
       '@eslint/js': 9.39.4
       '@eslint/plugin-kit': 0.4.1
       '@humanfs/node': 0.16.8
@@ -2536,7 +2541,7 @@ snapshots:
       ajv: 6.15.0
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       escape-string-regexp: 4.0.0
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
@@ -2679,10 +2684,10 @@ snapshots:
       domutils: 3.2.2
       entities: 7.0.1
 
-  https-proxy-agent@7.0.6:
+  https-proxy-agent@7.0.6(supports-color@10.2.2):
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -2861,9 +2866,9 @@ snapshots:
     dependencies:
       immediate: 3.0.6
 
-  lighthouse-logger@2.0.2:
+  lighthouse-logger@2.0.2(supports-color@10.2.2):
     dependencies:
-      debug: 4.4.3
+      debug: 4.4.3(supports-color@10.2.2)
       marky: 1.3.0
     transitivePeerDependencies:
       - supports-color
@@ -3336,19 +3341,19 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  web-ext@10.6.0:
+  web-ext@10.6.0(supports-color@10.2.2):
     dependencies:
       '@babel/runtime': 8.0.0
-      '@devicefarmer/adbkit': 3.3.9
-      addons-linter: 10.10.0
+      '@devicefarmer/adbkit': 3.3.9(supports-color@10.2.2)
+      addons-linter: 10.10.0(supports-color@10.2.2)
       camelcase: 8.0.0
-      chrome-launcher: 1.2.0
+      chrome-launcher: 1.2.0(supports-color@10.2.2)
       debounce: 1.2.1
       decamelize: 6.0.1
       es6-error: 4.1.1
       firefox-profile: 4.7.1
       fx-runner: 1.6.0
-      https-proxy-agent: 7.0.6
+      https-proxy-agent: 7.0.6(supports-color@10.2.2)
       jose: 5.9.6
       jszip: 3.10.1
       multimatch: 6.0.0
