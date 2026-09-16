@@ -27,7 +27,7 @@
   "homepage": "https://github.com/roosta/yank#readme",
   "devDependencies": {
     "concurrently": "^10.0.5",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-plugin-mozilla": "^5.0.1",
     "web-ext": "^10.5.0",
     "webpack": "^5.110.3",
