@@ -30,7 +30,7 @@
     "eslint": "^10.10.0",
     "eslint-plugin-mozilla": "^5.0.1",
     "web-ext": "^10.7.0",
-    "webpack": "^5.111.0",
+    "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3"
   }
 }
